@@ -6,7 +6,7 @@ defined('ABSPATH') || exit;
  *
  * Base class for all Mauriel REST API controllers.
  */
-abstract class Mauriel_REST_Controller extends WP_REST_Controller {
+class Mauriel_REST_Controller extends WP_REST_Controller {
 
     /**
      * REST API namespace.
@@ -20,7 +20,7 @@ abstract class Mauriel_REST_Controller extends WP_REST_Controller {
      *
      * @return void
      */
-    abstract public function register_routes(): void;
+    public function register_routes() {}
 
     /**
      * Verifies the X-WP-Nonce header for logged-in endpoint authentication.
