@@ -1,0 +1,117 @@
+/* Mauriel Service Directory — Dashboard Styles */
+
+.mauriel-dashboard { background: var(--mauriel-light, #f3f4f6); border-radius: 12px; padding: 0; }
+.mauriel-dashboard-header { background: white; padding: 24px 30px; border-radius: 12px 12px 0 0; border-bottom: 1px solid #e5e7eb; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+.mauriel-dashboard-title h2 { margin: 0 0 4px; font-size: 22px; }
+.mauriel-dashboard-title p { margin: 0; color: #6b7280; font-size: 14px; display: flex; align-items: center; gap: 8px; }
+.mauriel-dashboard-layout { display: flex; min-height: 600px; }
+
+/* Nav */
+.mauriel-dashboard-nav { flex: 0 0 220px; background: white; border-right: 1px solid #e5e7eb; padding: 20px 0; display: flex; flex-direction: column; }
+.mauriel-dashboard-tab-btn { display: block; padding: 12px 20px; color: #374151; font-size: 14px; font-weight: 500; text-decoration: none; border-left: 3px solid transparent; transition: all 0.2s; }
+.mauriel-dashboard-tab-btn:hover { background: #f9fafb; color: #2563eb; border-left-color: #2563eb; }
+.mauriel-dashboard-tab-btn.active { background: #eff6ff; color: #2563eb; border-left-color: #2563eb; font-weight: 700; }
+.mauriel-tab-locked { color: #9ca3af; cursor: default; padding: 12px 20px; font-size: 14px; display: block; }
+
+/* Content */
+.mauriel-dashboard-content { flex: 1; padding: 30px; background: var(--mauriel-light, #f3f4f6); min-width: 0; }
+.mauriel-tab-panel h2 { margin: 0 0 24px; font-size: 20px; display: flex; align-items: center; gap: 10px; }
+
+/* Analytics cards */
+.mauriel-analytics-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 24px; }
+.mauriel-analytics-card { background: white; border-radius: 10px; padding: 20px; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+.mauriel-analytics-icon { font-size: 28px; margin-bottom: 8px; }
+.mauriel-analytics-number { font-size: 32px; font-weight: 800; color: #2563eb; line-height: 1; }
+.mauriel-analytics-label { font-size: 12px; color: #6b7280; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+.mauriel-chart-container { background: white; border-radius: 10px; padding: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+.mauriel-chart-container h3 { margin: 0 0 16px; font-size: 15px; }
+.mauriel-days-filter { display: flex; gap: 8px; margin-bottom: 20px; }
+
+/* Lead cards */
+.mauriel-leads-list { display: flex; flex-direction: column; gap: 12px; }
+.mauriel-lead-card { background: white; border-radius: 10px; padding: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+.mauriel-lead-new { border-left: 4px solid #2563eb; }
+.mauriel-lead-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; flex-wrap: wrap; }
+.mauriel-lead-type-badge { padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; text-transform: uppercase; }
+.mauriel-type-contact { background: #dbeafe; color: #1e40af; }
+.mauriel-type-quote { background: #fef3c7; color: #92400e; }
+.mauriel-type-phone_click { background: #d1fae5; color: #065f46; }
+.mauriel-lead-date { font-size: 12px; color: #9ca3af; margin-left: auto; }
+.mauriel-new-badge { background: #2563eb; color: white; font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 10px; }
+.mauriel-lead-message { font-size: 13px; color: #6b7280; background: #f9fafb; padding: 10px; border-radius: 6px; margin: 8px 0 0; }
+.mauriel-lead-filters { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+
+/* Reviews */
+.mauriel-reviews-summary-bar { background: white; border-radius: 10px; padding: 20px; margin-bottom: 20px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+.mauriel-avg-display { display: flex; align-items: center; gap: 10px; }
+.mauriel-avg-number { font-size: 36px; font-weight: 800; color: #2563eb; }
+.mauriel-review-manage-card { background: white; border-radius: 10px; padding: 18px; margin-bottom: 12px; }
+.mauriel-review-manage-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin-bottom: 10px; flex-wrap: wrap; }
+.mauriel-review-manage-actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.mauriel-existing-response { background: #f0f9ff; border-left: 3px solid #2563eb; padding: 12px; margin-top: 12px; border-radius: 0 6px 6px 0; }
+.mauriel-response-form { margin-top: 12px; padding: 12px; background: #f9fafb; border-radius: 8px; }
+.mauriel-status-badge.approved { background: #d1fae5; color: #065f46; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; }
+.mauriel-status-badge.pending { background: #fef3c7; color: #92400e; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; }
+.mauriel-google-import { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.mauriel-import-result { margin-top: 8px; font-size: 13px; }
+
+/* Coupons manage */
+.mauriel-coupon-add-form { background: white; border-radius: 10px; padding: 20px; margin-bottom: 24px; border: 1px solid #e5e7eb; }
+.mauriel-coupon-manage-card { background: white; border-radius: 10px; padding: 16px; margin-bottom: 10px; border: 1px solid #e5e7eb; display: flex; justify-content: space-between; align-items: center; }
+.mauriel-coupon-expired { opacity: 0.6; }
+.mauriel-coupon-meta { display: flex; align-items: center; gap: 10px; font-size: 13px; color: #6b7280; flex-wrap: wrap; }
+.mauriel-coupon-manage-actions { display: flex; gap: 8px; }
+
+/* Subscription */
+.mauriel-current-plan { background: white; border-radius: 10px; padding: 24px; margin-bottom: 24px; border: 2px solid #2563eb; }
+.mauriel-current-plan h3 { margin: 0 0 16px; }
+.mauriel-plan-info { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+.mauriel-plan-name { font-size: 18px; font-weight: 700; }
+.mauriel-plan-price strong { font-size: 22px; color: #2563eb; }
+.mauriel-status-active { background: #d1fae5; color: #065f46; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 700; }
+.mauriel-status-free { background: #f3f4f6; color: #374151; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 700; }
+.mauriel-next-billing { font-size: 13px; color: #6b7280; }
+.mauriel-upgrade-section h3 { margin-bottom: 16px; }
+.mauriel-plan-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; }
+.mauriel-plan-card { background: white; border: 2px solid #e5e7eb; border-radius: 10px; padding: 20px; text-align: center; position: relative; }
+.mauriel-plan-current { border-color: #2563eb; }
+.mauriel-plan-featured { border-color: #f59e0b; }
+.mauriel-plan-popular-badge { position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: #f59e0b; color: #111827; font-size: 10px; font-weight: 700; padding: 3px 10px; border-radius: 20px; white-space: nowrap; }
+.mauriel-plan-price-wrap strong { font-size: 26px; font-weight: 800; color: #2563eb; }
+.mauriel-plan-features { list-style: none; padding: 0; margin: 12px 0; font-size: 13px; text-align: left; }
+.mauriel-plan-features li { padding: 3px 0; color: #6b7280; }
+.mauriel-billing-toggle { display: flex; gap: 6px; margin-bottom: 16px; }
+
+/* Hours editor */
+.mauriel-hours-quick-actions { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+.mauriel-hours-editor-table { width: 100%; border-collapse: collapse; background: white; border-radius: 10px; overflow: hidden; }
+.mauriel-hours-editor-table th { background: #f9fafb; padding: 10px 14px; font-size: 13px; text-align: left; border-bottom: 1px solid #e5e7eb; }
+.mauriel-hours-editor-table td { padding: 12px 14px; border-bottom: 1px solid #f3f4f6; }
+.mauriel-time-input { width: 130px; padding: 6px 10px; }
+
+/* Media upload */
+.mauriel-media-section { background: white; border-radius: 10px; padding: 20px; margin-bottom: 20px; }
+.mauriel-media-section h3 { margin: 0 0 16px; }
+.mauriel-media-upload-area { display: flex; gap: 20px; align-items: center; }
+.mauriel-logo-preview { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 3px solid #e5e7eb; }
+.mauriel-cover-preview { max-width: 200px; border-radius: 8px; }
+.mauriel-cover-placeholder { width: 200px; height: 70px; background: #f3f4f6; border: 2px dashed #e5e7eb; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 13px; color: #9ca3af; }
+.mauriel-gallery-manage { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 12px; }
+.mauriel-gallery-thumb { position: relative; width: 80px; height: 80px; }
+.mauriel-gallery-thumb img { width: 100%; height: 100%; object-fit: cover; border-radius: 6px; }
+.mauriel-remove-gallery-img { position: absolute; top: -6px; right: -6px; width: 20px; height: 20px; border-radius: 50%; background: #ef4444; color: white; border: none; font-size: 12px; cursor: pointer; display: flex; align-items: center; justify-content: center; line-height: 1; }
+.mauriel-video-row { display: flex; gap: 8px; align-items: center; margin-bottom: 8px; }
+.mauriel-add-video-row { display: flex; gap: 8px; align-items: center; }
+
+/* Responsive dashboard */
+@media (max-width: 768px) {
+	.mauriel-dashboard-layout { flex-direction: column; }
+	.mauriel-dashboard-nav { flex-direction: row; flex: none; overflow-x: auto; padding: 10px 0; border-right: none; border-bottom: 1px solid #e5e7eb; }
+	.mauriel-dashboard-tab-btn { border-left: none; border-bottom: 3px solid transparent; white-space: nowrap; }
+	.mauriel-analytics-cards { grid-template-columns: repeat(2, 1fr); }
+	.mauriel-plan-cards { grid-template-columns: 1fr; }
+}
+@media (max-width: 480px) {
+	.mauriel-dashboard-content { padding: 16px; }
+	.mauriel-analytics-cards { grid-template-columns: 1fr; }
+}
