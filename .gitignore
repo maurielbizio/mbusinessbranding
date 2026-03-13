@@ -15,6 +15,7 @@ mauriel-service-directory/vendor/
 # Environment / secrets (never commit these)
 .env
 *.env
+.mcp.json
 
 # OS
 Thumbs.db

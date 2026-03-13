@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WF-03 Copy Reference — Mbusiness Branding AI</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f0f0f; color: #e0e0e0; min-height: 100vh; }
+  header { background: #1a1a1a; border-bottom: 1px solid #333; padding: 20px 32px; }
+  header h1 { font-size: 20px; font-weight: 700; color: #fff; }
+  header p { font-size: 13px; color: #888; margin-top: 4px; }
+  .tabs { display: flex; gap: 4px; padding: 20px 32px 0; border-bottom: 1px solid #333; background: #111; overflow-x: auto; }
+  .tab { padding: 10px 20px; border-radius: 8px 8px 0 0; cursor: pointer; font-size: 13px; font-weight: 600; color: #888; background: transparent; border: none; white-space: nowrap; transition: all 0.15s; }
+  .tab:hover { color: #ccc; background: #1a1a1a; }
+  .tab.active { color: #fff; background: #1a1a1a; border: 1px solid #333; border-bottom: 1px solid #1a1a1a; }
+  .content { padding: 32px; max-width: 900px; }
+  .industry { display: none; }
+  .industry.active { display: block; }
+  .day-section { margin-bottom: 40px; }
+  .day-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; color: #555; text-transform: uppercase; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid #222; }
+  .copy-block { background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 10px; margin-bottom: 16px; overflow: hidden; }
+  .copy-block-header { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; background: #222; border-bottom: 1px solid #2a2a2a; }
+  .copy-block-type { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+  .type-email { color: #4a9eff; }
+  .type-sms { color: #4caf82; }
+  .copy-btn { font-size: 11px; font-weight: 600; padding: 5px 12px; border-radius: 6px; border: 1px solid #333; background: #2a2a2a; color: #ccc; cursor: pointer; transition: all 0.15s; }
+  .copy-btn:hover { background: #333; color: #fff; }
+  .copy-btn.copied { background: #1a3a2a; border-color: #4caf82; color: #4caf82; }
+  .subject-row { padding: 10px 16px; border-bottom: 1px solid #222; }
+  .subject-label { font-size: 10px; color: #555; font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 4px; }
+  .subject-text { font-size: 14px; color: #fff; font-weight: 500; }
+  .body-text { padding: 16px; font-size: 13px; line-height: 1.7; color: #ccc; white-space: pre-wrap; font-family: inherit; }
+  .sms-text { padding: 16px; font-size: 13px; line-height: 1.6; color: #ccc; white-space: pre-wrap; }
+  .tag { display: inline-block; font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 4px; margin-bottom: 12px; }
+  .tag-email { background: #0d2040; color: #4a9eff; }
+  .tag-sms { background: #0d2a1a; color: #4caf82; }
+  .note { background: #1a1500; border: 1px solid #3a3000; border-radius: 8px; padding: 14px 16px; font-size: 13px; color: #c8b060; margin-bottom: 24px; line-height: 1.6; }
+  .note strong { color: #e0c060; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>WF-03 Copy Reference</h1>
+  <p>14-Day Delivery + Nurture — Email & SMS copy for each industry branch. Click Copy to paste directly into GHL.</p>
+</header>
+
+<div class="tabs">
+  <button class="tab active" onclick="showTab('cleaning')">🧹 Cleaning</button>
+  <button class="tab" onclick="showTab('contracting')">🏗️ General Contracting</button>
+  <button class="tab" onclick="showTab('barber')">✂️ Barber / Stylist</button>
+  <button class="tab" onclick="showTab('automotive')">🔧 Automotive</button>
+  <button class="tab" onclick="showTab('generic')">📋 Generic</button>
+</div>
+
+<div class="content">
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<!-- CLEANING -->
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<div id="cleaning" class="industry active">
+
+  <div class="note">
+    <strong>Cleaning Branch</strong> — Pain angle: price shoppers, one-time clients who never rebook, losing to companies with more Google reviews. Core offer: retention automation (re-booking follow-ups + review requests).
+  </div>
+
+  <div class="day-section">
+    <div class="day-label">Day 3 — Email</div>
+
+    <div class="copy-block">
+      <div class="copy-block-header">
+        <span class="copy-block-type type-email">📧 Email-05-Cleaning</span>
+        <button class="copy-btn" onclick="copyBlock(this, 'clean-email-05')">Copy All</button>
+      </div>
+      <div class="subject-row">
+        <div class="subject-label">Subject</div>
+        <div class="subject-text">Why price shoppers are not your real problem</div>
+      </div>
+      <div id="clean-email-05" class="body-text">Hi {{contact.first_name}},
+
+Price shoppers are frustrating. But they're not why your revenue is stuck.
+
+The real drain is clients who book once — and never come back. Not because they were unhappy. Because nobody reminded them it was time to rebook.
+
+The cleaning businesses growing fastest right now have a simple system:
+- Post-service review requests build their Google reputation so new clients find them
+- Re-booking follow-ups turn one-time bookings into recurring clients
+- Referral prompts turn happy clients into their best sales reps
+
+None of this requires you to personally send anything. It all runs in the background.
+
+You don't need more price shoppers — you need a system that keeps the good clients coming back:
+{{trigger_link.h1zRc64nntbXDFn4F8Wg}}
+
+— Mauriel
+Mbusiness Branding AI</div>
+    </div>
+  </div>
+
+  <div class="day-section">
+    <div class="day-label">Day 5 — SMS</div>
+
+    <div class="copy-block">
+      <div class="copy-block-header">
+        <span class="copy-block-type type-sms">💬 SMS-04-Cleaning</span>
+        <button class="copy-btn" onclick="copyBlock(this, 'clean-sms-04')">Copy</button>
+      </div>
+      <div id="clean-sms-04" class="sms-text">{{contact.first_name}} — any first-time clients this month who haven't rebooked? That's revenue leaving. Let's fix the retention leak: {{trigger_link.h1zRc64nntbXDFn4F8Wg}}</div>
+    </div>
+  </div>
+
+  <div class="day-section">
+    <div class="day-label">Day 7 — Email + SMS (also add tags: lm-week2-sent, lm-vip-offer-sent, founders-vip-prospect)</div>
+
+    <div class="copy-block">
+      <div class="copy-block-header">
+        <span class="copy-block-type type-email">📧 Email-06-Cleaning</span>
+        <button class="copy-btn" onclick="copyBlock(this, 'clean-email-06')">Copy All</button>
+      </div>
+      <div class="subject-row">
+        <div class="subject-label">Subject</div>
+        <div class="subject-text">Week 2 is here — and a way to stop losing clients after the first booking</div>
+      </div>
+      <div id="clean-email-06" class="body-text">Hi {{contact.first_name}},
+
+Your Week 2 content is in the Drive folder — ready to publish.
+
+The cleaning businesses growing fastest right now aren't necessarily getting more new clients. They're keeping the ones they already have.
+
+The Founders VIP Program is built for retention:
+- Automated re-booking follow-ups turn one-time bookings into recurring clients
+- Review requests after every service build the Google reputation that brings new clients in
+- Social content keeps your brand in front of people who might need you next month
+
+75% off for the first 10 cleaning businesses. Spots are nearly full:
+{{trigger_link.h1zRc64nntbXDFn4F8Wg}}
+
+— Mauriel
+Mbusiness Branding AI</div>
+    </div>
+
+    <div class="copy-block">
+      <div class="copy-block-header">
+        <span class="copy-block-type type-sms">💬 SMS-05-Cleaning</span>
+        <button class="copy-btn" onclick="copyBlock(this, 'clean-sms-05')">Copy</button>
+      </div>
+      <div id="clean-sms-05" class="sms-text">{{contact.first_name}} — Founders VIP: re-booking automation + review system. Retention made easy. 75% off: {{trigger_link.h1zRc64nntbXDFn4F8Wg}}</div>
+    </div>
+  </div>
+
+  <div class="day-section">
+    <div class="day-label">Day 9 — Email (skip if lm-booked-call tag present)</div>
+
+    <div class="copy-block">
+      <div class="copy-block-header">
+        <span class="copy-block-type type-email">📧 Email-07-Cleaning</span>
+        <button class="copy-btn" onclick="copyBlock(this, 'clean-email-07')">Copy All</button>
+      </div>
+      <div class="subject-row">
+        <div class="subject-label">Subject</div>
+        <div class="subject-text">The cleaning business owners who said the same thing you are thinking</div>
+      </div>
+      <div id="clean-email-07" class="body-text">Hi {{contact.first_name}},
+
+Every cleaning business owner I work with says some version of this at first: "I just need more clients."
+
+But when we dig in — the real problem isn't getting new clients. It's keeping them.
+
+They have happy clients who never leave a review. First-time bookings who never come back. No system for re-booking. And they're spending money on ads trying to fill a leaky bucket instead of plugging it.
+
+The cleaning businesses that grow don't have the most leads. They have the best retention. Re-booking follow-ups. Review requests. Referral prompts. These run automatically in the background while you focus on the work.
+
+One call — I'll show you the full picture:
+{{trigger_link.h1zRc64nntbXDFn4F8Wg}}
+
+— Mauriel
+Mbusiness Branding AI</div>
+    </div>
+  </div>
+
+  <div class="day-section">
+    <div class="day-label">Day 11 — Email + SMS (skip if lm-booked-call tag present)</div>
+
+    <div class="copy-block">
+      <div class="copy-block-header">
+        <span class="copy-block-type type-email">📧 Email-08-Cleaning</span>
+        <button class="copy-btn" onclick="copyBlock(this, 'clean-email-08')">Copy All</button>
+      </div>
+      <div class="subject-row">
+        <div class="subject-label">Subject</div>
+        <div class="subject-text">Founders VIP update — spots going</div>
+      </div>
+      <div id="clean-email-08" class="body-text">Hi {{contact.first_name}},
+
+Quick update on Founders VIP spots.
+
+Cleaning businesses have been one of the most active categories — owners in this space understand the retention and reputation problem clearly.
+
+The cleaning business founding spots are almost full. These spots are limited because I limit my client count by design. When they're full, they're full.
+
+Full package: AI website, AI receptionist, re-booking automation, reputation management, social content — 75% off for founders.
+
+Book a call:
+{{trigger_link.h1zRc64nntbXDFn4F8Wg}}
+
+— Mauriel
+Mbusiness Branding AI</div>
+    </div>
+
+    <div class="copy-block">
+      <div class="copy-block-header">
+        <span class="copy-block-type type-sms">💬 SMS-06-Cleaning</span>
+        <button class="copy-btn" onclick="copyBlock(this, 'clean-sms-06')">Copy</button>
+      </div>
+      <div id="clean-sms-06" class="sms-text">{{contact.first_name}} — cleaning Founders VIP spots almost gone. Re-booking automation + reviews. Book now: {{trigger_link.h1zRc64nntbXDFn4F8Wg}}</div>
+    </div>
+  </div>
+
+  <div class="day-section">
+    <div class="day-label">Day 14 — Email + SMS (skip if lm-booked-call tag present)</div>
+
+    <div class="copy-block">
+      <div class="copy-block-header">
+        <span class="copy-block-type type-email">📧 Email-09-Cleaning</span>
+        <button class="copy-btn" onclick="copyBlock(this, 'clean-email-09')">Copy All</button>
+      </div>
+      <div class="subject-row">
+        <div class="subject-label">Subject</div>
+        <div class="subject-text">This is the last time I will bring this up</div>
+      </div>
+      <div id="clean-email-09" class="body-text">Hi {{contact.first_name}},
+
+Last email about this.
+
+The Founders VIP offer closes when 10 spots fill. No exceptions.
+
+If you're a cleaning business owner who's been on the fence: the businesses growing in your space aren't getting more clients — they're keeping the ones they have. At 75% off, the math works on retention alone.
+
+This is my last ask. Book the call if you want in. If not — no pressure.
+
+{{trigger_link.h1zRc64nntbXDFn4F8Wg}}
+
+— Mauriel
+Mbusiness Branding AI</div>
+    </div>
+
+    <div class="copy-block">
+      <div class="copy-block-header">
+        <span class="copy-block-type type-sms">💬 SMS-07-Cleaning</span>
+        <button class="copy-btn" onclick="copyBlock(this, 'clean-sms-07')">Copy</button>
+      </div>
+      <div id="clean-sms-07" class="sms-text">{{contact.first_name}} — last call. Founders VIP closes when spots fill, no extensions. Book now: {{trigger_link.h1zRc64nntbXDFn4F8Wg}}</div>
+    </div>
+  </div>
+
+</div><!-- /cleaning -->
+
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<!-- GENERAL CONTRACTING -->
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<div id="contracting" class="industry">
+
+  <div class="note">
+    <strong>General Contracting Branch</strong> — Pain angle: feast-or-famine cycle, pipeline goes empty when buried in a big job, leads go to competitors who answer faster and look better online.
+  </div>
+
+  <div class="day-section">
+    <div class="day-label">Day 3 — Email</div>
+    <div class="copy-block">
+      <div class="copy-block-header">
+        <span class="copy-block-type type-email">📧 Email-05-GeneralContracting</span>
+        <button class="copy-btn" onclick="copyBlock(this, 'gc-email-05')">Copy All</button>
+      </div>
+      <div class="subject-row">
+        <div class="subject-label">Subject</div>
+        <div class="subject-text">The referral that went to another contractor this week</div>
+      </div>
+      <div id="gc-email-05" class="body-text">Hi {{contact.first_name}},
+
+You're deep in a project. Calls are going to voicemail. A homeowner saw your work and wanted to hire you — but couldn't reach you. They called a contractor who had before/after photos on Instagram, 40 Google reviews, and responded within an hour.
+
+That contractor might do the same quality of work as you. But they look like the obvious choice — and they have a system to answer when they're on the job site.
+
+This is the GC problem: every big project takes you off the market for months. By the time you surface, your pipeline is empty and you're starting over.
+
+An AI receptionist captures every lead that comes in while you're working. Social content keeps your business visible even when you're heads-down. You surface from a project to a full pipeline instead of an empty one.
+
+Let's talk about what this looks like for your business:
+{{trigger_link.h1zRc64nntbXDFn4F8Wg}}
+
+— Mauriel
+Mbusiness Branding AI</div>
+    </div>
+  </div>
+
+  <div class="day-section">
+    <div class="day-label">Day 5 — SMS</div>
+    <div class="copy-block">
+      <div class="copy-block-header">
+        <span class="copy-block-type type-sms">💬 SMS-04-GeneralContracting</span>
+        <button class="copy-btn" onclick="copyBlock(this, 'gc-sms-04')">Copy</button>
+      </div>
+      <div id="gc-sms-04" class="sms-text">{{contact.first_name}} — pipeline dry while you're on a job? Every missed call is a referral going elsewhere. Fix it: {{trigger_link.h1zRc64nntbXDFn4F8Wg}}</div>
+    </div>
+  </div>
+
+  <div class="day-section">
+    <div class="day-label">Day 7 — Email + SMS (also add tags: lm-week2-sent, lm-vip-offer-sent, founders-vip-prospect)</div>
+    <div class="copy-block">
+      <div class="copy-block-header">
+        <span class="copy-block-type type-email">📧 Email-06-GeneralContracting</span>
+        <button class="copy-btn" onclick="copyBlock(this, 'gc-email-06')">Copy All</button>
+      </div>
+      <div class="subject-row">
+        <div class="subject-label">Subject</div>
+        <div class="subject-text">Week 2 posts plus how to stop the feast-or-famine cycle</div>
+      </div>
+      <div id="gc-email-06" class="body-text">Hi {{contact.first_name}},
+
+Your Week 2 content is in the Drive folder.
+
+Now let's talk about the biggest problem in general contracting: the feast-or-famine cycle. You're slammed on a project, pipeline dries up, project ends, and you spend 2 months chasing the next job.
+
+The Founders VIP Program breaks that cycle:
+- AI receptionist captures leads and books discovery calls even when you're on a job site
+- Social content keeps your work visible and attracts homeowners consistently
+- Review requests build your reputation so referrals come to you without you asking
+
+75% off for the first 10 contractors. A few founding spots remaining:
+{{trigger_link.h1zRc64nntbXDFn4F8Wg}}
+
+— Mauriel
+Mbusiness Branding AI</div>
+    </div>
+
+    <div class="copy-block">
+      <div class="copy-block-header">
+        <span class="copy-block-type type-sms">💬 SMS-05-GeneralContracting</span>
+        <button class="copy-btn" onclick="copyBlock(this, 'gc-sms-05')">Copy</button>
+      </div>
+      <div id="gc-sms-05" class="sms-text">{{contact.first_name}} — Founders VIP: AI receptionist + social content + reviews. Stop the famine. 75% off: {{trigger_link.h1zRc64nntbXDFn4F8Wg}}</div>
+    </div>
+  </div>
+
+  <div class="day-section">
+    <div class="day-label">Day 9 — Email (skip if lm-booked-call tag present)</div>
+    <div class="copy-block">
+      <div class="copy-block-header">
+        <span class="copy-block-type type-email">📧 Email-07-GeneralContracting</span>
+        <button class="copy-btn" onclick="copyBlock(this, 'gc-email-07')">Copy All</button>
+      </div>
+      <div class="subject-row">
+        <div class="subject-label">Subject</div>
+        <div class="subject-text">What happens to your leads when you are on a job</div>
+      </div>
+      <div id="gc-email-07" class="body-text">Hi {{contact.first_name}},
+
+Here's the GC cycle I see constantly: you land a big project, go heads-down for 3 months, and surface with zero pipeline.
+
+The calls you missed while you were working? They went to competitors.
+
+The homeowners who saw your work and wanted to hire you? They left a voicemail that got buried.
+
+The feast-or-famine cycle doesn't have to be your reality. The AI receptionist captures every lead that comes in when you can't answer — books discovery calls, collects project details, schedules callbacks.
+
+You come up for air to a full pipeline instead of starting from zero.
+
+One call, 20 minutes:
+{{trigger_link.h1zRc64nntbXDFn4F8Wg}}
+
+— Mauriel
+Mbusiness Branding AI</div>
+    </div>
+  </div>
+
+  <div class="day-section">
+    <div class="day-label">Day 11 — Email + SMS (skip if lm-booked-call tag present)</div>
+    <div class="copy-block">
+      <div class="copy-block-header">
+        <span class="copy-block-type type-email">📧 Email-08-GeneralContracting</span>
+        <button class="copy-btn" onclick="copyBlock(this, 'gc-email-08')">Copy All</button>
+      </div>
+      <div class="subject-row">
+        <div class="subject-label">Subject</div>
+        <div class="subject-text">Founders VIP update — general contracting spots</div>
+      </div>
+      <div id="gc-email-08" class="body-text">Hi {{contact.first_name}},
+
+Quick update. General contracting founding spots are nearly full.
+
+General contracting has the highest average job value of any trade I work with — and also the highest cost of a missed lead. If the AI receptionist captures just one project you would have otherwise lost, it pays for itself for the year.
+
+At 75% off founding pricing, the math is simple.
+
+A few GC spots remain. Book a call this week:
+{{trigger_link.h1zRc64nntbXDFn4F8Wg}}
+
+— Mauriel
+Mbusiness Branding AI</div>
+    </div>
+
+    <div class="copy-block">
+      <div class="copy-block-header">
+        <span class="copy-block-type type-sms">💬 SMS-06-GeneralContracting</span>
+        <button class="copy-btn" onclick="copyBlock(this, 'gc-sms-06')">Copy</button>
+      </div>
+      <div id="gc-sms-06" class="sms-text">{{contact.first_name}} — GC Founders VIP spots almost full. Never surface from a big job to an empty pipeline again: {{trigger_link.h1zRc64nntbXDFn4F8Wg}}</div>
+    </div>
+  </div>
+
+  <div class="day-section">
+    <div class="day-label">Day 14 — Email + SMS (skip if lm-booked-call tag present)</div>
+    <div class="copy-block">
+      <div class="copy-block-header">
+        <span class="copy-block-type type-email">📧 Email-09-GeneralContracting</span>
+        <button class="copy-btn" onclick="copyBlock(this, 'gc-email-09')">Copy All</button>
+      </div>
+      <div class="subject-row">
+        <div class="subject-label">Subject</div>
+        <div class="subject-text">This is the last time I will bring this up</div>
+      </div>
+      <div id="gc-email-09" class="body-text">Hi {{contact.first_name}},
+
+Last email about this.
+
+Founders VIP closes when 10 spots fill. No extensions.
+
+If you're a contractor who's been thinking about it: the feast-or-famine cycle costs more than the program. One captured lead during a busy project more than covers the founding rate for the year.
+
+This is my last ask. Book the call if you want in. If not — I'll keep sending content.
+
+{{trigger_link.h1zRc64nntbXDFn4F8Wg}}
+
+— Mauriel
+Mbusiness Branding AI</div>
+    </div>
+
+    <div class="copy-block">
+      <div class="copy-block-header">
+        <span class="copy-block-type type-sms">💬 SMS-07-GeneralContracting</span>
+        <button class="copy-btn" onclick="copyBlock(this, 'gc-sms-07')">Copy</button>
+      </div>
+      <div id="gc-sms-07" class="sms-text">{{contact.first_name}} — last call. Founders VIP closes when spots fill, no extensions. Book now: {{trigger_link.h1zRc64nntbXDFn4F8Wg}}</div>
+    </div>
+  </div>
+
+</div><!-- /contracting -->
+
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<!-- BARBER / HAIR STYLIST -->
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<div id="barber" class="industry">
+
+  <div class="note">
+    <strong>Barber / Hair Stylist Branch</strong> — Pain angle: no-shows, clients drifting to competitors, empty chairs. Core offer: appointment reminders, re-booking automation, review requests.
+  </div>
+
+  <div class="day-section">
+    <div class="day-label">Day 3 — Email</div>
+    <div class="copy-block">
+      <div class="copy-block-header">
+        <span class="copy-block-type type-email">📧 Email-05-Barber</span>
+        <button class="copy-btn" onclick="copyBlock(this, 'barber-email-05')">Copy All</button>
+      </div>
+      <div class="subject-row">
+        <div class="subject-label">Subject</div>
+        <div class="subject-text">The chair that was empty because no one sent a reminder</div>
+      </div>
+      <div id="barber-email-05" class="body-text">Hi {{contact.first_name}},
+
+A no-show hits you immediately — empty chair, lost revenue. But the slower damage is the client who "went somewhere else." Not because they didn't like you. Because they got busy, drifted a few weeks, and the shop down the street texted a rebooking link before you did.
+
+The barbers and stylists who keep full books aren't just talented — they have a system:
+- Appointment reminders 24 hours and 2 hours out that cut no-shows significantly
+- "Ready to book again?" texts at the 3-week mark so clients come back before they wander
+- Birthday and loyalty touchpoints that make clients feel remembered
+
+These run automatically. You focus on the cut and the conversation. The system handles the business side.
+
+One call — let me show you what this looks like:
+{{trigger_link.h1zRc64nntbXDFn4F8Wg}}
+
+— Mauriel
+Mbusiness Branding AI</div>
+    </div>
+  </div>
+
+  <div class="day-section">
+    <div class="day-label">Day 5 — SMS</div>
+    <div class="copy-block">
+      <div class="copy-block-header">
+        <span class="copy-block-type type-sms">💬 SMS-04-Barber</span>
+        <button class="copy-btn" onclick="copyBlock(this, 'barber-sms-04')">Copy</button>
+      </div>
+      <div id="barber-sms-04" class="sms-text">{{contact.first_name}} — how many clients haven't rebooked in 3+ weeks? They're drifting. A text brings them back. Let's set it up: {{trigger_link.h1zRc64nntbXDFn4F8Wg}}</div>
+    </div>
+  </div>
+
+  <div class="day-section">
+    <div class="day-label">Day 7 — Email + SMS (also add tags: lm-week2-sent, lm-vip-offer-sent, founders-vip-prospect)</div>
+    <div class="copy-block">
+      <div class="copy-block-header">
+        <span class="copy-block-type type-email">📧 Email-06-Barber</span>
+        <button class="copy-btn" onclick="copyBlock(this, 'barber-email-06')">Copy All</button>
+      </div>
+      <div class="subject-row">
+        <div class="subject-label">Subject</div>
+        <div class="subject-text">Week 2 is in your inbox — plus how to fill every open slot in your book</div>
+      </div>
+      <div id="barber-email-06" class="body-text">Hi {{contact.first_name}},
+
+Your Week 2 content is in the Drive folder.
+
+Quick question: what does an empty chair cost you? Not just today — but every week, compounded across a year?
+
+The Founders VIP Program is built to keep your book full:
+- Appointment reminders cut no-shows — clients get reminded 24 hours and 2 hours out
+- Re-booking texts go out at the 3-week mark so clients don't drift to another shop
+- Review requests build your Google and Yelp profile for new clients who are searching
+- Social content shows your work so new clients know your style before they call
+
+75% off for the first 10 shops:
+{{trigger_link.h1zRc64nntbXDFn4F8Wg}}
+
+— Mauriel
+Mbusiness Branding AI</div>
+    </div>
+
+    <div class="copy-block">
+      <div class="copy-block-header">
+        <span class="copy-block-type type-sms">💬 SMS-05-Barber</span>
+        <button class="copy-btn" onclick="copyBlock(this, 'barber-sms-05')">Copy</button>
+      </div>
+      <div id="barber-sms-05" class="sms-text">{{contact.first_name}} — Founders VIP: reminders + re-booking + reviews. Keep your book full. 75% off: {{trigger_link.h1zRc64nntbXDFn4F8Wg}}</div>
+    </div>
+  </div>
+
+  <div class="day-section">
+    <div class="day-label">Day 9 — Email (skip if lm-booked-call tag present)</div>
+    <div class="copy-block">
+      <div class="copy-block-header">
+        <span class="copy-block-type type-email">📧 Email-07-Barber</span>
+        <button class="copy-btn" onclick="copyBlock(this, 'barber-email-07')">Copy All</button>
+      </div>
+      <div class="subject-row">
+        <div class="subject-label">Subject</div>
+        <div class="subject-text">Fully booked now — what about 3 months from now?</div>
+      </div>
+      <div id="barber-email-07" class="body-text">Hi {{contact.first_name}},
+
+Business feels good right now. Book is full, clients are coming in.
+
+The question isn't today — it's what happens in 3 months when natural churn hits. The client who went on vacation and hasn't rebooked. The one who tried a new place. The one who just got busy and let it slide.
+
+Every shop has a steady drip of clients drifting out the door. The shops that stay consistently full are the ones automatically following up — "it's been 3 weeks, ready to book?" — so clients come back before they wander.
+
+The system runs in the background. Your work stays exactly the same.
+
+One call — let me show you:
+{{trigger_link.h1zRc64nntbXDFn4F8Wg}}
+
+— Mauriel
+Mbusiness Branding AI</div>
+    </div>
+  </div>
+
+  <div class="day-section">
+    <div class="day-label">Day 11 — Email + SMS (skip if lm-booked-call tag present)</div>
+    <div class="copy-block">
+      <div class="copy-block-header">
+        <span class="copy-block-type type-email">📧 Email-08-Barber</span>
+        <button class="copy-btn" onclick="copyBlock(this, 'barber-email-08')">Copy All</button>
+      </div>
+      <div class="subject-row">
+        <div class="subject-label">Subject</div>
+        <div class="subject-text">Founders VIP update — shop spots filling</div>
+      </div>
+      <div id="barber-email-08" class="body-text">Hi {{contact.first_name}},
+
+Quick Founders VIP update. Barber and salon spots are almost full.
+
+I want to address something I hear from shop owners: "I don't know if AI fits my business — it's personal service."
+
+That's exactly why it works. AI handles the impersonal side — reminders, follow-ups, review requests, re-booking texts — so you can focus entirely on the personal side: the cut, the conversation, the relationship.
+
+You stay you. The system handles the business side.
+
+75% off for founders. A few shop spots remain:
+{{trigger_link.h1zRc64nntbXDFn4F8Wg}}
+
+— Mauriel
+Mbusiness Branding AI</div>
+    </div>
+
+    <div class="copy-block">
+      <div class="copy-block-header">
+        <span class="copy-block-type type-sms">💬 SMS-06-Barber</span>
+        <button class="copy-btn" onclick="copyBlock(this, 'barber-sms-06')">Copy</button>
+      </div>
+      <div id="barber-sms-06" class="sms-text">{{contact.first_name}} — shop spots almost gone. Keep your book full with reminders + re-booking automation. Book the call: {{trigger_link.h1zRc64nntbXDFn4F8Wg}}</div>
+    </div>
+  </div>
+
+  <div class="day-section">
+    <div class="day-label">Day 14 — Email + SMS (skip if lm-booked-call tag present)</div>
+    <div class="copy-block">
+      <div class="copy-block-header">
+        <span class="copy-block-type type-email">📧 Email-09-Barber</span>
+        <button class="copy-btn" onclick="copyBlock(this, 'barber-email-09')">Copy All</button>
+      </div>
+      <div class="subject-row">
+        <div class="subject-label">Subject</div>
+        <div class="subject-text">This is the last time I will bring this up</div>
+      </div>
+      <div id="barber-email-09" class="body-text">Hi {{contact.first_name}},
+
+Last email about this.
+
+The Founders VIP offer closes when 10 spots fill. I don't extend it.
+
+If you're a barber or stylist who's been on the fence: one empty chair per week, 52 weeks — that's real money. The re-booking automation alone can recover that. At 75% off founding pricing, it takes almost nothing to get started.
+
+This is my last ask. Book the call if you're in. If not — no hard feelings.
+
+Keep posting that content. It works.
+
+{{trigger_link.h1zRc64nntbXDFn4F8Wg}}
+
+— Mauriel
+Mbusiness Branding AI</div>
+    </div>
+
+    <div class="copy-block">
+      <div class="copy-block-header">
+        <span class="copy-block-type type-sms">💬 SMS-07-Barber</span>
+        <button class="copy-btn" onclick="copyBlock(this, 'barber-sms-07')">Copy</button>
+      </div>
+      <div id="barber-sms-07" class="sms-text">{{contact.first_name}} — last call. Founders VIP closes when spots fill, no extensions. Book now: {{trigger_link.h1zRc64nntbXDFn4F8Wg}}</div>
+    </div>
+  </div>
+
+</div><!-- /barber -->
+
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<!-- AUTOMOTIVE -->
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<div id="automotive" class="industry">
+
+  <div class="note">
+    <strong>Automotive Branch</strong> — Pain angle: losing repeat customers to chains (Jiffy Lube, Firestone) that send automated maintenance reminders. Independent shops have better service but no follow-up system.
+  </div>
+
+  <div class="day-section">
+    <div class="day-label">Day 3 — Email</div>
+    <div class="copy-block">
+      <div class="copy-block-header">
+        <span class="copy-block-type type-email">📧 Email-05-Automotive</span>
+        <button class="copy-btn" onclick="copyBlock(this, 'auto-email-05')">Copy All</button>
+      </div>
+      <div class="subject-row">
+        <div class="subject-label">Subject</div>
+        <div class="subject-text">Why your customers keep going back to the chain</div>
+      </div>
+      <div id="auto-email-05" class="body-text">Hi {{contact.first_name}},
+
+You do better work. You know your customers by name. They still go to the chain for their next oil change.
+
+Why? Because Jiffy Lube sends a text at 3 months reminding them it's due. And you don't.
+
+You're not losing to them on quality. You're losing to them on follow-up — and they've spent $20 million building a CRM to do it.
+
+You don't need a $20 million CRM. You need:
+- AI maintenance reminders at 3, 6, and 12 months based on the service performed
+- Review requests after service that build the Google rating new customers check
+- Social content that shows your expertise and keeps regulars remembering you exist
+
+Independent shops that implement this are seeing real retention recovery.
+
+One call — let me show you how it works:
+{{trigger_link.h1zRc64nntbXDFn4F8Wg}}
+
+— Mauriel
+Mbusiness Branding AI</div>
+    </div>
+  </div>
+
+  <div class="day-section">
+    <div class="day-label">Day 5 — SMS</div>
+    <div class="copy-block">
+      <div class="copy-block-header">
+        <span class="copy-block-type type-sms">💬 SMS-04-Automotive</span>
+        <button class="copy-btn" onclick="copyBlock(this, 'auto-sms-04')">Copy</button>
+      </div>
+      <div id="auto-sms-04" class="sms-text">{{contact.first_name}} — customers not coming back at 3 months? Jiffy Lube sends a reminder. You don't. Match them: {{trigger_link.h1zRc64nntbXDFn4F8Wg}}</div>
+    </div>
+  </div>
+
+  <div class="day-section">
+    <div class="day-label">Day 7 — Email + SMS (also add tags: lm-week2-sent, lm-vip-offer-sent, founders-vip-prospect)</div>
+    <div class="copy-block">
+      <div class="copy-block-header">
+        <span class="copy-block-type type-email">📧 Email-06-Automotive</span>
+        <button class="copy-btn" onclick="copyBlock(this, 'auto-email-06')">Copy All</button>
+      </div>
+      <div class="subject-row">
+        <div class="subject-label">Subject</div>
+        <div class="subject-text">Week 2 posts ready — and how to stop losing repeat customers to chains</div>
+      </div>
+      <div id="auto-email-06" class="body-text">Hi {{contact.first_name}},
+
+Your Week 2 posts are in the Drive folder.
+
+The chains spend millions on retention technology. The Founders VIP Program lets you run the same playbook for a fraction of the cost:
+- AI maintenance reminders at 3 months, 6 months, and 1 year — based on the service performed
+- Review requests after every visit that build the Google rating new customers check before choosing
+- Social content showing your expertise builds trust before they ever walk in
+
+Independent shops that run this system see meaningful retention recovery against the chains.
+
+75% off for the first 10 auto shops:
+{{trigger_link.h1zRc64nntbXDFn4F8Wg}}
+
+— Mauriel
+Mbusiness Branding AI</div>
+    </div>
+
+    <div class="copy-block">
+      <div class="copy-block-header">
+        <span class="copy-block-type type-sms">💬 SMS-05-Automotive</span>
+        <button class="copy-btn" onclick="copyBlock(this, 'auto-sms-05')">Copy</button>
+      </div>
+      <div id="auto-sms-05" class="sms-text">{{contact.first_name}} — Founders VIP: maintenance reminders + reviews + social. Beat the chains. 75% off: {{trigger_link.h1zRc64nntbXDFn4F8Wg}}</div>
+    </div>
+  </div>
+
+  <div class="day-section">
+    <div class="day-label">Day 9 — Email (skip if lm-booked-call tag present)</div>
+    <div class="copy-block">
+      <div class="copy-block-header">
+        <span class="copy-block-type type-email">📧 Email-07-Automotive</span>
+        <button class="copy-btn" onclick="copyBlock(this, 'auto-email-07')">Copy All</button>
+      </div>
+      <div class="subject-row">
+        <div class="subject-label">Subject</div>
+        <div class="subject-text">Independent shop owners who said business was fine — then the chains ran a promo</div>
+      </div>
+      <div id="auto-email-07" class="body-text">Hi {{contact.first_name}},
+
+"Business is fine — I have regulars."
+
+Then the chain runs a $19.99 oil change promotion. Your regulars think "I'll just go this once." And because your shop didn't send a reminder that their service was due — they didn't even think of you.
+
+You're not losing on quality. You're losing on follow-up. The chain has a $20M CRM doing it automatically.
+
+You don't need a $20M CRM. You need AI maintenance reminders at 3, 6, and 12 months. Review requests that build your Google rating. Social content that reminds regulars you exist.
+
+One call — I'll show you how independent shops compete:
+{{trigger_link.h1zRc64nntbXDFn4F8Wg}}
+
+— Mauriel
+Mbusiness Branding AI</div>
+    </div>
+  </div>
+
+  <div class="day-section">
+    <div class="day-label">Day 11 — Email + SMS (skip if lm-booked-call tag present)</div>
+    <div class="copy-block">
+      <div class="copy-block-header">
+        <span class="copy-block-type type-email">📧 Email-08-Automotive</span>
+        <button class="copy-btn" onclick="copyBlock(this, 'auto-email-08')">Copy All</button>
+      </div>
+      <div class="subject-row">
+        <div class="subject-label">Subject</div>
+        <div class="subject-text">Founders VIP update — auto shop spots</div>
+      </div>
+      <div id="auto-email-08" class="body-text">Hi {{contact.first_name}},
+
+Quick update. Auto shop founding spots are almost full.
+
+One number: the average independent auto shop loses 30–40% of first-time customers before a second visit — simply because there was no follow-up.
+
+AI maintenance reminders at 3 months recover a meaningful portion of those customers. Review requests build the Google rating that makes new customers choose the independent shop over the chain.
+
+At 75% off founding pricing — one recovered customer per month more than covers the cost.
+
+A few auto shop spots remain:
+{{trigger_link.h1zRc64nntbXDFn4F8Wg}}
+
+— Mauriel
+Mbusiness Branding AI</div>
+    </div>
+
+    <div class="copy-block">
+      <div class="copy-block-header">
+        <span class="copy-block-type type-sms">💬 SMS-06-Automotive</span>
+        <button class="copy-btn" onclick="copyBlock(this, 'auto-sms-06')">Copy</button>
+      </div>
+      <div id="auto-sms-06" class="sms-text">{{contact.first_name}} — auto shop Founders VIP spots almost full. Maintenance reminders + reviews. Book now: {{trigger_link.h1zRc64nntbXDFn4F8Wg}}</div>
+    </div>
+  </div>
+
+  <div class="day-section">
+    <div class="day-label">Day 14 — Email + SMS (skip if lm-booked-call tag present)</div>
+    <div class="copy-block">
+      <div class="copy-block-header">
+        <span class="copy-block-type type-email">📧 Email-09-Automotive</span>
+        <button class="copy-btn" onclick="copyBlock(this, 'auto-email-09')">Copy All</button>
+      </div>
+      <div class="subject-row">
+        <div class="subject-label">Subject</div>
+        <div class="subject-text">This is the last time I will bring this up</div>
+      </div>
+      <div id="auto-email-09" class="body-text">Hi {{contact.first_name}},
+
+Last email about this.
+
+Founders VIP closes when 10 spots fill. No extensions.
+
+If you're an auto shop owner who's been thinking about it: Jiffy Lube spends millions keeping your regulars coming back to them. At 75% off founding pricing, you can run the same retention playbook for a fraction of what they spend.
+
+This is my last ask. Book the call if you want in. If not — no pressure.
+
+Keep using the social content. It'll keep working for you.
+
+{{trigger_link.h1zRc64nntbXDFn4F8Wg}}
+
+— Mauriel
+Mbusiness Branding AI</div>
+    </div>
+
+    <div class="copy-block">
+      <div class="copy-block-header">
+        <span class="copy-block-type type-sms">💬 SMS-07-Automotive</span>
+        <button class="copy-btn" onclick="copyBlock(this, 'auto-sms-07')">Copy</button>
+      </div>
+      <div id="auto-sms-07" class="sms-text">{{contact.first_name}} — last call. Founders VIP closes when spots fill, no extensions. Book now: {{trigger_link.h1zRc64nntbXDFn4F8Wg}}</div>
+    </div>
+  </div>
+
+</div><!-- /automotive -->
+
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<!-- GENERIC -->
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<div id="generic" class="industry">
+
+  <div class="note">
+    <strong>Generic Branch (Else/Default)</strong> — Use for any business type not covered by the 8 specific branches. Works for: Pet Grooming, Real Estate, Medical/Wellness, Law Firm, Dentist, Chiropractors, Painting, Electrical, and Other. Pain angle: missing leads, no follow-up system, invisible online.
+  </div>
+
+  <div class="day-section">
+    <div class="day-label">Day 3 — Email</div>
+    <div class="copy-block">
+      <div class="copy-block-header">
+        <span class="copy-block-type type-email">📧 Email-05-Generic</span>
+        <button class="copy-btn" onclick="copyBlock(this, 'gen-email-05')">Copy All</button>
+      </div>
+      <div class="subject-row">
+        <div class="subject-label">Subject</div>
+        <div class="subject-text">Why your competitor is getting calls you should be getting</div>
+      </div>
+      <div id="gen-email-05" class="body-text">Hi {{contact.first_name}},
+
+There's a business in your market doing the same work you do. Maybe not as well. But they're getting more calls.
+
+The difference isn't quality. It's visibility and follow-up.
+
+They show up when someone Googles your service. They have reviews that make the decision easy for new customers. When a lead reaches out, they respond fast — because they have a system handling it.
+
+Most small business owners are too busy doing the work to build the system that brings in more work. That's the trap.
+
+The Founders VIP Program is built to run that side of the business for you:
+- AI receptionist that captures every lead and books appointments 24/7
+- Automated review requests that build your Google reputation after every job
+- Social content that keeps your business visible to people who need you
+
+One call — I'll show you what this looks like for your business:
+{{trigger_link.h1zRc64nntbXDFn4F8Wg}}
+
+— Mauriel
+Mbusiness Branding AI</div>
+    </div>
+  </div>
+
+  <div class="day-section">
+    <div class="day-label">Day 5 — SMS</div>
+    <div class="copy-block">
+      <div class="copy-block-header">
+        <span class="copy-block-type type-sms">💬 SMS-04-Generic</span>
+        <button class="copy-btn" onclick="copyBlock(this, 'gen-sms-04')">Copy</button>
+      </div>
+      <div id="gen-sms-04" class="sms-text">{{contact.first_name}} — have you had a chance to post any of the content yet? Even one post can bring in a call. Let me know how it's going.</div>
+    </div>
+  </div>
+
+  <div class="day-section">
+    <div class="day-label">Day 7 — Email + SMS (also add tags: lm-week2-sent, lm-vip-offer-sent, founders-vip-prospect)</div>
+    <div class="copy-block">
+      <div class="copy-block-header">
+        <span class="copy-block-type type-email">📧 Email-06-Generic</span>
+        <button class="copy-btn" onclick="copyBlock(this, 'gen-email-06')">Copy All</button>
+      </div>
+      <div class="subject-row">
+        <div class="subject-label">Subject</div>
+        <div class="subject-text">Week 2 is here + a limited offer for you</div>
+      </div>
+      <div id="gen-email-06" class="body-text">Hi {{contact.first_name}},
+
+Your Week 2 social media content is in the Drive folder — 7 more posts ready to publish.
+
+Now that you've seen what this looks like, I want to make you an offer.
+
+The Founders VIP Program takes everything you've been doing manually — following up with leads, asking for reviews, staying consistent on social media — and runs it automatically in the background.
+
+Here's what's included:
+- 24/7 AI receptionist that captures leads and books appointments while you're working
+- Automated Google review requests after every completed job
+- Weekly social content so your business stays visible without you thinking about it
+- AI-powered website built to convert visitors into leads
+
+I'm offering founding spots at 75% off for the first 10 clients. Most spots are gone.
+
+Book a strategy call this week:
+{{trigger_link.h1zRc64nntbXDFn4F8Wg}}
+
+— Mauriel
+Mbusiness Branding AI</div>
+    </div>
+
+    <div class="copy-block">
+      <div class="copy-block-header">
+        <span class="copy-block-type type-sms">💬 SMS-05-Generic</span>
+        <button class="copy-btn" onclick="copyBlock(this, 'gen-sms-05')">Copy</button>
+      </div>
+      <div id="gen-sms-05" class="sms-text">{{contact.first_name}}, Week 2 content is in your inbox. Also sent you details on the Founders VIP Program — AI running your lead follow-up 24/7. 10 spots, 75% off first month. Worth a read.</div>
+    </div>
+  </div>
+
+  <div class="day-section">
+    <div class="day-label">Day 9 — Email (skip if lm-booked-call tag present)</div>
+    <div class="copy-block">
+      <div class="copy-block-header">
+        <span class="copy-block-type type-email">📧 Email-07-Generic</span>
+        <button class="copy-btn" onclick="copyBlock(this, 'gen-email-07')">Copy All</button>
+      </div>
+      <div class="subject-row">
+        <div class="subject-label">Subject</div>
+        <div class="subject-text">The busiest owners I know said the exact same thing</div>
+      </div>
+      <div id="gen-email-07" class="body-text">Hi {{contact.first_name}},
+
+"I'm too busy right now."
+
+I hear this from small business owners all the time. And I understand it — you're doing the work, running the business, handling everything at once.
+
+But here's what I've seen: the busiest owners are also the ones losing the most leads. Because when you're slammed, calls go to voicemail. Follow-ups don't happen. Leads go cold.
+
+The whole point of AI handling your leads is that "too busy" stops being a problem. You don't manage the follow-up. You don't chase reviews. You don't worry about missing a call while you're with a client.
+
+You just show up to the work — and let the system handle everything else.
+
+One call, 20 minutes, I'll show you how it works:
+{{trigger_link.h1zRc64nntbXDFn4F8Wg}}
+
+— Mauriel
+Mbusiness Branding AI</div>
+    </div>
+  </div>
+
+  <div class="day-section">
+    <div class="day-label">Day 11 — Email + SMS (skip if lm-booked-call tag present)</div>
+    <div class="copy-block">
+      <div class="copy-block-header">
+        <span class="copy-block-type type-email">📧 Email-08-Generic</span>
+        <button class="copy-btn" onclick="copyBlock(this, 'gen-email-08')">Copy All</button>
+      </div>
+      <div class="subject-row">
+        <div class="subject-label">Subject</div>
+        <div class="subject-text">Founders VIP update</div>
+      </div>
+      <div id="gen-email-08" class="body-text">Hi {{contact.first_name}},
+
+Quick Founders VIP update.
+
+Founding spots are almost full. I keep my client count deliberately small — I don't take on more clients than I can serve well, and I don't put competing businesses in the same market on the same system.
+
+When founding spots are gone, they're gone. The price goes back to standard rate.
+
+What's included: AI website, 24/7 AI receptionist, automated review requests, social media content — all at 75% off for founding clients.
+
+If you've been thinking about it, this week is the time to book:
+{{trigger_link.h1zRc64nntbXDFn4F8Wg}}
+
+— Mauriel
+Mbusiness Branding AI</div>
+    </div>
+
+    <div class="copy-block">
+      <div class="copy-block-header">
+        <span class="copy-block-type type-sms">💬 SMS-06-Generic</span>
+        <button class="copy-btn" onclick="copyBlock(this, 'gen-sms-06')">Copy</button>
+      </div>
+      <div id="gen-sms-06" class="sms-text">{{contact.first_name}} — a few Founders VIP spots are already taken. Wanted to make sure you saw the update I just emailed you. Happy to answer questions here too.</div>
+    </div>
+  </div>
+
+  <div class="day-section">
+    <div class="day-label">Day 14 — Email + SMS (skip if lm-booked-call tag present)</div>
+    <div class="copy-block">
+      <div class="copy-block-header">
+        <span class="copy-block-type type-email">📧 Email-09-Generic</span>
+        <button class="copy-btn" onclick="copyBlock(this, 'gen-email-09')">Copy All</button>
+      </div>
+      <div class="subject-row">
+        <div class="subject-label">Subject</div>
+        <div class="subject-text">This is the last time I will bring this up</div>
+      </div>
+      <div id="gen-email-09" class="body-text">Hi {{contact.first_name}},
+
+Last email about this.
+
+The Founders VIP offer closes when 10 spots fill. I don't extend deadlines or make exceptions.
+
+If you've been on the fence: the math is simple at 75% off. One extra lead per month covers it. One review that brings in a new customer covers it. The content alone — which you've already seen — is worth more than the founding price.
+
+This is my last ask. If you want a spot, book the call. If not — no pressure. I'll keep sending useful content and we'll stay in touch.
+
+{{trigger_link.h1zRc64nntbXDFn4F8Wg}}
+
+— Mauriel
+Mbusiness Branding AI</div>
+    </div>
+
+    <div class="copy-block">
+      <div class="copy-block-header">
+        <span class="copy-block-type type-sms">💬 SMS-07-Generic</span>
+        <button class="copy-btn" onclick="copyBlock(this, 'gen-sms-07')">Copy</button>
+      </div>
+      <div id="gen-sms-07" class="sms-text">{{contact.first_name}}, last email on the Founders VIP offer just went out. If you want to talk before spots fill, book here: {{trigger_link.h1zRc64nntbXDFn4F8Wg}}. No pressure either way.</div>
+    </div>
+  </div>
+
+</div><!-- /generic -->
+
+</div><!-- /content -->
+
+<script>
+function showTab(id) {
+  document.querySelectorAll('.industry').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+function copyBlock(btn, id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const text = el.innerText || el.textContent;
+  navigator.clipboard.writeText(text.trim()).then(() => {
+    btn.textContent = '✓ Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = 'Copy All';
+      btn.classList.remove('copied');
+      if (id.includes('sms')) btn.textContent = 'Copy';
+    }, 2000);
+  });
+}
+</script>
+</body>
+</html>

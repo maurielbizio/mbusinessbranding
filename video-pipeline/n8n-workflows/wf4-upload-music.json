@@ -1,0 +1,82 @@
+{
+  "name": "WF4 — Upload Music File",
+  "nodes": [
+    {
+      "id": "a3b4c5d6-e7f8-9012-abcd-123456789abc",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [240, 300],
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "upload-music",
+        "responseMode": "responseNode",
+        "options": {
+          "allowedOrigins": "*",
+          "binaryData": true
+        }
+      }
+    },
+    {
+      "id": "b4c5d6e7-f8a9-0123-bcde-23456789abcd",
+      "name": "Save Music File",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [480, 300],
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const fs = require('fs');\nconst crypto = require('crypto');\n\n// Ensure the music directory exists\nconst musicDir = '/files/music';\nif (!fs.existsSync(musicDir)) {\n  fs.mkdirSync(musicDir, { recursive: true });\n}\n\nconst item = $input.first();\n\n// Try common binary field names\nconst binaryKey = item.binary?.file\n  ? 'file'\n  : item.binary?.data\n  ? 'data'\n  : Object.keys(item.binary || {})[0] || null;\n\nif (!binaryKey || !item.binary[binaryKey]) {\n  throw new Error('No binary file data found in request. Send file as multipart/form-data field named \"file\".');\n}\n\nconst binary = item.binary[binaryKey];\nconst uuid = crypto.randomUUID();\nconst destPath = `${musicDir}/${uuid}.mp3`;\n\n// binary.data is a base64-encoded string in n8n\nconst buffer = Buffer.from(binary.data, 'base64');\nfs.writeFileSync(destPath, buffer);\n\nconst originalName = binary.fileName || binary.filename || 'music.mp3';\n\nreturn [{ json: { file_id: uuid, original_name: originalName, path: destPath } }];\n"
+      }
+    },
+    {
+      "id": "c5d6e7f8-a9b0-1234-cdef-3456789abcde",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [720, 300],
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ file_id: $json.file_id, original_name: $json.original_name }) }}",
+        "options": {
+          "responseCode": 200,
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Save Music File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Save Music File": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

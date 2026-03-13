@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lead Magnet Funnel — Workflow Map</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #0f1117;
+    color: #e8eaf0;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    padding: 40px 20px;
+    min-height: 100vh;
+  }
+
+  .page-title {
+    text-align: center;
+    margin-bottom: 8px;
+  }
+  .page-title h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.5px;
+  }
+  .page-title p {
+    font-size: 14px;
+    color: #6b7280;
+    margin-top: 6px;
+  }
+
+  .legend {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin: 20px 0 36px;
+    flex-wrap: wrap;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: #9ca3af;
+  }
+  .legend-dot {
+    width: 12px; height: 12px;
+    border-radius: 3px;
+  }
+
+  /* Overview connector bar */
+  .overview {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+    margin-bottom: 48px;
+    flex-wrap: wrap;
+  }
+  .overview-box {
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+    min-width: 160px;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .overview-arrow {
+    font-size: 20px;
+    color: #4b5563;
+    padding: 0 6px;
+  }
+
+  /* Workflow grid */
+  .workflows {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    max-width: 1300px;
+    margin: 0 auto;
+    align-items: start;
+  }
+
+  .workflow-col {
+    border-radius: 14px;
+    padding: 20px 16px;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .workflow-header {
+    text-align: center;
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .workflow-num {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .workflow-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.3;
+  }
+  .workflow-trigger {
+    font-size: 11px;
+    color: #9ca3af;
+    margin-top: 6px;
+  }
+  .trigger-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 600;
+    margin-top: 4px;
+    letter-spacing: 0.3px;
+  }
+
+  /* Steps */
+  .step {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 8px;
+    position: relative;
+  }
+  .step-icon {
+    width: 26px;
+    height: 26px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .step-content {
+    flex: 1;
+  }
+  .step-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 1px;
+  }
+  .step-text {
+    font-size: 12px;
+    color: #d1d5db;
+    line-height: 1.4;
+  }
+  .step-sub {
+    font-size: 10px;
+    color: #6b7280;
+    margin-top: 2px;
+    font-style: italic;
+  }
+
+  /* Connector arrow between steps */
+  .step-arrow {
+    text-align: center;
+    color: #374151;
+    font-size: 14px;
+    margin: 2px 0;
+    padding-left: 36px;
+  }
+
+  /* Decision node */
+  .decision {
+    background: rgba(251, 191, 36, 0.08);
+    border: 1px solid rgba(251, 191, 36, 0.25);
+    border-radius: 10px;
+    padding: 10px 12px;
+    margin: 8px 0;
+  }
+  .decision-label {
+    font-size: 10px;
+    font-weight: 700;
+    color: #fbbf24;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+  .decision-q {
+    font-size: 12px;
+    color: #e8eaf0;
+    margin-bottom: 6px;
+  }
+  .branch {
+    display: flex;
+    gap: 6px;
+    margin-top: 4px;
+  }
+  .branch-yes, .branch-no {
+    flex: 1;
+    padding: 4px 6px;
+    border-radius: 6px;
+    font-size: 10px;
+    line-height: 1.3;
+  }
+  .branch-yes {
+    background: rgba(34, 197, 94, 0.12);
+    border: 1px solid rgba(34, 197, 94, 0.25);
+    color: #86efac;
+  }
+  .branch-no {
+    background: rgba(239, 68, 68, 0.10);
+    border: 1px solid rgba(239, 68, 68, 0.22);
+    color: #fca5a5;
+  }
+  .branch-label {
+    font-weight: 700;
+    font-size: 9px;
+    letter-spacing: 0.5px;
+    display: block;
+    margin-bottom: 1px;
+  }
+
+  /* Wait block */
+  .wait-block {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    background: rgba(99, 102, 241, 0.08);
+    border-left: 2px solid #6366f1;
+    border-radius: 0 6px 6px 0;
+    margin: 6px 0;
+    font-size: 11px;
+    color: #a5b4fc;
+  }
+
+  /* Day marker */
+  .day-marker {
+    text-align: center;
+    margin: 12px 0 8px;
+    position: relative;
+  }
+  .day-marker::before {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; top: 50%;
+    height: 1px;
+    background: rgba(255,255,255,0.06);
+  }
+  .day-marker span {
+    position: relative;
+    background: #0f1117;
+    padding: 0 8px;
+    font-size: 10px;
+    font-weight: 700;
+    color: #4b5563;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* Color themes per workflow */
+  .wf1 { background: rgba(59, 130, 246, 0.04); border-color: rgba(59, 130, 246, 0.2); }
+  .wf1 .workflow-num { color: #60a5fa; }
+  .wf1 .trigger-badge { background: rgba(59,130,246,0.15); color: #93c5fd; }
+  .wf1 .step-icon.action { background: rgba(59,130,246,0.15); color: #93c5fd; }
+  .wf1 .step-label { color: #60a5fa; }
+
+  .wf2 { background: rgba(16, 185, 129, 0.04); border-color: rgba(16, 185, 129, 0.2); }
+  .wf2 .workflow-num { color: #34d399; }
+  .wf2 .trigger-badge { background: rgba(16,185,129,0.15); color: #6ee7b7; }
+  .wf2 .step-icon.action { background: rgba(16,185,129,0.15); color: #6ee7b7; }
+  .wf2 .step-label { color: #34d399; }
+
+  .wf3 { background: rgba(168, 85, 247, 0.04); border-color: rgba(168, 85, 247, 0.2); }
+  .wf3 .workflow-num { color: #c084fc; }
+  .wf3 .trigger-badge { background: rgba(168,85,247,0.15); color: #d8b4fe; }
+  .wf3 .step-icon.action { background: rgba(168,85,247,0.15); color: #d8b4fe; }
+  .wf3 .step-label { color: #c084fc; }
+
+  .wf4 { background: rgba(249, 115, 22, 0.04); border-color: rgba(249, 115, 22, 0.2); }
+  .wf4 .workflow-num { color: #fb923c; }
+  .wf4 .trigger-badge { background: rgba(249,115,22,0.15); color: #fdba74; }
+  .wf4 .step-icon.action { background: rgba(249,115,22,0.15); color: #fdba74; }
+  .wf4 .step-label { color: #fb923c; }
+
+  /* Overview box colors */
+  .ov1 { background: rgba(59,130,246,0.08); border-color: rgba(59,130,246,0.3); color: #93c5fd; }
+  .ov2 { background: rgba(16,185,129,0.08); border-color: rgba(16,185,129,0.3); color: #6ee7b7; }
+  .ov3 { background: rgba(168,85,247,0.08); border-color: rgba(168,85,247,0.3); color: #d8b4fe; }
+  .ov4 { background: rgba(249,115,22,0.08); border-color: rgba(249,115,22,0.3); color: #fdba74; }
+
+  /* Tag chip */
+  .tag-chip {
+    display: inline-block;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 4px;
+    padding: 1px 5px;
+    font-size: 9px;
+    font-family: monospace;
+    color: #9ca3af;
+    margin: 1px 1px;
+  }
+
+  .end-block {
+    text-align: center;
+    padding: 8px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-top: 8px;
+    background: rgba(75,85,99,0.2);
+    color: #6b7280;
+    border: 1px dashed rgba(107,114,128,0.3);
+  }
+
+  /* Owner section */
+  .owner-section {
+    max-width: 1300px;
+    margin: 40px auto 0;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 14px;
+    padding: 24px;
+  }
+  .owner-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .owner-steps {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+  }
+  .owner-step {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 10px;
+    padding: 14px;
+    text-align: center;
+  }
+  .owner-step-num {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    margin: 0 auto 8px;
+    color: #e8eaf0;
+  }
+  .owner-step p {
+    font-size: 11px;
+    color: #9ca3af;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 900px) {
+    .workflows { grid-template-columns: 1fr 1fr; }
+    .owner-steps { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 600px) {
+    .workflows { grid-template-columns: 1fr; }
+    .owner-steps { grid-template-columns: 1fr; }
+    .overview { flex-direction: column; align-items: center; }
+    .overview-arrow { transform: rotate(90deg); }
+  }
+</style>
+</head>
+<body>
+
+<div class="page-title">
+  <h1>Lead Magnet Funnel — Workflow Map</h1>
+  <p>Mbusiness Branding AI &nbsp;·&nbsp; 14-Day Social Content Funnel &nbsp;·&nbsp; Built March 2026</p>
+</div>
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:#3b82f6"></div> WF-01 Opt-In</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#10b981"></div> WF-02 Intake</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#a855f7"></div> WF-03 Delivery</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#f97316"></div> WF-04 Review</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#fbbf24"></div> Decision Point</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#6366f1"></div> Wait / Delay</div>
+</div>
+
+<!-- Overview flow -->
+<div class="overview">
+  <div class="overview-box ov1">WF-01<br><small>Opt-In Received</small></div>
+  <div class="overview-arrow">→</div>
+  <div class="overview-box ov2">WF-02<br><small>Intake Received</small></div>
+  <div class="overview-arrow">→</div>
+  <div class="overview-box ov3">WF-03<br><small>14-Day Delivery</small></div>
+  <div class="overview-arrow">→</div>
+  <div class="overview-box ov4">WF-04<br><small>Review Request</small></div>
+</div>
+
+<!-- 4 Workflow Columns -->
+<div class="workflows">
+
+  <!-- WF-01 -->
+  <div class="workflow-col wf1">
+    <div class="workflow-header">
+      <div class="workflow-num">Workflow 01</div>
+      <div class="workflow-title">Opt-In Received</div>
+      <div class="workflow-trigger">Trigger:</div>
+      <span class="trigger-badge">Form: LM Opt-In Submitted</span>
+    </div>
+
+    <div class="step">
+      <div class="step-icon action">👤</div>
+      <div class="step-content">
+        <div class="step-label">Action</div>
+        <div class="step-text">Create / Update Contact</div>
+        <div class="step-sub">Map: name, email, phone, company, city</div>
+      </div>
+    </div>
+    <div class="step-arrow">↓</div>
+
+    <div class="step">
+      <div class="step-icon action">🏷️</div>
+      <div class="step-content">
+        <div class="step-label">Add Tags</div>
+        <div class="step-text">
+          <span class="tag-chip">lm-optin</span>
+          <span class="tag-chip">lm-intake-sent</span>
+        </div>
+      </div>
+    </div>
+    <div class="step-arrow">↓</div>
+
+    <div class="step">
+      <div class="step-icon action">📊</div>
+      <div class="step-content">
+        <div class="step-label">Pipeline</div>
+        <div class="step-text">Add Opportunity → Stage: Opted In</div>
+      </div>
+    </div>
+    <div class="step-arrow">↓</div>
+
+    <div class="step">
+      <div class="step-icon action">📧</div>
+      <div class="step-content">
+        <div class="step-label">Send Email</div>
+        <div class="step-text">LM-Email-01 — Content almost ready</div>
+        <div class="step-sub">Includes [INTAKE_FORM_LINK]</div>
+      </div>
+    </div>
+    <div class="step-arrow">↓</div>
+
+    <div class="wait-block">⏱ Wait 10 minutes</div>
+
+    <div class="step">
+      <div class="step-icon action">💬</div>
+      <div class="step-content">
+        <div class="step-label">Send SMS 1</div>
+        <div class="step-text">Intake form link + personal intro</div>
+      </div>
+    </div>
+    <div class="step-arrow">↓</div>
+
+    <div class="wait-block">⏱ Wait 24 hours</div>
+
+    <div class="decision">
+      <div class="decision-label">Decision</div>
+      <div class="decision-q">Has tag <span class="tag-chip">lm-intake-completed</span>?</div>
+      <div class="branch">
+        <div class="branch-yes"><span class="branch-label">YES</span>End Workflow</div>
+        <div class="branch-no"><span class="branch-label">NO</span>Send SMS 2 — follow-up</div>
+      </div>
+    </div>
+
+    <div class="wait-block">⏱ Wait 24 hours</div>
+
+    <div class="decision">
+      <div class="decision-label">Decision</div>
+      <div class="decision-q">Has tag <span class="tag-chip">lm-intake-completed</span>?</div>
+      <div class="branch">
+        <div class="branch-yes"><span class="branch-label">YES</span>End Workflow</div>
+        <div class="branch-no"><span class="branch-label">NO</span>Send Email-02 "Still in?"</div>
+      </div>
+    </div>
+
+    <div class="step" style="margin-top:8px;">
+      <div class="step-icon action">🏷️</div>
+      <div class="step-content">
+        <div class="step-label">Add Tag</div>
+        <div class="step-text"><span class="tag-chip">lm-no-intake</span></div>
+      </div>
+    </div>
+
+    <div class="wait-block">⏱ Wait 48 hours</div>
+
+    <div class="decision">
+      <div class="decision-label">Final Check</div>
+      <div class="decision-q">Has tag <span class="tag-chip">lm-intake-completed</span>?</div>
+      <div class="branch">
+        <div class="branch-yes"><span class="branch-label">YES</span>Remove lm-no-intake → End</div>
+        <div class="branch-no"><span class="branch-label">NO</span>Stage → Ghosted → End</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WF-02 -->
+  <div class="workflow-col wf2">
+    <div class="workflow-header">
+      <div class="workflow-num">Workflow 02</div>
+      <div class="workflow-title">Intake Form Received</div>
+      <div class="workflow-trigger">Trigger:</div>
+      <span class="trigger-badge">Form: LM Intake Submitted</span>
+    </div>
+
+    <div class="step">
+      <div class="step-icon action">🏷️</div>
+      <div class="step-content">
+        <div class="step-label">Remove Tags</div>
+        <div class="step-text">
+          <span class="tag-chip">lm-no-intake</span>
+          <span class="tag-chip">lm-intake-sent</span>
+        </div>
+      </div>
+    </div>
+    <div class="step-arrow">↓</div>
+
+    <div class="step">
+      <div class="step-icon action">🏷️</div>
+      <div class="step-content">
+        <div class="step-label">Add Tags</div>
+        <div class="step-text">
+          <span class="tag-chip">lm-intake-completed</span>
+          <span class="tag-chip">lm-content-building</span>
+        </div>
+      </div>
+    </div>
+    <div class="step-arrow">↓</div>
+
+    <div class="step">
+      <div class="step-icon action">📊</div>
+      <div class="step-content">
+        <div class="step-label">Pipeline</div>
+        <div class="step-text">Stage → Intake Received</div>
+      </div>
+    </div>
+    <div class="step-arrow">↓</div>
+
+    <div class="step">
+      <div class="step-icon action">📧</div>
+      <div class="step-content">
+        <div class="step-label">Send Email</div>
+        <div class="step-text">LM-Email-03 — Intake received, on it</div>
+      </div>
+    </div>
+    <div class="step-arrow">↓</div>
+
+    <div class="step">
+      <div class="step-icon action">🔔</div>
+      <div class="step-content">
+        <div class="step-label">Internal Notification</div>
+        <div class="step-text">Email to you — NEW INTAKE alert with contact details</div>
+        <div class="step-sub">Prompt: add lm-content-ready when Drive link is ready</div>
+      </div>
+    </div>
+    <div class="step-arrow">↓</div>
+
+    <div class="step">
+      <div class="step-icon action">📊</div>
+      <div class="step-content">
+        <div class="step-label">Pipeline</div>
+        <div class="step-text">Stage → Content In Progress</div>
+      </div>
+    </div>
+    <div class="step-arrow">↓</div>
+
+    <div class="wait-block">⏱ Wait 72 hours</div>
+
+    <div class="decision">
+      <div class="decision-label">Decision</div>
+      <div class="decision-q">Has tag <span class="tag-chip">lm-content-ready</span>?</div>
+      <div class="branch">
+        <div class="branch-yes"><span class="branch-label">YES</span>Continue to step 9</div>
+        <div class="branch-no"><span class="branch-label">NO</span>Send reminder → Wait 24h → Check again</div>
+      </div>
+    </div>
+
+    <div class="step" style="margin-top:8px;">
+      <div class="step-icon action">🏷️</div>
+      <div class="step-content">
+        <div class="step-label">Remove Tag</div>
+        <div class="step-text"><span class="tag-chip">lm-content-building</span></div>
+      </div>
+    </div>
+    <div class="step-arrow">↓</div>
+
+    <div class="step">
+      <div class="step-icon action">🚀</div>
+      <div class="step-content">
+        <div class="step-label">Add Tag — Fires WF-03</div>
+        <div class="step-text"><span class="tag-chip">lm-start-delivery</span></div>
+      </div>
+    </div>
+
+    <div class="end-block">End Workflow → WF-03 takes over</div>
+  </div>
+
+  <!-- WF-03 -->
+  <div class="workflow-col wf3">
+    <div class="workflow-header">
+      <div class="workflow-num">Workflow 03</div>
+      <div class="workflow-title">14-Day Delivery + Nurture</div>
+      <div class="workflow-trigger">Trigger:</div>
+      <span class="trigger-badge">Tag Added: lm-start-delivery</span>
+    </div>
+
+    <div class="day-marker"><span>Day 0</span></div>
+
+    <div class="step">
+      <div class="step-icon action">🏷️</div>
+      <div class="step-content">
+        <div class="step-label">Remove Tag</div>
+        <div class="step-text"><span class="tag-chip">lm-start-delivery</span></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-icon action">📊</div>
+      <div class="step-content">
+        <div class="step-label">Pipeline</div>
+        <div class="step-text">Stage → Content Delivered</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-icon action">📧</div>
+      <div class="step-content">
+        <div class="step-label">Send Email</div>
+        <div class="step-text">LM-Email-04 — Week 1 content ready</div>
+        <div class="step-sub">Uses: contact.content_drive_link</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-icon action">🏷️</div>
+      <div class="step-content">
+        <div class="step-label">Add Tag</div>
+        <div class="step-text"><span class="tag-chip">lm-week1-sent</span></div>
+      </div>
+    </div>
+
+    <div class="wait-block">⏱ Wait 30 minutes</div>
+
+    <div class="step">
+      <div class="step-icon action">💬</div>
+      <div class="step-content">
+        <div class="step-label">SMS 3</div>
+        <div class="step-text">Week 1 content in inbox — 7 posts ready</div>
+      </div>
+    </div>
+
+    <div class="day-marker"><span>Day 3</span></div>
+    <div class="wait-block">⏱ Wait ~3 days</div>
+
+    <div class="step">
+      <div class="step-icon action">📧</div>
+      <div class="step-content">
+        <div class="step-label">Send Email</div>
+        <div class="step-text">LM-Email-05 — Competitor getting your calls</div>
+      </div>
+    </div>
+
+    <div class="day-marker"><span>Day 5</span></div>
+    <div class="wait-block">⏱ Wait 2 days</div>
+
+    <div class="step">
+      <div class="step-icon action">💬</div>
+      <div class="step-content">
+        <div class="step-label">SMS 4</div>
+        <div class="step-text">Check-in — posted any content yet?</div>
+      </div>
+    </div>
+
+    <div class="day-marker"><span>Day 7</span></div>
+    <div class="wait-block">⏱ Wait 2 days</div>
+
+    <div class="step">
+      <div class="step-icon action">📧</div>
+      <div class="step-content">
+        <div class="step-label">Send Email</div>
+        <div class="step-text">LM-Email-06 — Week 2 + VIP Offer</div>
+        <div class="step-sub">Includes [STRATEGY_CALL_LINK]</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-icon action">🏷️</div>
+      <div class="step-content">
+        <div class="step-label">Add Tags</div>
+        <div class="step-text">
+          <span class="tag-chip">lm-week2-sent</span>
+          <span class="tag-chip">lm-vip-offer-sent</span>
+          <span class="tag-chip">founders-vip-prospect</span>
+        </div>
+        <div class="step-sub">lm-week2-sent fires WF-04</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-icon action">📊</div>
+      <div class="step-content">
+        <div class="step-label">Pipeline</div>
+        <div class="step-text">Stage → VIP Pitch Active</div>
+      </div>
+    </div>
+
+    <div class="wait-block">⏱ Wait 30 minutes</div>
+
+    <div class="step">
+      <div class="step-icon action">💬</div>
+      <div class="step-content">
+        <div class="step-label">SMS 5</div>
+        <div class="step-text">Week 2 in inbox + Founders VIP mention</div>
+      </div>
+    </div>
+
+    <div class="day-marker"><span>Day 9</span></div>
+    <div class="wait-block">⏱ Wait 2 days</div>
+
+    <div class="decision">
+      <div class="decision-label">Decision</div>
+      <div class="decision-q">Has tag <span class="tag-chip">lm-booked-call</span>?</div>
+      <div class="branch">
+        <div class="branch-yes"><span class="branch-label">YES</span>Skip to Day 17</div>
+        <div class="branch-no"><span class="branch-label">NO</span>Email-07 — Objection handler</div>
+      </div>
+    </div>
+
+    <div class="day-marker"><span>Day 11</span></div>
+    <div class="wait-block">⏱ Wait 2 days</div>
+
+    <div class="decision">
+      <div class="decision-label">Decision</div>
+      <div class="decision-q">Has tag <span class="tag-chip">lm-booked-call</span>?</div>
+      <div class="branch">
+        <div class="branch-yes"><span class="branch-label">YES</span>Skip to Day 17</div>
+        <div class="branch-no"><span class="branch-label">NO</span>Email-08 + SMS 6 — VIP update</div>
+      </div>
+    </div>
+
+    <div class="day-marker"><span>Day 14</span></div>
+    <div class="wait-block">⏱ Wait 3 days</div>
+
+    <div class="decision">
+      <div class="decision-label">Decision</div>
+      <div class="decision-q">Has tag <span class="tag-chip">lm-booked-call</span>?</div>
+      <div class="branch">
+        <div class="branch-yes"><span class="branch-label">YES</span>Skip to Day 17</div>
+        <div class="branch-no"><span class="branch-label">NO</span>Email-09 + SMS 7 — Last call</div>
+      </div>
+    </div>
+
+    <div class="day-marker"><span>Day 17</span></div>
+    <div class="wait-block">⏱ Wait 1 day</div>
+
+    <div class="step">
+      <div class="step-icon action">🏷️</div>
+      <div class="step-content">
+        <div class="step-label">Add Tag</div>
+        <div class="step-text"><span class="tag-chip">lm-sequence-complete</span></div>
+      </div>
+    </div>
+
+    <div class="decision">
+      <div class="decision-label">Final Decision</div>
+      <div class="decision-q">Has <span class="tag-chip">lm-booked-call</span> OR <span class="tag-chip">founders-vip-client</span>?</div>
+      <div class="branch">
+        <div class="branch-yes"><span class="branch-label">YES</span>Remove founders-vip-prospect → End</div>
+        <div class="branch-no"><span class="branch-label">NO</span>Stage → Ghosted + lm-unresponsive → End</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WF-04 -->
+  <div class="workflow-col wf4">
+    <div class="workflow-header">
+      <div class="workflow-num">Workflow 04</div>
+      <div class="workflow-title">Google Review Request</div>
+      <div class="workflow-trigger">Trigger:</div>
+      <span class="trigger-badge">Tag Added: lm-week2-sent</span>
+    </div>
+
+    <div class="wait-block">⏱ Wait 3 days</div>
+
+    <div class="decision">
+      <div class="decision-label">Decision</div>
+      <div class="decision-q">Has tag <span class="tag-chip">review-completed</span>?</div>
+      <div class="branch">
+        <div class="branch-yes"><span class="branch-label">YES</span>End Workflow</div>
+        <div class="branch-no"><span class="branch-label">NO</span>Continue</div>
+      </div>
+    </div>
+
+    <div class="step" style="margin-top:8px;">
+      <div class="step-icon action">💬</div>
+      <div class="step-content">
+        <div class="step-label">SMS 8</div>
+        <div class="step-text">Review request with Google link</div>
+        <div class="step-sub">Uses: custom_values.google_review_link ✅</div>
+      </div>
+    </div>
+    <div class="step-arrow">↓</div>
+
+    <div class="step">
+      <div class="step-icon action">🏷️</div>
+      <div class="step-content">
+        <div class="step-label">Add Tag</div>
+        <div class="step-text"><span class="tag-chip">review-requested</span></div>
+      </div>
+    </div>
+    <div class="step-arrow">↓</div>
+
+    <div class="wait-block">⏱ Wait 48 hours</div>
+
+    <div class="decision">
+      <div class="decision-label">Decision</div>
+      <div class="decision-q">Has tag <span class="tag-chip">review-completed</span>?</div>
+      <div class="branch">
+        <div class="branch-yes"><span class="branch-label">YES</span>End Workflow</div>
+        <div class="branch-no"><span class="branch-label">NO</span>Continue</div>
+      </div>
+    </div>
+
+    <div class="step" style="margin-top:8px;">
+      <div class="step-icon action">📧</div>
+      <div class="step-content">
+        <div class="step-label">Send Email</div>
+        <div class="step-text">LM-Email-10 — Quick favor, 30 seconds</div>
+      </div>
+    </div>
+    <div class="step-arrow">↓</div>
+
+    <div class="wait-block">⏱ Wait 5 days</div>
+
+    <div class="end-block">End Workflow</div>
+
+    <div style="margin-top: 24px; padding: 14px; background: rgba(249,115,22,0.06); border: 1px solid rgba(249,115,22,0.2); border-radius: 10px;">
+      <div style="font-size: 11px; font-weight: 700; color: #fb923c; margin-bottom: 6px;">NOTE — Reputation Workflow Guard</div>
+      <div style="font-size: 11px; color: #9ca3af; line-height: 1.6;">Add to existing Reputation Workflow:<br>
+      If tag <span class="tag-chip">lm-optin</span> exists → End Workflow<br>
+      <span style="color:#6b7280">(prevents duplicate review requests)</span></div>
+    </div>
+
+    <div style="margin-top: 16px; padding: 14px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 10px;">
+      <div style="font-size: 11px; font-weight: 700; color: #fb923c; margin-bottom: 6px;">Google Review Link</div>
+      <div style="font-size: 10px; color: #6b7280; font-family: monospace; word-break: break-all;">https://share.google/JKB6WUwaHsH03osQa</div>
+      <div style="font-size: 10px; color: #22c55e; margin-top: 4px;">✅ Set in Custom Values</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Owner Workflow -->
+<div class="owner-section">
+  <div class="owner-title">👤 Your Manual Steps Per Lead</div>
+  <div class="owner-steps">
+    <div class="owner-step">
+      <div class="owner-step-num">1</div>
+      <p><strong style="color:#e8eaf0">New opt-in alert</strong><br>Check GHL — contact in "Opted In" stage</p>
+    </div>
+    <div class="owner-step">
+      <div class="owner-step-num">2</div>
+      <p><strong style="color:#e8eaf0">Intake received</strong><br>You get email alert — build their 14-day content in Google Drive</p>
+    </div>
+    <div class="owner-step">
+      <div class="owner-step-num">3</div>
+      <p><strong style="color:#e8eaf0">Content ready</strong><br>Open contact in GHL → paste Drive link into <em>Content Drive Link</em> field → add tag <span class="tag-chip">lm-content-ready</span></p>
+    </div>
+    <div class="owner-step">
+      <div class="owner-step-num">4</div>
+      <p><strong style="color:#e8eaf0">Monitor pipeline</strong><br>Move call-bookers to Strategy Call pipeline stage</p>
+    </div>
+    <div class="owner-step">
+      <div class="owner-step-num">5</div>
+      <p><strong style="color:#e8eaf0">Review received</strong><br>Manually add <span class="tag-chip">review-completed</span> to stop review follow-up</p>
+    </div>
+  </div>
+</div>
+
+<div style="text-align:center; margin-top: 32px; font-size: 11px; color: #374151;">
+  Mbusiness Branding AI &nbsp;·&nbsp; Lead Magnet Funnel &nbsp;·&nbsp; March 2026
+</div>
+
+</body>
+</html>

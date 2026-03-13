@@ -1,0 +1,147 @@
+{
+  "name": "WF3 — Process Video with FFmpeg",
+  "nodes": [
+    {
+      "id": "a7b8c9d0-e1f2-3456-abcd-567890123456",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [200, 300],
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "vid-process",
+        "responseMode": "responseNode",
+        "options": {
+          "allowedOrigins": "*"
+        }
+      }
+    },
+    {
+      "id": "b8c9d0e1-f2a3-4567-bcde-678901234567",
+      "name": "Prepare Paths",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [440, 300],
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const crypto = require('crypto');\n\nconst input = $input.first().json;\nconst videoUrl = input.video_url || '';\nconst musicFileId = input.music_file_id || '';\nconst caption = input.caption || '';\nconst title = input.title || '';\n\nif (!videoUrl) {\n  throw new Error('video_url is required');\n}\n\nconst uuid = crypto.randomUUID();\nconst rawPath = `/files/output/${uuid}_raw.mp4`;\nconst finalPath = `/files/output/${uuid}_final.mp4`;\nconst audioPath = musicFileId ? `/files/music/${musicFileId}.mp3` : '';\n\nreturn [{\n  json: {\n    uuid,\n    raw_path: rawPath,\n    audio_path: audioPath,\n    final_path: finalPath,\n    video_url: videoUrl,\n    music_file_id: musicFileId,\n    caption,\n    title,\n    has_music: !!musicFileId,\n    has_text: !!(caption || title)\n  }\n}];\n"
+      }
+    },
+    {
+      "id": "c9d0e1f2-a3b4-5678-cdef-789012345678",
+      "name": "Download Video",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [680, 300],
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const fs = require('fs');\nconst prep = $('Prepare Paths').first().json;\nconst rawPath = prep.raw_path;\nconst videoUrl = prep.video_url;\n\nconst response = await fetch(videoUrl);\nif (!response.ok) throw new Error(`Failed to download video: ${response.status} ${response.statusText}`);\n\nconst buffer = Buffer.from(await response.arrayBuffer());\nfs.mkdirSync(require('path').dirname(rawPath), { recursive: true });\nfs.writeFileSync(rawPath, buffer);\n\nreturn [{ json: { ...prep, downloaded: true } }];\n"
+      }
+    },
+    {
+      "id": "d0e1f2a3-b4c5-6789-defa-890123456789",
+      "name": "Build FFmpeg Command",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [920, 300],
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "// Re-read fields from the Prepare Paths node output (available via $('Prepare Paths').first().json)\nconst prep = $('Prepare Paths').first().json;\nconst uuid = prep.uuid;\nconst rawPath = prep.raw_path;\nconst finalPath = prep.final_path;\nconst audioPath = prep.audio_path;\nconst hasMusic = prep.has_music;\nconst hasText = prep.has_text;\nconst title = prep.title || '';\nconst caption = prep.caption || '';\n\n// Escape single quotes in text for ffmpeg drawtext\nconst escapeDrawtext = (s) => s.replace(/'/g, \"\\\\\\\\'\").replace(/:/g, '\\\\\\\\:').replace(/\"/g, '\\\\\\\\\"');\nconst safeTitle = escapeDrawtext(title);\nconst safeCaption = escapeDrawtext(caption);\n\nlet command;\n\nif (hasMusic && hasText) {\n  const vf = [\n    `drawtext=fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf:text='${safeTitle}':fontcolor=white:fontsize=48:x=(w-text_w)/2:y=60:enable='lt(t,3)'`,\n    `drawtext=fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf:text='${safeCaption}':fontcolor=white:fontsize=28:x=(w-text_w)/2:y=h-80`\n  ].join(',');\n  command = `ffmpeg -y -i ${rawPath} -i ${audioPath} -map 0:v -map 1:a -vf \"${vf}\" -codec:v libx264 -shortest ${finalPath}`;\n} else if (hasMusic) {\n  command = `ffmpeg -y -i ${rawPath} -i ${audioPath} -map 0:v -map 1:a -c:v copy -shortest ${finalPath}`;\n} else if (hasText) {\n  const vf = [\n    `drawtext=fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf:text='${safeTitle}':fontcolor=white:fontsize=48:x=(w-text_w)/2:y=60:enable='lt(t,3)'`,\n    `drawtext=fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf:text='${safeCaption}':fontcolor=white:fontsize=28:x=(w-text_w)/2:y=h-80`\n  ].join(',');\n  command = `ffmpeg -y -i ${rawPath} -vf \"${vf}\" -codec:a copy ${finalPath}`;\n} else {\n  command = `cp ${rawPath} ${finalPath}`;\n}\n\nreturn [{ json: { uuid, final_path: finalPath, command } }];\n"
+      }
+    },
+    {
+      "id": "e1f2a3b4-c5d6-7890-efab-901234567890",
+      "name": "Run FFmpeg",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1160, 300],
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const { execSync } = require('child_process');\nconst prep = $('Build FFmpeg Command').first().json;\nconst command = prep.command;\n\ntry {\n  execSync(command, { encoding: 'utf8', timeout: 300000 });\n} catch (e) {\n  throw new Error(`FFmpeg failed: ${e.message}\\nCommand: ${command}`);\n}\n\nreturn [{ json: { uuid: prep.uuid, final_path: prep.final_path, command } }];\n"
+      }
+    },
+    {
+      "id": "f2a3b4c5-d6e7-8901-fabc-012345678901",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [1400, 300],
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ download_id: $('Build FFmpeg Command').first().json.uuid, download_url: 'https://n8n.mbusinessbrandingai.com/output/' + $('Build FFmpeg Command').first().json.uuid + '_final.mp4' }) }}",
+        "options": {
+          "responseCode": 200,
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Prepare Paths",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Paths": {
+      "main": [
+        [
+          {
+            "node": "Download Video",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download Video": {
+      "main": [
+        [
+          {
+            "node": "Build FFmpeg Command",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build FFmpeg Command": {
+      "main": [
+        [
+          {
+            "node": "Run FFmpeg",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Run FFmpeg": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

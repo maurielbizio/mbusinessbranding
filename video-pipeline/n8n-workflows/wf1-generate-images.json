@@ -1,0 +1,81 @@
+{
+  "name": "WF1 — Generate Images",
+  "nodes": [
+    {
+      "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [240, 300],
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "img-generate",
+        "responseMode": "responseNode",
+        "options": {
+          "allowedOrigins": "*"
+        }
+      }
+    },
+    {
+      "id": "b2c3d4e5-f6a7-8901-bcde-f12345678901",
+      "name": "Generate Images",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [480, 300],
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const apiKey = 'c1a97f1ab80dc87908bd6f479d0d4ff97233c6dfd04b0e1e61db56f612e818b3';\nconst baseUrl = 'https://api.wavespeed.ai/api/v3';\n\nconst body = $input.first().json.body || $input.first().json;\nconst sessionId = body.session_id || '';\nconst descriptions = body.descriptions || [];\n\nif (!descriptions.length) throw new Error('descriptions must be a non-empty array');\n\nconst results = [];\n\nfor (const description of descriptions) {\n  let taskId;\n  try {\n    const submitRes = await fetch(`${baseUrl}/wavespeed-ai/flux-dev/text-to-image`, {\n      method: 'POST',\n      headers: { 'Authorization': `Bearer ${apiKey}`, 'Content-Type': 'application/json' },\n      body: JSON.stringify({ inputs: { prompt: description, size: '1024*1024', num_images: 1 }, enable_safety_checker: true })\n    });\n    const submitData = await submitRes.json();\n    if (!submitData.data?.id) throw new Error('No task ID: ' + JSON.stringify(submitData));\n    taskId = submitData.data.id;\n  } catch (err) {\n    results.push({ id: null, description, url: null, status: 'submit_error', error: err.message });\n    continue;\n  }\n\n  let result = { status: 'timeout', url: null };\n  for (let i = 0; i < 40; i++) {\n    await new Promise(r => setTimeout(r, 5000));\n    const pollRes = await fetch(`${baseUrl}/predictions/${taskId}`, {\n      headers: { 'Authorization': `Bearer ${apiKey}` }\n    });\n    const pollData = await pollRes.json();\n    const status = pollData.data?.status;\n    if (status === 'succeeded') { result = { status, url: pollData.data.outputs?.[0] || null }; break; }\n    if (status === 'failed') { result = { status, url: null }; break; }\n  }\n  results.push({ id: taskId, description, url: result.url, status: result.status });\n}\n\nreturn [{ json: { session_id: sessionId, images: results } }];\n"
+      }
+    },
+    {
+      "id": "c3d4e5f6-a7b8-9012-cdef-123456789012",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [720, 300],
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify($json) }}",
+        "options": {
+          "responseCode": 200,
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Generate Images",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Images": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  }
+}
