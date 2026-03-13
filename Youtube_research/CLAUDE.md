@@ -37,6 +37,7 @@ This folder is used to research YouTube videos in the Mbusiness Branding niche â
 | Date | Creator | Video | Key Topic | File |
 |------|---------|-------|-----------|------|
 | 2026-03-10 | Sabri Suby | In 16 minutes you'll have the plan to make $1,000,000 | AI Implementation Business + $1M Framework | `2026-03-10_SabriSuby_Million_Dollar_Plan.md` |
+| 2026-03-13 | Felipe Fuhr | Best Instantly AI Settings in 2026 | Cold Email Infrastructure + 4-Phase Outbound System | `2026-03-13_FelipeFuhr_Best_Instantly_AI_Settings.md` |
 
 ---
 
