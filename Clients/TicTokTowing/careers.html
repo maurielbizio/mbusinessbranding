@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Drive With Tic Tok Towing | Careers in Atlanta, GA</title>
+  <meta name="description" content="Join the Tic Tok Towing team. Tow truck driver and roadside service operator positions available. No experience required — we'll train you." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              blue:   '#1E40AF',
+              navy:   '#1E3A8A',
+              light:  '#EFF6FF',
+              orange: '#F97316',
+              amber:  '#EA580C',
+            }
+          },
+          fontFamily: {
+            heading: ['Oswald', 'sans-serif'],
+            body:    ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; }
+    h1, h2, h3, h4 { font-family: 'Oswald', sans-serif; }
+
+    /* Photo hero */
+    .hero-photo-wrap {
+      position: relative;
+      width: 100%;
+      height: 70vh;
+      min-height: 520px;
+      overflow: hidden;
+    }
+    .hero-photo-wrap img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: calc(50% - 200px) 30%;
+    }
+    .hero-photo-wrap .overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(30,58,138,0.80) 0%, rgba(30,58,138,0.60) 50%, rgba(0,0,0,0.75) 100%);
+    }
+    .hero-photo-wrap .content {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 1.5rem;
+    }
+
+    /* Nav scroll effect */
+    .nav-scrolled {
+      background: rgba(30,58,138,0.97) !important;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+    }
+
+    /* Smooth transitions */
+    a, button { transition: all 150ms ease; }
+
+    /* Scroll reveal */
+    [data-reveal] {
+      opacity: 0;
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    [data-reveal="up"]    { transform: translateY(40px); }
+    [data-reveal="left"]  { transform: translateX(-50px); }
+    [data-reveal="right"] { transform: translateX(50px); }
+    [data-reveal].in-view { opacity: 1; transform: translate(0, 0); }
+    [data-delay="1"] { transition-delay: 0.1s; }
+    [data-delay="2"] { transition-delay: 0.2s; }
+    [data-delay="3"] { transition-delay: 0.3s; }
+    [data-delay="4"] { transition-delay: 0.4s; }
+  </style>
+</head>
+
+<body class="bg-white text-gray-900 antialiased">
+
+  <!-- ═══════════════════════════════════════════
+       NAVIGATION
+  ═══════════════════════════════════════════ -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+
+      <!-- Logo -->
+      <a href="index.html" class="flex items-center gap-3">
+        <div class="w-10 h-10 bg-brand-orange rounded-lg flex items-center justify-center overflow-hidden">
+          <img src="assets/Logo_tranparent.png" alt="Tic Tok Towing" class="w-9 h-9 object-contain" />
+        </div>
+        <div class="text-white">
+          <div class="font-heading font-700 text-xl leading-none tracking-wide">TIC TOK</div>
+          <div class="text-xs text-orange-300 tracking-widest uppercase">Towing</div>
+        </div>
+      </a>
+
+      <!-- Desktop Links -->
+      <div class="hidden md:flex items-center gap-8">
+        <a href="index.html#services" class="text-white/80 hover:text-white text-sm font-medium tracking-wide">Services</a>
+        <a href="index.html#about"    class="text-white/80 hover:text-white text-sm font-medium tracking-wide">About</a>
+        <a href="index.html#reviews"  class="text-white/80 hover:text-white text-sm font-medium tracking-wide">Reviews</a>
+        <a href="index.html#contact"  class="text-white/80 hover:text-white text-sm font-medium tracking-wide">Contact</a>
+        <a href="careers.html"        class="text-brand-orange text-sm font-semibold tracking-wide">Careers</a>
+      </div>
+
+      <!-- Right: CTA + Hamburger -->
+      <div class="flex items-center gap-3">
+        <a href="tel:+14045550100" class="bg-brand-orange hover:bg-brand-amber text-white font-heading font-600 px-5 py-2.5 rounded-lg text-sm tracking-wide flex items-center gap-2 cursor-pointer">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+          </svg>
+          Call Now
+        </a>
+        <!-- Hamburger (mobile only) -->
+        <button id="menuBtn" class="md:hidden flex flex-col justify-center items-center w-9 h-9 gap-1.5 cursor-pointer" aria-label="Open menu">
+          <span class="block w-6 h-0.5 bg-white transition-all duration-300" id="bar1"></span>
+          <span class="block w-6 h-0.5 bg-white transition-all duration-300" id="bar2"></span>
+          <span class="block w-6 h-0.5 bg-white transition-all duration-300" id="bar3"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="md:hidden hidden bg-brand-navy/97 backdrop-blur-sm px-6 py-5 flex flex-col gap-4 border-t border-white/10">
+      <a href="index.html#services" class="text-white/80 hover:text-white text-base font-medium tracking-wide py-1">Services</a>
+      <a href="index.html#about"    class="text-white/80 hover:text-white text-base font-medium tracking-wide py-1">About</a>
+      <a href="index.html#reviews"  class="text-white/80 hover:text-white text-base font-medium tracking-wide py-1">Reviews</a>
+      <a href="index.html#contact"  class="text-white/80 hover:text-white text-base font-medium tracking-wide py-1">Contact</a>
+      <a href="careers.html"        class="text-brand-orange font-semibold text-base tracking-wide py-1">Careers</a>
+      <a href="tel:+14045550100" class="mt-1 bg-brand-orange text-white font-heading font-600 px-5 py-3 rounded-lg text-sm tracking-wide text-center">
+        Call Now — (404) 555-0100
+      </a>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════
+       HERO — PHOTO BACKGROUND
+  ═══════════════════════════════════════════ -->
+  <section class="hero-photo-wrap">
+    <img src="assets/employees.png" alt="Tic Tok Towing Team" />
+    <div class="overlay"></div>
+    <div class="content">
+      <span class="inline-block bg-brand-orange/90 text-white text-xs font-semibold tracking-widest uppercase px-4 py-1.5 rounded-full mb-5">Now Hiring</span>
+      <h1 class="font-heading text-5xl md:text-6xl text-white font-700 uppercase tracking-wide leading-tight max-w-3xl">
+        Drive With<br/>Tic Tok Towing
+      </h1>
+      <p class="text-white/80 mt-4 text-lg max-w-xl">Build a real career in a recession-proof industry. We'll train the right person from day one.</p>
+      <a href="#apply" class="mt-8 bg-brand-orange hover:bg-brand-amber text-white font-heading font-600 text-lg px-8 py-4 rounded-lg tracking-wide inline-block">
+        Apply Now
+      </a>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       POSITION BADGES
+  ═══════════════════════════════════════════ -->
+  <section class="bg-brand-navy py-6">
+    <div class="max-w-5xl mx-auto px-6">
+      <div data-reveal="up" class="flex flex-wrap justify-center gap-6 text-center">
+        <div class="flex items-center gap-2 text-white/80 text-sm">
+          <svg class="w-5 h-5 text-brand-orange flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+          </svg>
+          <span>Full-Time | Entry-Level to Experienced Welcome</span>
+        </div>
+        <div class="w-px bg-white/20 hidden md:block"></div>
+        <div class="flex items-center gap-2 text-white/80 text-sm">
+          <svg class="w-5 h-5 text-brand-orange flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+          <span>Flexible Shifts | Days, Nights &amp; Weekends</span>
+        </div>
+        <div class="w-px bg-white/20 hidden md:block"></div>
+        <div class="flex items-center gap-2 text-white/80 text-sm">
+          <svg class="w-5 h-5 text-brand-orange flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+          <span>Performance-Based Pay | Unlimited Earning Potential</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       ABOUT THE OPPORTUNITY
+  ═══════════════════════════════════════════ -->
+  <section class="py-20 bg-white">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+
+        <!-- Left: About + Why Join -->
+        <div data-reveal="left">
+          <p class="text-brand-orange text-sm font-semibold uppercase tracking-widest mb-3">Tow Truck Driver / Roadside Service Operator</p>
+          <h2 class="font-heading text-4xl text-brand-navy uppercase tracking-wide mb-6">About the Opportunity</h2>
+          <p class="text-gray-600 leading-relaxed mb-8">
+            We're looking for a motivated, reliable, and safety-conscious individual to join our growing towing and roadside assistance operation. This isn't just a driving job — it's a career. We'll train the right person from the ground up and give you everything you need to succeed in a recession-proof industry where the demand never stops. If you show up, work hard, and take care of customers, your income will reflect it.
+          </p>
+
+          <!-- Why Join Us -->
+          <h3 class="font-heading text-2xl text-brand-navy uppercase tracking-wide mb-5">Why Join Us?</h3>
+          <ul class="space-y-3">
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                <svg class="w-3.5 h-3.5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+                </svg>
+              </span>
+              <span class="text-gray-700 text-sm leading-relaxed">No experience necessary — we invest in the right people</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                <svg class="w-3.5 h-3.5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+                </svg>
+              </span>
+              <span class="text-gray-700 text-sm leading-relaxed">Unlimited income potential — the more calls you run, the more you earn</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                <svg class="w-3.5 h-3.5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+                </svg>
+              </span>
+              <span class="text-gray-700 text-sm leading-relaxed">Learn a skilled trade with long-term career growth</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                <svg class="w-3.5 h-3.5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+                </svg>
+              </span>
+              <span class="text-gray-700 text-sm leading-relaxed">Steady, in-demand work — vehicles break down 365 days a year</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                <svg class="w-3.5 h-3.5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+                </svg>
+              </span>
+              <span class="text-gray-700 text-sm leading-relaxed">Be your own boss on the road — independence with solid support behind you</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Right: What You'll Do + Looking For -->
+        <div data-reveal="right" class="space-y-10">
+
+          <!-- What You'll Do -->
+          <div class="bg-brand-light rounded-xl p-8">
+            <h3 class="font-heading text-2xl text-brand-navy uppercase tracking-wide mb-5">What You'll Do</h3>
+            <ul class="space-y-3">
+              <li class="flex items-start gap-3 text-sm text-gray-700 leading-relaxed">
+                <span class="w-1.5 h-1.5 bg-brand-orange rounded-full flex-shrink-0 mt-2"></span>
+                Respond to service calls including vehicle tows, accident recovery, lockouts, fuel delivery, and tire changes
+              </li>
+              <li class="flex items-start gap-3 text-sm text-gray-700 leading-relaxed">
+                <span class="w-1.5 h-1.5 bg-brand-orange rounded-full flex-shrink-0 mt-2"></span>
+                Safely operate tow trucks and recovery equipment on public roads and highways
+              </li>
+              <li class="flex items-start gap-3 text-sm text-gray-700 leading-relaxed">
+                <span class="w-1.5 h-1.5 bg-brand-orange rounded-full flex-shrink-0 mt-2"></span>
+                Provide friendly, professional service to customers in stressful situations
+              </li>
+              <li class="flex items-start gap-3 text-sm text-gray-700 leading-relaxed">
+                <span class="w-1.5 h-1.5 bg-brand-orange rounded-full flex-shrink-0 mt-2"></span>
+                Communicate clearly with dispatch and follow routing instructions efficiently
+              </li>
+              <li class="flex items-start gap-3 text-sm text-gray-700 leading-relaxed">
+                <span class="w-1.5 h-1.5 bg-brand-orange rounded-full flex-shrink-0 mt-2"></span>
+                Conduct pre-trip and post-trip vehicle inspections
+              </li>
+              <li class="flex items-start gap-3 text-sm text-gray-700 leading-relaxed">
+                <span class="w-1.5 h-1.5 bg-brand-orange rounded-full flex-shrink-0 mt-2"></span>
+                Maintain equipment cleanliness and report any mechanical issues
+              </li>
+              <li class="flex items-start gap-3 text-sm text-gray-700 leading-relaxed">
+                <span class="w-1.5 h-1.5 bg-brand-orange rounded-full flex-shrink-0 mt-2"></span>
+                Complete service documentation and payment processing accurately
+              </li>
+            </ul>
+          </div>
+
+          <!-- What We're Looking For -->
+          <div class="bg-brand-navy rounded-xl p-8">
+            <h3 class="font-heading text-2xl text-white uppercase tracking-wide mb-5">What We're Looking For</h3>
+            <ul class="space-y-3">
+              <li class="flex items-start gap-3 text-sm text-white/80 leading-relaxed">
+                <span class="w-1.5 h-1.5 bg-brand-orange rounded-full flex-shrink-0 mt-2"></span>
+                Valid driver's license with a clean driving record (this is a must)
+              </li>
+              <li class="flex items-start gap-3 text-sm text-white/80 leading-relaxed">
+                <span class="w-1.5 h-1.5 bg-brand-orange rounded-full flex-shrink-0 mt-2"></span>
+                Dependable, punctual, and self-motivated — you show up when you say you will
+              </li>
+              <li class="flex items-start gap-3 text-sm text-white/80 leading-relaxed">
+                <span class="w-1.5 h-1.5 bg-brand-orange rounded-full flex-shrink-0 mt-2"></span>
+                Ability to work in all weather conditions and handle physical tasks (hooking, lifting, directing traffic)
+              </li>
+              <li class="flex items-start gap-3 text-sm text-white/80 leading-relaxed">
+                <span class="w-1.5 h-1.5 bg-brand-orange rounded-full flex-shrink-0 mt-2"></span>
+                Strong communication and customer service skills
+              </li>
+              <li class="flex items-start gap-3 text-sm text-white/80 leading-relaxed">
+                <span class="w-1.5 h-1.5 bg-brand-orange rounded-full flex-shrink-0 mt-2"></span>
+                Willingness to learn — no experience required, full training provided
+              </li>
+              <li class="flex items-start gap-3 text-sm text-white/80 leading-relaxed">
+                <span class="w-1.5 h-1.5 bg-brand-orange rounded-full flex-shrink-0 mt-2"></span>
+                CDL or towing experience is a plus, but not required
+              </li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       CTA BANNER
+  ═══════════════════════════════════════════ -->
+  <section class="bg-brand-orange py-12">
+    <div data-reveal="up" class="max-w-5xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+      <div>
+        <h2 class="font-heading text-3xl text-white uppercase tracking-wide">Ready to Get Rolling?</h2>
+        <p class="text-white/85 mt-1 text-sm max-w-xl">If you're dependable, have a good driving record, and are ready to build something real for yourself — we want to hear from you.</p>
+      </div>
+      <a href="#apply" class="bg-white text-brand-orange font-heading font-600 text-lg px-8 py-4 rounded-lg tracking-wide whitespace-nowrap hover:bg-brand-light transition-colors">
+        Apply Today
+      </a>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       APPLICATION FORM
+  ═══════════════════════════════════════════ -->
+  <section id="apply" class="py-20 bg-brand-light">
+    <div class="max-w-2xl mx-auto px-6">
+      <div class="text-center mb-10">
+        <p class="text-brand-orange text-sm font-semibold uppercase tracking-widest mb-2">Join the Team</p>
+        <h2 class="font-heading text-4xl text-brand-navy uppercase tracking-wide">Apply Now</h2>
+        <p class="text-gray-500 mt-3 text-sm">Fill out the form below and we'll reach out within 24 hours.</p>
+      </div>
+
+      <div data-reveal="up" class="bg-white rounded-2xl shadow-sm p-8">
+        <form class="space-y-5">
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1.5">First Name</label>
+              <input type="text" placeholder="John" class="w-full bg-white border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-brand-blue transition-colors" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1.5">Last Name</label>
+              <input type="text" placeholder="Doe" class="w-full bg-white border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-brand-blue transition-colors" />
+            </div>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1.5">Phone Number</label>
+            <input type="tel" placeholder="(404) 000-0000" class="w-full bg-white border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-brand-blue transition-colors" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1.5">Email Address</label>
+            <input type="email" placeholder="john@email.com" class="w-full bg-white border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-brand-blue transition-colors" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1.5">Driver's License Type</label>
+            <select class="w-full bg-white border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-brand-blue transition-colors text-gray-700 cursor-pointer">
+              <option value="">Select license type...</option>
+              <option>Class A CDL</option>
+              <option>Class B CDL</option>
+              <option>Standard Driver's License</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1.5">Towing / Driving Experience</label>
+            <select class="w-full bg-white border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-brand-blue transition-colors text-gray-700 cursor-pointer">
+              <option value="">Select experience level...</option>
+              <option>No experience — ready to learn</option>
+              <option>Less than 1 year</option>
+              <option>1–3 years</option>
+              <option>3+ years</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1.5">Availability</label>
+            <select class="w-full bg-white border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-brand-blue transition-colors text-gray-700 cursor-pointer">
+              <option value="">Select availability...</option>
+              <option>Days (6am–6pm)</option>
+              <option>Nights (6pm–6am)</option>
+              <option>Weekends only</option>
+              <option>Flexible — any shift</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1.5">Anything Else We Should Know?</label>
+            <textarea rows="3" placeholder="Tell us a little about yourself, your background, or why you want to join the team..." class="w-full bg-white border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-brand-blue transition-colors resize-none"></textarea>
+          </div>
+          <button type="submit" class="w-full bg-brand-orange hover:bg-brand-amber text-white font-heading font-600 text-lg py-4 rounded-lg tracking-wide transition-colors cursor-pointer">
+            Submit Application
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════ -->
+  <footer class="bg-brand-navy text-white py-12">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
+
+        <div>
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-9 h-9 bg-brand-orange rounded-lg flex items-center justify-center overflow-hidden">
+              <img src="assets/Logo_tranparent.png" alt="Tic Tok Towing" class="w-8 h-8 object-contain" />
+            </div>
+            <div>
+              <div class="font-heading font-700 text-lg leading-none tracking-wide">TIC TOK TOWING</div>
+              <div class="text-xs text-orange-300 tracking-widest uppercase">Atlanta, GA</div>
+            </div>
+          </div>
+          <p class="text-white/50 text-sm leading-relaxed">Your trusted 24/7 towing and roadside assistance service in the Atlanta metropolitan area.</p>
+        </div>
+
+        <div>
+          <h4 class="font-heading text-sm uppercase tracking-widest text-white/60 mb-4">Services</h4>
+          <ul class="space-y-2 text-sm text-white/70">
+            <li><a href="index.html#services" class="hover:text-white transition-colors cursor-pointer">24/7 Roadside Assistance</a></li>
+            <li><a href="index.html#services" class="hover:text-white transition-colors cursor-pointer">Vehicle Towing</a></li>
+            <li><a href="index.html#services" class="hover:text-white transition-colors cursor-pointer">Emergency Services</a></li>
+            <li><a href="index.html#services" class="hover:text-white transition-colors cursor-pointer">Lockout Service</a></li>
+            <li><a href="index.html#services" class="hover:text-white transition-colors cursor-pointer">Jump Start</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-heading text-sm uppercase tracking-widest text-white/60 mb-4">Contact</h4>
+          <ul class="space-y-2 text-sm text-white/70">
+            <li>(404) 555-0100</li>
+            <li>Atlanta Metropolitan Area</li>
+            <li>Available 24/7</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="border-t border-white/10 pt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-white/40 text-xs">
+        <span>© 2024 Tic Tok Towing. All rights reserved.</span>
+        <span>Built with Mbusiness Branding AI</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Nav scroll effect -->
+  <script>
+    window.addEventListener('scroll', () => {
+      const nav = document.getElementById('navbar');
+      nav.classList.toggle('nav-scrolled', window.scrollY > 60);
+    });
+
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const bar1 = document.getElementById('bar1');
+    const bar2 = document.getElementById('bar2');
+    const bar3 = document.getElementById('bar3');
+    let menuOpen = false;
+
+    menuBtn.addEventListener('click', () => {
+      menuOpen = !menuOpen;
+      mobileMenu.classList.toggle('hidden', !menuOpen);
+      bar1.style.transform = menuOpen ? 'translateY(8px) rotate(45deg)' : '';
+      bar2.style.opacity   = menuOpen ? '0' : '1';
+      bar3.style.transform = menuOpen ? 'translateY(-8px) rotate(-45deg)' : '';
+    });
+
+    function closeMenu() {
+      menuOpen = false;
+      mobileMenu.classList.add('hidden');
+      bar1.style.transform = '';
+      bar2.style.opacity   = '1';
+      bar3.style.transform = '';
+    }
+
+    // Scroll reveal
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(el => {
+        if (el.isIntersecting) {
+          el.target.classList.add('in-view');
+          revealObserver.unobserve(el.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('[data-reveal]').forEach(el => revealObserver.observe(el));
+  </script>
+
+</body>
+</html>
