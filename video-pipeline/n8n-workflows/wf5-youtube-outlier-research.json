@@ -1,0 +1,161 @@
+{
+  "name": "WF5 - YouTube Outlier Research",
+  "nodes": [
+    {
+      "id": "a1b2c3d4-0001-4000-8000-aabbccddeeff",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [0, 300],
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 8 * * *"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "a1b2c3d4-0002-4000-8000-aabbccddeeff",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [0, 100],
+      "parameters": {}
+    },
+    {
+      "id": "a1b2c3d4-0003-4000-8000-aabbccddeeff",
+      "name": "Merge Triggers",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [220, 200],
+      "parameters": {
+        "mode": "chooseBranch",
+        "chooseBranch": {
+          "mode": "waitForBoth"
+        }
+      },
+      "notes": "Merge both triggers so workflow can be run manually OR on schedule"
+    },
+    {
+      "id": "a1b2c3d4-0004-4000-8000-aabbccddeeff",
+      "name": "Config",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [440, 200],
+      "parameters": {
+        "mode": "manual",
+        "assignments": {
+          "assignments": [
+            {
+              "id": "cfg-001",
+              "name": "YOUTUBE_API_KEY",
+              "value": "PASTE_YOUR_YOUTUBE_API_KEY_HERE",
+              "type": "string"
+            },
+            {
+              "id": "cfg-002",
+              "name": "SUPADATA_API_KEY",
+              "value": "PASTE_YOUR_SUPADATA_API_KEY_HERE",
+              "type": "string"
+            },
+            {
+              "id": "cfg-003",
+              "name": "ANTHROPIC_API_KEY",
+              "value": "PASTE_YOUR_ANTHROPIC_API_KEY_HERE",
+              "type": "string"
+            },
+            {
+              "id": "cfg-004",
+              "name": "AIRTABLE_TOKEN",
+              "value": "PASTE_YOUR_AIRTABLE_TOKEN_HERE",
+              "type": "string"
+            },
+            {
+              "id": "cfg-005",
+              "name": "AIRTABLE_BASE_ID",
+              "value": "PASTE_YOUR_AIRTABLE_BASE_ID_HERE",
+              "type": "string"
+            },
+            {
+              "id": "cfg-006",
+              "name": "OUTLIER_THRESHOLD",
+              "value": "3",
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "notes": "STEP 1: Replace all PASTE_YOUR_xxx_HERE values with your real API keys before running"
+    },
+    {
+      "id": "a1b2c3d4-0005-4000-8000-aabbccddeeff",
+      "name": "Research All Channels",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [660, 200],
+      "parameters": {
+        "jsCode": "// ============================================================\n// WF5 - YouTube Outlier Research\n// Full pipeline: YouTube → Transcript → Claude → Airtable\n// ============================================================\n\nconst config = $input.first().json;\nconst YOUTUBE_KEY = config.YOUTUBE_API_KEY;\nconst SUPADATA_KEY = config.SUPADATA_API_KEY;\nconst ANTHROPIC_KEY = config.ANTHROPIC_API_KEY;\nconst AIRTABLE_TOKEN = config.AIRTABLE_TOKEN;\nconst AIRTABLE_BASE_ID = config.AIRTABLE_BASE_ID;\nconst OUTLIER_THRESHOLD = Number(config.OUTLIER_THRESHOLD) || 3;\n\nconst AIRTABLE_BASE = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}`;\nconst AT_HEADERS = {\n  'Authorization': `Bearer ${AIRTABLE_TOKEN}`,\n  'Content-Type': 'application/json'\n};\n\n// ---- Brand voice prompt for Claude ----\nconst BRAND_VOICE_PROMPT = `You are writing a YouTube video script for Mbusiness Branding AI.\n\nBrand voice rules:\n- Tone: Confident, honest, direct, no fluff, straight to the point\n- Signature: Use \"Perfect!\" naturally at key moments — shows solution-oriented energy\n- Never say \"I can't\" — always action-focused and positive\n- Audience: Small home services business owners (plumbers, electricians, roofers, HVAC, landscapers) who are too busy to figure out AI tools themselves\n\nTask: Rewrite the transcript below as an original video script in my brand voice. Keep the proven hook structure and core topic. Change examples to fit the home services world. Where relevant, weave in what Mbusiness Branding AI offers: AI-powered websites for lead capture, 24/7 AI receptionist for inquiries and booking, Google review management, and social media creation.\n\nFormat your response as:\n[HOOK] (first 15 seconds — stop-the-scroll opening line)\n\n[BODY] (main content — teach the concept in a relatable way for home service owners)\n\n[CTA] (call to action — tie back to Mbusiness Branding AI and what to do next)\n\nTRANSCRIPT TO REWRITE:\n`;\n\nconst results = [];\n\n// ---- STEP 1: Get active channels from Airtable ----\nlet channels = [];\ntry {\n  const channelsRes = await fetch(\n    `${AIRTABLE_BASE}/Channels?filterByFormula=${encodeURIComponent('{Active}=1')}`,\n    { headers: AT_HEADERS }\n  );\n  const channelsData = await channelsRes.json();\n  channels = channelsData.records || [];\n} catch (e) {\n  return [{ json: { status: 'error', step: 'get_channels', error: e.message } }];\n}\n\nif (channels.length === 0) {\n  return [{ json: { status: 'done', message: 'No active channels. Add channels to the Airtable Channels table and check the Active box.', outliers_saved: 0 } }];\n}\n\n// ---- STEP 2: Process each channel ----\nfor (const channel of channels) {\n  const channelId = channel.fields['Channel ID'];\n  const channelName = channel.fields['Channel Name'];\n  const channelRecordId = channel.id;\n\n  if (!channelId) continue;\n\n  try {\n    // Get uploads playlist ID\n    const chRes = await fetch(\n      `https://www.googleapis.com/youtube/v3/channels?part=contentDetails&id=${channelId}&key=${YOUTUBE_KEY}`\n    );\n    const chData = await chRes.json();\n\n    if (chData.error) {\n      results.push({ channelName, status: 'error', error: `YouTube API: ${chData.error.message}` });\n      continue;\n    }\n\n    const uploadsPlaylistId = chData.items?.[0]?.contentDetails?.relatedPlaylists?.uploads;\n    if (!uploadsPlaylistId) {\n      results.push({ channelName, status: 'skip', reason: 'No uploads playlist found' });\n      continue;\n    }\n\n    // Get last 20 videos\n    const plRes = await fetch(\n      `https://www.googleapis.com/youtube/v3/playlistItems?part=contentDetails,snippet&playlistId=${uploadsPlaylistId}&maxResults=20&key=${YOUTUBE_KEY}`\n    );\n    const plData = await plRes.json();\n    const playlistItems = plData.items || [];\n\n    if (playlistItems.length < 3) {\n      results.push({ channelName, status: 'skip', reason: 'Not enough videos to calculate average' });\n      continue;\n    }\n\n    const videoIds = playlistItems.map(v => v.contentDetails.videoId);\n    const videoMeta = {};\n    playlistItems.forEach(v => {\n      videoMeta[v.contentDetails.videoId] = {\n        title: v.snippet.title,\n        thumbnail: v.snippet.thumbnails?.high?.url || v.snippet.thumbnails?.default?.url || ''\n      };\n    });\n\n    // Get video statistics (batch call)\n    const statsRes = await fetch(\n      `https://www.googleapis.com/youtube/v3/videos?part=statistics&id=${videoIds.join(',')}&key=${YOUTUBE_KEY}`\n    );\n    const statsData = await statsRes.json();\n    const videoStats = statsData.items || [];\n\n    // Calculate average views\n    const viewCounts = videoStats.map(v => parseInt(v.statistics?.viewCount || 0));\n    const avgViews = Math.round(viewCounts.reduce((a, b) => a + b, 0) / viewCounts.length);\n\n    if (avgViews === 0) continue;\n\n    // Find outliers\n    for (const video of videoStats) {\n      const views = parseInt(video.statistics?.viewCount || 0);\n      if (views < avgViews * OUTLIER_THRESHOLD) continue;\n\n      const videoId = video.id;\n      const meta = videoMeta[videoId] || {};\n      const outlierScore = (views / avgViews).toFixed(1);\n\n      // Check Airtable for duplicate\n      const dupRes = await fetch(\n        `${AIRTABLE_BASE}/Outlier%20Videos?filterByFormula=${encodeURIComponent(`{Video ID}=\"${videoId}\"`)}`,\n        { headers: AT_HEADERS }\n      );\n      const dupData = await dupRes.json();\n      if (dupData.records && dupData.records.length > 0) {\n        results.push({ videoId, channelName, status: 'skip', reason: 'Already in Airtable' });\n        continue;\n      }\n\n      // Get transcript from Supadata\n      let transcript = '';\n      try {\n        const tRes = await fetch(\n          `https://api.supadata.ai/v1/youtube/transcript?url=${encodeURIComponent(`https://www.youtube.com/watch?v=${videoId}`)}&text=true`,\n          { headers: { 'x-api-key': SUPADATA_KEY } }\n        );\n        const tData = await tRes.json();\n        transcript = tData.content || tData.text || tData.transcript || '';\n      } catch (e) {\n        transcript = '[Transcript unavailable — video may not have captions]';\n      }\n\n      // Rewrite with Claude\n      let rewrittenScript = '';\n      try {\n        const claudeRes = await fetch('https://api.anthropic.com/v1/messages', {\n          method: 'POST',\n          headers: {\n            'x-api-key': ANTHROPIC_KEY,\n            'anthropic-version': '2023-06-01',\n            'content-type': 'application/json'\n          },\n          body: JSON.stringify({\n            model: 'claude-haiku-4-5-20251001',\n            max_tokens: 4096,\n            messages: [{\n              role: 'user',\n              content: BRAND_VOICE_PROMPT + (transcript.substring(0, 8000) || '[No transcript available — write a script based on the video title: ' + meta.title + ']')\n            }]\n          })\n        });\n        const claudeData = await claudeRes.json();\n        rewrittenScript = claudeData.content?.[0]?.text || '[Script generation failed]';\n      } catch (e) {\n        rewrittenScript = `[Script generation failed: ${e.message}]`;\n      }\n\n      // Save to Airtable\n      const createBody = {\n        records: [{\n          fields: {\n            'Video Title': meta.title || 'Unknown Title',\n            'Video ID': videoId,\n            'Channel': [channelRecordId],\n            'Views': views,\n            'Channel Avg Views': avgViews,\n            'Thumbnail': meta.thumbnail,\n            'Transcript': transcript.substring(0, 100000),\n            'Rewritten Script': rewrittenScript.substring(0, 100000),\n            'Status': 'New',\n            'Date Discovered': new Date().toISOString().split('T')[0]\n          }\n        }]\n      };\n\n      const createRes = await fetch(`${AIRTABLE_BASE}/Outlier%20Videos`, {\n        method: 'POST',\n        headers: AT_HEADERS,\n        body: JSON.stringify(createBody)\n      });\n      const createData = await createRes.json();\n\n      results.push({\n        videoId,\n        videoTitle: meta.title,\n        channelName,\n        views,\n        avgViews,\n        outlierScore: outlierScore + 'x',\n        airtableId: createData.records?.[0]?.id || 'unknown',\n        status: 'saved'\n      });\n    }\n\n    // Update Last Scanned on the channel record\n    await fetch(`${AIRTABLE_BASE}/Channels/${channelRecordId}`, {\n      method: 'PATCH',\n      headers: AT_HEADERS,\n      body: JSON.stringify({\n        fields: { 'Last Scanned': new Date().toISOString().split('T')[0] }\n      })\n    });\n\n  } catch (e) {\n    results.push({ channelName, status: 'error', error: e.message });\n  }\n}\n\n// ---- Summary ----\nconst saved = results.filter(r => r.status === 'saved').length;\nconst skipped = results.filter(r => r.status === 'skip').length;\nconst errors = results.filter(r => r.status === 'error').length;\n\nreturn [{\n  json: {\n    status: 'complete',\n    run_date: new Date().toISOString(),\n    channels_scanned: channels.length,\n    outliers_saved: saved,\n    skipped_duplicates: skipped,\n    errors: errors,\n    details: results\n  }\n}];\n"
+      },
+      "notes": "Core logic: scans all active channels, finds outliers, gets transcripts, rewrites with Claude, saves to Airtable"
+    },
+    {
+      "id": "a1b2c3d4-0006-4000-8000-aabbccddeeff",
+      "name": "Log Results",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [880, 200],
+      "parameters": {},
+      "notes": "Workflow complete — check Airtable Outlier Videos table for new scripts"
+    }
+  ],
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [{"node": "Merge Triggers", "type": "main", "index": 0}]
+      ]
+    },
+    "Manual Trigger": {
+      "main": [
+        [{"node": "Merge Triggers", "type": "main", "index": 1}]
+      ]
+    },
+    "Merge Triggers": {
+      "main": [
+        [{"node": "Config", "type": "main", "index": 0}]
+      ]
+    },
+    "Config": {
+      "main": [
+        [{"node": "Research All Channels", "type": "main", "index": 0}]
+      ]
+    },
+    "Research All Channels": {
+      "main": [
+        [{"node": "Log Results", "type": "main", "index": 0}]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": ""
+  },
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": false,
+    "instanceId": "mbusiness-wf5"
+  },
+  "pinData": {},
+  "versionId": "wf5-v1",
+  "tags": [
+    {"id": "tag-content", "name": "Content Research"},
+    {"id": "tag-youtube", "name": "YouTube"}
+  ],
+  "active": false
+}

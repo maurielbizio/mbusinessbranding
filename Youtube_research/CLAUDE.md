@@ -29,6 +29,7 @@ This folder is used to research YouTube videos in the Mbusiness Branding niche �
 3. **Business Frameworks** — What proven strategies are being taught?
 4. **Offer Construction** — How are they packaging and pitching services?
 5. **Client Acquisition** — What outreach and sales methods are working?
+6. **Outlier Research** — Find videos that 3x+ a channel's average views → extract transcript → rewrite in brand voice. See `WORKFLOW_Outlier_Research.md` for the full SOP.
 
 ---
 
