@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us | McDonough New and Used Tires</title>
+  <meta name="description" content="Learn about McDonough New and Used Tires — serving McDonough and Griffin, GA with honest, affordable tire and auto services." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: { extend: {
+        colors: { brand: { navy:'#0a1f44', dark:'#071530', navyli:'#132d5e', red:'#c0392b', crimson:'#a93226', light:'#eef2ff' } },
+        fontFamily: { heading:['Oswald','sans-serif'], body:['Inter','sans-serif'] }
+      }}
+    }
+  </script>
+  <style>
+    * { box-sizing: border-box; } body { font-family: 'Inter', sans-serif; } h1,h2,h3,h4 { font-family: 'Oswald', sans-serif; }
+    #navbar { transition: background 0.3s ease, box-shadow 0.3s ease; }
+    #navbar.scrolled { background: rgba(10,31,68,0.97) !important; box-shadow: 0 4px 24px rgba(0,0,0,0.3); }
+    [data-reveal] { opacity: 0; transition: opacity 0.65s ease, transform 0.65s ease; }
+    [data-reveal="up"]    { transform: translateY(40px); }
+    [data-reveal="left"]  { transform: translateX(-50px); }
+    [data-reveal="right"] { transform: translateX(50px); }
+    [data-reveal].in-view { opacity: 1 !important; transform: translate(0,0) !important; }
+    [data-delay="1"] { transition-delay: 0.1s; } [data-delay="2"] { transition-delay: 0.2s; }
+    [data-delay="3"] { transition-delay: 0.3s; } [data-delay="4"] { transition-delay: 0.4s; }
+    .page-hero { position: relative; height: 360px; overflow: hidden; }
+    .page-hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .page-hero-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(10,31,68,0.92) 0%, rgba(10,31,68,0.55) 100%); }
+    .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.93); z-index: 9999; align-items: center; justify-content: center; padding: 24px; cursor: zoom-out; }
+    .lightbox.open { display: flex; }
+    .lightbox img { max-width: 100%; max-height: 90vh; border-radius: 12px; object-fit: contain; cursor: default; }
+    .lb-close { position: absolute; top: 20px; right: 24px; color: white; font-size: 2.4rem; line-height: 1; cursor: pointer; background: none; border: none; opacity: 0.7; }
+    .lb-close:hover { opacity: 1; }
+  </style>
+</head>
+<body class="bg-white text-gray-800">
+
+  <!-- NAVBAR -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-brand-navy">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex items-center justify-between h-20">
+        <a href="index.html"><img src="assets/Logo.png" alt="McDonough Tires" class="h-auto w-20 object-contain" /></a>
+        <div class="hidden md:flex items-center gap-1">
+          <a href="index.html"    class="text-white/80 hover:text-white font-body text-sm uppercase tracking-wide px-4 py-2 rounded transition-colors">Home</a>
+          <a href="services.html" class="text-white/80 hover:text-white font-body text-sm uppercase tracking-wide px-4 py-2 rounded transition-colors">Services</a>
+          <a href="about.html"    class="text-white font-body text-sm uppercase tracking-wide px-4 py-2 rounded transition-colors border-b-2 border-brand-red">About</a>
+          <a href="griffin.html"  class="text-white/80 hover:text-white font-body text-sm uppercase tracking-wide px-4 py-2 rounded transition-colors">Griffin Location</a>
+          <a href="contact.html"  class="text-white/80 hover:text-white font-body text-sm uppercase tracking-wide px-4 py-2 rounded transition-colors">Contact</a>
+          <a href="tel:6785935893" class="ml-3 bg-brand-red hover:bg-brand-crimson text-white font-heading text-sm uppercase tracking-wider px-5 py-2.5 rounded transition-colors flex items-center gap-2">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            Call Now
+          </a>
+        </div>
+        <button id="hamburger" class="md:hidden flex flex-col gap-1.5 p-2">
+          <span class="block w-6 h-0.5 bg-white"></span>
+          <span class="block w-6 h-0.5 bg-white"></span>
+          <span class="block w-6 h-0.5 bg-white"></span>
+        </button>
+      </div>
+    </div>
+    <div id="mobileMenu" class="hidden md:hidden bg-brand-dark border-t border-white/10 px-6 py-4">
+      <div class="flex flex-col gap-2">
+        <a href="index.html"    class="text-white/80 font-body text-sm uppercase py-2 border-b border-white/10">Home</a>
+        <a href="services.html" class="text-white/80 font-body text-sm uppercase py-2 border-b border-white/10">Services</a>
+        <a href="about.html"    class="text-white font-body text-sm uppercase py-2 border-b border-white/10">About</a>
+        <a href="griffin.html"  class="text-white/80 font-body text-sm uppercase py-2 border-b border-white/10">Griffin Location</a>
+        <a href="contact.html"  class="text-white/80 font-body text-sm uppercase py-2 border-b border-white/10">Contact</a>
+        <a href="tel:6785935893" class="mt-2 bg-brand-red text-white font-heading text-sm uppercase tracking-wider px-5 py-3 rounded text-center">Call Now</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero mt-20">
+    <img src="assets/hf_20260316_010739_703af33f-94fb-4675-9f2b-5a6473a763ea.jpeg" alt="About McDonough Tires" />
+    <div class="page-hero-overlay"></div>
+    <div class="absolute inset-0 flex items-center z-10">
+      <div class="max-w-7xl mx-auto px-6 w-full">
+        <p class="text-brand-red font-body text-xs uppercase tracking-widest mb-2" data-reveal="up">Our Story</p>
+        <h1 class="font-heading text-5xl md:text-6xl uppercase text-white tracking-wide leading-none" data-reveal="up" data-delay="1">About Us</h1>
+        <p class="text-white/70 font-body text-lg mt-3 max-w-md" data-reveal="up" data-delay="2">Trusted by drivers across Henry &amp; Spalding County.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT SPLIT -->
+  <section class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid md:grid-cols-2 gap-16 items-center">
+        <div data-reveal="left">
+          <p class="text-brand-red font-body text-xs uppercase tracking-widest mb-3">Who We Are</p>
+          <h2 class="font-heading text-4xl md:text-5xl uppercase text-brand-navy tracking-wide leading-tight mb-6">McDonough's Trusted Tire Shop</h2>
+          <p class="text-gray-600 font-body leading-relaxed mb-5">McDonough New and Used Tires has been serving the community with honest, affordable tire and auto services. We know our customers by name and treat every vehicle like it belongs to family.</p>
+          <p class="text-gray-600 font-body leading-relaxed mb-8">From a single tire replacement to a complete brake job, our experienced technicians get it done right — the first time. No runaround. No upselling. Just quality work at a fair price.</p>
+          <div class="grid grid-cols-2 gap-4">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-full bg-brand-red/10 flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-brand-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+              </div>
+              <span class="text-gray-700 font-body text-sm">Walk-ins welcome</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-full bg-brand-red/10 flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-brand-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+              </div>
+              <span class="text-gray-700 font-body text-sm">Fair, upfront pricing</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-full bg-brand-red/10 flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-brand-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+              </div>
+              <span class="text-gray-700 font-body text-sm">Experienced techs</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-full bg-brand-red/10 flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-brand-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+              </div>
+              <span class="text-gray-700 font-body text-sm">Two locations</span>
+            </div>
+          </div>
+        </div>
+        <div class="relative" data-reveal="right">
+          <div class="rounded-2xl overflow-hidden shadow-2xl aspect-[4/3]">
+            <img src="assets/hf_20260309_124310_1de10183-623e-42ee-8886-b4036f55a68b.jpeg" alt="McDonough Tires shop" class="w-full h-full object-cover" />
+          </div>
+          <div class="absolute -bottom-6 -left-6 bg-brand-navy text-white rounded-2xl p-5 shadow-2xl">
+            <p class="font-heading text-4xl uppercase tracking-wide leading-none">2</p>
+            <p class="font-heading text-xl uppercase text-brand-red tracking-wide">Locations</p>
+            <p class="font-body text-xs text-white/60 mt-1">McDonough &amp; Griffin</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="bg-brand-navy py-16">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div data-reveal="up">
+          <p class="font-heading text-5xl uppercase text-white tracking-wide">2+</p>
+          <p class="text-brand-red font-body text-xs uppercase tracking-widest mt-2">Locations</p>
+        </div>
+        <div data-reveal="up" data-delay="1">
+          <p class="font-heading text-5xl uppercase text-white tracking-wide">5K+</p>
+          <p class="text-brand-red font-body text-xs uppercase tracking-widest mt-2">Happy Customers</p>
+        </div>
+        <div data-reveal="up" data-delay="2">
+          <p class="font-heading text-5xl uppercase text-white tracking-wide">100%</p>
+          <p class="text-brand-red font-body text-xs uppercase tracking-widest mt-2">Honest Pricing</p>
+        </div>
+        <div data-reveal="up" data-delay="3">
+          <p class="font-heading text-4xl uppercase text-white tracking-wide">Same<br>Day</p>
+          <p class="text-brand-red font-body text-xs uppercase tracking-widest mt-2">Service Available</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECOND IMAGE SECTION -->
+  <section class="py-24 bg-brand-light">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid md:grid-cols-2 gap-16 items-center">
+        <div class="rounded-2xl overflow-hidden shadow-xl" data-reveal="left">
+          <img src="assets/hf_20260309_124522_8a83ed5b-3f6f-4f02-b17b-56685c4fc007.jpeg" alt="McDonough Tires service" class="w-full aspect-[4/3] object-cover" />
+        </div>
+        <div data-reveal="right">
+          <p class="text-brand-red font-body text-xs uppercase tracking-widest mb-3">Our Commitment</p>
+          <h2 class="font-heading text-4xl md:text-5xl uppercase text-brand-navy tracking-wide leading-tight mb-6">Quality You Can Count On</h2>
+          <p class="text-gray-600 font-body leading-relaxed mb-5">We carry a wide selection of new and used tires from trusted brands, priced to fit every budget. Whether you're driving a sedan, truck, or SUV — we have the right tire for your vehicle and your wallet.</p>
+          <p class="text-gray-600 font-body leading-relaxed mb-8">Our Griffin location brings the same quality and service to Spalding County — same prices, same values, same commitment to getting you back on the road fast.</p>
+          <a href="services.html" class="inline-flex items-center gap-2 bg-brand-red hover:bg-brand-crimson text-white font-heading uppercase tracking-wider text-sm px-7 py-4 rounded transition-all hover:-translate-y-0.5">
+            View Our Services
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHOTO GALLERY -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-12" data-reveal="up">
+        <p class="text-brand-red font-body text-xs uppercase tracking-widest mb-3">Gallery</p>
+        <h2 class="font-heading text-4xl uppercase text-brand-navy tracking-wide">A Look Inside</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="relative rounded-2xl overflow-hidden cursor-pointer group aspect-[4/3]" data-reveal="up" data-delay="1" onclick="openLB(this)">
+          <img src="assets/hf_20260316_003519_b96b232c-7e5a-48d7-90c4-4af7a7ab4cf2.png" alt="Shop interior" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+          <div class="absolute inset-0 bg-brand-navy/35 group-hover:bg-brand-navy/10 transition-colors duration-300"></div>
+          <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <div class="w-12 h-12 bg-white/90 rounded-full flex items-center justify-center">
+              <svg class="w-5 h-5 text-brand-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg>
+            </div>
+          </div>
+        </div>
+        <div class="relative rounded-2xl overflow-hidden cursor-pointer group aspect-[4/3]" data-reveal="up" data-delay="2" onclick="openLB(this)">
+          <img src="assets/hf_20260316_015721_a70f9ed7-6047-476b-b510-a6d614a8fffd.jpeg" alt="Tire service" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+          <div class="absolute inset-0 bg-brand-navy/35 group-hover:bg-brand-navy/10 transition-colors duration-300"></div>
+          <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <div class="w-12 h-12 bg-white/90 rounded-full flex items-center justify-center">
+              <svg class="w-5 h-5 text-brand-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg>
+            </div>
+          </div>
+        </div>
+        <div class="relative rounded-2xl overflow-hidden cursor-pointer group aspect-[4/3]" data-reveal="up" data-delay="3" onclick="openLB(this)">
+          <img src="assets/hf_20260309_125030_0ff8230a-7021-45b3-9730-4a3370d5a895.png" alt="Shop photo" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+          <div class="absolute inset-0 bg-brand-navy/35 group-hover:bg-brand-navy/10 transition-colors duration-300"></div>
+          <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <div class="w-12 h-12 bg-white/90 rounded-full flex items-center justify-center">
+              <svg class="w-5 h-5 text-brand-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOCATIONS CARDS -->
+  <section class="py-20 bg-brand-light">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-12" data-reveal="up">
+        <p class="text-brand-red font-body text-xs uppercase tracking-widest mb-3">Find Us</p>
+        <h2 class="font-heading text-4xl uppercase text-brand-navy tracking-wide">Two Locations</h2>
+      </div>
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="bg-white rounded-2xl p-8 shadow-sm" data-reveal="left">
+          <div class="w-12 h-12 bg-brand-navy rounded-xl flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          </div>
+          <h3 class="font-heading text-2xl uppercase text-brand-navy tracking-wide mb-2">McDonough</h3>
+          <p class="text-gray-600 font-body text-sm mb-1">3657 Jodeco Rd, McDonough, GA 30253</p>
+          <a href="tel:6785935893" class="text-brand-red font-heading text-lg uppercase tracking-wide hover:text-brand-crimson transition-colors block mb-1">678-593-5893</a>
+          <p class="text-gray-500 font-body text-sm mb-5">Mon–Fri: 8am–5pm</p>
+          <a href="https://maps.google.com/?q=3657+Jodeco+Rd+McDonough+GA+30253" target="_blank" class="text-brand-navy font-body text-sm hover:text-brand-red transition-colors flex items-center gap-1.5">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
+            Get Directions
+          </a>
+        </div>
+        <div class="bg-white rounded-2xl p-8 shadow-sm" data-reveal="right">
+          <div class="w-12 h-12 bg-brand-red rounded-xl flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          </div>
+          <h3 class="font-heading text-2xl uppercase text-brand-navy tracking-wide mb-2">Griffin</h3>
+          <p class="text-gray-600 font-body text-sm mb-1">155 N Expy, Griffin, GA 30223</p>
+          <a href="tel:6786888195" class="text-brand-red font-heading text-lg uppercase tracking-wide hover:text-brand-crimson transition-colors block mb-1">678-688-8195</a>
+          <p class="text-gray-500 font-body text-sm mb-5">Mon–Fri: 8am–5pm</p>
+          <a href="griffin.html" class="text-brand-navy font-body text-sm hover:text-brand-red transition-colors flex items-center gap-1.5">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+            View Griffin Location Page
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-brand-red py-20">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-8" data-reveal="up">
+        <div>
+          <h2 class="font-heading text-4xl uppercase text-white tracking-wide">Come See Us Today</h2>
+          <p class="text-white/75 font-body mt-2">Walk-ins welcome. No appointment needed for most services.</p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4 flex-shrink-0">
+          <a href="tel:6785935893" class="bg-white hover:bg-brand-light text-brand-navy font-heading uppercase tracking-wider text-sm px-7 py-4 rounded transition-all text-center whitespace-nowrap">📞 McDonough: 678-593-5893</a>
+          <a href="tel:6786888195" class="border-2 border-white text-white hover:bg-white hover:text-brand-red font-heading uppercase tracking-wider text-sm px-7 py-4 rounded transition-all text-center whitespace-nowrap">📞 Griffin: 678-688-8195</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-brand-navy pt-16 pb-0">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid md:grid-cols-4 gap-10 pb-12 border-b border-white/10">
+        <div>
+          <img src="assets/Logo.png" alt="McDonough Tires" class="h-auto w-20 mb-4" />
+          <p class="text-white/50 font-body text-sm leading-relaxed">Trusted tire shop serving McDonough and Griffin, Georgia.</p>
+        </div>
+        <div>
+          <h4 class="font-heading text-xs uppercase text-brand-red tracking-widest mb-5">Quick Links</h4>
+          <ul class="space-y-2.5">
+            <li><a href="index.html"    class="text-white/60 hover:text-white font-body text-sm transition-colors">Home</a></li>
+            <li><a href="services.html" class="text-white/60 hover:text-white font-body text-sm transition-colors">Services</a></li>
+            <li><a href="about.html"    class="text-white/60 hover:text-white font-body text-sm transition-colors">About Us</a></li>
+            <li><a href="griffin.html"  class="text-white/60 hover:text-white font-body text-sm transition-colors">Griffin Location</a></li>
+            <li><a href="contact.html"  class="text-white/60 hover:text-white font-body text-sm transition-colors">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-heading text-xs uppercase text-brand-red tracking-widest mb-5">McDonough</h4>
+          <p class="text-white/60 font-body text-sm mb-2">3657 Jodeco Rd, McDonough, GA 30253</p>
+          <a href="tel:6785935893" class="text-white/60 hover:text-white font-body text-sm transition-colors block mb-1">678-593-5893</a>
+          <p class="text-white/60 font-body text-sm">Mon–Fri: 8am–5pm</p>
+        </div>
+        <div>
+          <h4 class="font-heading text-xs uppercase text-brand-red tracking-widest mb-5">Griffin</h4>
+          <p class="text-white/60 font-body text-sm mb-2">155 N Expy, Griffin, GA 30223</p>
+          <a href="tel:6786888195" class="text-white/60 hover:text-white font-body text-sm transition-colors block mb-1">678-688-8195</a>
+          <p class="text-white/60 font-body text-sm">Mon–Fri: 8am–5pm</p>
+        </div>
+      </div>
+      <div class="py-6 flex flex-col md:flex-row items-center justify-between gap-3">
+        <p class="text-white/30 font-body text-xs">&copy; 2026 McDonough New and Used Tires. All rights reserved.</p>
+        <p class="text-white/30 font-body text-xs">Website by <a href="https://mbusinessbrandingai.com" target="_blank" class="hover:text-white/60 transition-colors">Mbusiness Branding AI</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" onclick="closeLB(event)">
+    <button class="lb-close" onclick="closeLB()">&times;</button>
+    <img id="lbImg" src="" alt="" />
+  </div>
+
+  <script>
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 50); }, { passive: true });
+    const ham = document.getElementById('hamburger'), menu = document.getElementById('mobileMenu');
+    let open = false;
+    ham.addEventListener('click', () => { open = !open; menu.classList.toggle('hidden', !open); });
+    const els = document.querySelectorAll('[data-reveal]');
+    if ('IntersectionObserver' in window) {
+      const obs = new IntersectionObserver(e => e.forEach(i => { if (i.isIntersecting) { i.target.classList.add('in-view'); obs.unobserve(i.target); } }), { threshold: 0.12 });
+      els.forEach(el => obs.observe(el));
+    } else { els.forEach(el => el.classList.add('in-view')); }
+    function openLB(el) { document.getElementById('lbImg').src = el.querySelector('img').src; document.getElementById('lightbox').classList.add('open'); }
+    function closeLB(e) { if (!e || e.target !== document.getElementById('lbImg')) document.getElementById('lightbox').classList.remove('open'); }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') document.getElementById('lightbox').classList.remove('open'); });
+  </script>
+
+  <!-- GHL Chat Widget -->
+  <script
+    src="https://widgets.leadconnectorhq.com/loader.js"
+    data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js"
+    data-widget-id="69b89f88bea48a7866799ef3">
+  </script>
+</body>
+</html>

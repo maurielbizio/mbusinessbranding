@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Griffin Location | McDonough Tires Griffin</title>
+  <meta name="description" content="McDonough Tires Griffin — 155 N Expy, Griffin, GA 30223. Call 678-688-8195. New &amp; used tires, rotation, brakes, flat repair. Mon–Fri 8am–5pm." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: { extend: {
+        colors: { brand: { navy:'#0a1f44', dark:'#071530', navyli:'#132d5e', red:'#c0392b', crimson:'#a93226', light:'#eef2ff' } },
+        fontFamily: { heading:['Oswald','sans-serif'], body:['Inter','sans-serif'] }
+      }}
+    }
+  </script>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; }
+    h1, h2, h3, h4 { font-family: 'Oswald', sans-serif; }
+
+    /* Video hero */
+    .hero-video-wrap { position: relative; width: 100%; height: 100vh; min-height: 600px; overflow: hidden; }
+    .hero-video-wrap video { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); min-width: 100%; min-height: 100%; width: auto; height: auto; }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(10,31,68,0.78) 0%, rgba(10,31,68,0.55) 55%, rgba(0,0,0,0.72) 100%); }
+
+    /* Inline video section */
+    .vid-section { position: relative; height: 480px; overflow: hidden; }
+    .vid-section video { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); min-width: 100%; min-height: 100%; width: auto; height: auto; }
+    .vid-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(10,31,68,0.88) 0%, rgba(10,31,68,0.45) 60%, rgba(0,0,0,0) 100%); }
+
+    /* Nav */
+    #navbar { transition: background 0.3s ease, box-shadow 0.3s ease; }
+    #navbar.scrolled { background: rgba(10,31,68,0.97) !important; box-shadow: 0 4px 24px rgba(0,0,0,0.3); }
+
+    /* Scroll reveal */
+    [data-reveal] { opacity: 0; transition: opacity 0.65s ease, transform 0.65s ease; }
+    [data-reveal="up"]    { transform: translateY(40px); }
+    [data-reveal="left"]  { transform: translateX(-50px); }
+    [data-reveal="right"] { transform: translateX(50px); }
+    [data-reveal].in-view { opacity: 1 !important; transform: translate(0,0) !important; }
+    [data-delay="1"] { transition-delay: 0.1s; } [data-delay="2"] { transition-delay: 0.2s; }
+    [data-delay="3"] { transition-delay: 0.3s; } [data-delay="4"] { transition-delay: 0.4s; }
+
+    /* Pulse dot */
+    .pulse-dot { position: relative; }
+    .pulse-dot::before { content: ''; position: absolute; inset: 0; border-radius: 9999px; background: #22c55e; animation: pulse-ring 1.6s ease-out infinite; }
+    @keyframes pulse-ring { 0% { transform: scale(1); opacity: 0.6; } 100% { transform: scale(1.8); opacity: 0; } }
+
+    /* Lightbox */
+    .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.93); z-index: 9999; align-items: center; justify-content: center; padding: 24px; cursor: zoom-out; }
+    .lightbox.open { display: flex; }
+    .lightbox img { max-width: 100%; max-height: 90vh; border-radius: 12px; object-fit: contain; cursor: default; }
+    .lb-close { position: absolute; top: 20px; right: 24px; color: white; font-size: 2.4rem; line-height: 1; cursor: pointer; background: none; border: none; opacity: 0.7; }
+    .lb-close:hover { opacity: 1; }
+  </style>
+</head>
+<body class="bg-white text-gray-800">
+
+  <!-- NAVBAR (transparent → scrolled) -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-transparent">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex items-center justify-between h-20">
+        <a href="index.html"><img src="assets/Logo.png" alt="McDonough Tires" class="h-auto w-20 object-contain" /></a>
+        <div class="hidden md:flex items-center gap-1">
+          <a href="index.html"    class="text-white/80 hover:text-white font-body text-sm uppercase tracking-wide px-4 py-2 rounded transition-colors">Home</a>
+          <a href="services.html" class="text-white/80 hover:text-white font-body text-sm uppercase tracking-wide px-4 py-2 rounded transition-colors">Services</a>
+          <a href="about.html"    class="text-white/80 hover:text-white font-body text-sm uppercase tracking-wide px-4 py-2 rounded transition-colors">About</a>
+          <a href="griffin.html"  class="text-white font-body text-sm uppercase tracking-wide px-4 py-2 rounded transition-colors border-b-2 border-brand-red">Griffin Location</a>
+          <a href="contact.html"  class="text-white/80 hover:text-white font-body text-sm uppercase tracking-wide px-4 py-2 rounded transition-colors">Contact</a>
+          <a href="tel:6786888195" class="ml-3 bg-brand-red hover:bg-brand-crimson text-white font-heading text-sm uppercase tracking-wider px-5 py-2.5 rounded transition-colors flex items-center gap-2">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            Griffin: Call Now
+          </a>
+        </div>
+        <button id="hamburger" class="md:hidden flex flex-col gap-1.5 p-2">
+          <span class="block w-6 h-0.5 bg-white"></span>
+          <span class="block w-6 h-0.5 bg-white"></span>
+          <span class="block w-6 h-0.5 bg-white"></span>
+        </button>
+      </div>
+    </div>
+    <div id="mobileMenu" class="hidden md:hidden bg-brand-dark border-t border-white/10 px-6 py-4">
+      <div class="flex flex-col gap-2">
+        <a href="index.html"    class="text-white/80 font-body text-sm uppercase py-2 border-b border-white/10">Home</a>
+        <a href="services.html" class="text-white/80 font-body text-sm uppercase py-2 border-b border-white/10">Services</a>
+        <a href="about.html"    class="text-white/80 font-body text-sm uppercase py-2 border-b border-white/10">About</a>
+        <a href="griffin.html"  class="text-white font-body text-sm uppercase py-2 border-b border-white/10">Griffin Location</a>
+        <a href="contact.html"  class="text-white/80 font-body text-sm uppercase py-2 border-b border-white/10">Contact</a>
+        <a href="tel:6786888195" class="mt-2 bg-brand-red text-white font-heading text-sm uppercase tracking-wider px-5 py-3 rounded text-center">Call Griffin Now</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- VIDEO HERO -->
+  <div class="hero-video-wrap">
+    <video autoplay muted loop playsinline preload="auto">
+      <source src="assets/hero_video_2.mp4" type="video/mp4" />
+    </video>
+    <div class="hero-overlay"></div>
+    <div class="relative z-10 flex flex-col items-center justify-center h-full text-center px-6">
+      <!-- Glass badge -->
+      <div class="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-5 py-2.5 mb-8" data-reveal="up">
+        <span class="relative w-2.5 h-2.5 rounded-full bg-green-400 pulse-dot flex-shrink-0"></span>
+        <span class="text-white font-body text-sm tracking-wide">Now Open — Griffin, GA</span>
+      </div>
+      <h1 class="font-heading text-5xl md:text-7xl uppercase text-white tracking-wide leading-none mb-4 max-w-4xl" data-reveal="up" data-delay="1">
+        McDonough Tires<br><span class="text-brand-red">Griffin</span>
+      </h1>
+      <p class="text-white/80 font-body text-lg md:text-xl max-w-xl leading-relaxed mb-8" data-reveal="up" data-delay="2">
+        The same great service you trust — now in Spalding County.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4" data-reveal="up" data-delay="3">
+        <a href="tel:6786888195" class="bg-brand-red hover:bg-brand-crimson text-white font-heading uppercase tracking-wider text-sm px-8 py-4 rounded transition-all hover:-translate-y-0.5 flex items-center gap-2 justify-center">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          Call 678-688-8195
+        </a>
+        <a href="https://maps.google.com/?q=155+N+Expy+Griffin+GA+30223" target="_blank" class="bg-white/15 backdrop-blur-sm hover:bg-white/25 border border-white/30 text-white font-heading uppercase tracking-wider text-sm px-8 py-4 rounded transition-all">
+          Get Directions
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRUST BAR -->
+  <div class="bg-brand-navy py-8">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+        <div class="flex flex-col items-center gap-2">
+          <svg class="w-6 h-6 text-brand-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/></svg>
+          <span class="text-white font-body text-sm">155 N Expy, Griffin</span>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+          <svg class="w-6 h-6 text-brand-red" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          <a href="tel:6786888195" class="text-white font-body text-sm hover:text-brand-red transition-colors">678-688-8195</a>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+          <svg class="w-6 h-6 text-brand-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <span class="text-white font-body text-sm">Mon–Fri 8am–5pm</span>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+          <svg class="w-6 h-6 text-brand-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <span class="text-white font-body text-sm">Walk-Ins Welcome</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOCATION DETAILS -->
+  <section class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid md:grid-cols-2 gap-16 items-center">
+        <div data-reveal="left">
+          <p class="text-brand-red font-body text-xs uppercase tracking-widest mb-3">Our Griffin Shop</p>
+          <h2 class="font-heading text-4xl md:text-5xl uppercase text-brand-navy tracking-wide leading-tight mb-6">Serving Spalding County</h2>
+          <p class="text-gray-600 font-body leading-relaxed mb-5">Our Griffin location brings the same quality, honesty, and service that McDonough has trusted for years — now right in your backyard on North Expressway.</p>
+          <p class="text-gray-600 font-body leading-relaxed mb-8">Whether you need a quick flat repair or a full set of new tires, our Griffin team gets you taken care of fast. Walk in any day, Monday through Friday.</p>
+          <div class="space-y-4 mb-8">
+            <div class="flex items-center gap-4 p-4 bg-brand-light rounded-xl">
+              <div class="w-10 h-10 bg-brand-navy rounded-lg flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/></svg>
+              </div>
+              <div>
+                <p class="font-heading text-sm uppercase text-brand-navy tracking-wide">Address</p>
+                <p class="text-gray-600 font-body text-sm">155 N Expy, Griffin, GA 30223</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-4 p-4 bg-brand-light rounded-xl">
+              <div class="w-10 h-10 bg-brand-navy rounded-lg flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+              </div>
+              <div>
+                <p class="font-heading text-sm uppercase text-brand-navy tracking-wide">Phone</p>
+                <a href="tel:6786888195" class="text-brand-red font-body text-sm hover:text-brand-crimson transition-colors">678-688-8195</a>
+              </div>
+            </div>
+            <div class="flex items-center gap-4 p-4 bg-brand-light rounded-xl">
+              <div class="w-10 h-10 bg-brand-navy rounded-lg flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              </div>
+              <div>
+                <p class="font-heading text-sm uppercase text-brand-navy tracking-wide">Hours</p>
+                <p class="text-gray-600 font-body text-sm">Monday – Friday: 8:00am – 5:00pm</p>
+              </div>
+            </div>
+          </div>
+          <div class="flex gap-4">
+            <a href="tel:6786888195" class="bg-brand-red hover:bg-brand-crimson text-white font-heading uppercase tracking-wider text-sm px-6 py-3.5 rounded transition-all hover:-translate-y-0.5">Call Now</a>
+            <a href="https://maps.google.com/?q=155+N+Expy+Griffin+GA+30223" target="_blank" class="border-2 border-brand-navy text-brand-navy hover:bg-brand-navy hover:text-white font-heading uppercase tracking-wider text-sm px-6 py-3.5 rounded transition-all">Get Directions</a>
+          </div>
+        </div>
+        <!-- Griffin location photo with floating badge -->
+        <div class="relative hidden md:block" data-reveal="right">
+          <div class="rounded-2xl overflow-hidden shadow-2xl aspect-[4/3]">
+            <img src="assets/Griffin_location.jpeg" alt="Griffin location exterior" class="w-full h-full object-cover" />
+          </div>
+          <div class="absolute -bottom-6 -right-6 bg-brand-red text-white rounded-2xl p-5 shadow-2xl">
+            <p class="font-heading text-2xl uppercase tracking-wide leading-none">Now</p>
+            <p class="font-heading text-2xl uppercase text-white/80 tracking-wide">Open</p>
+            <p class="font-body text-xs text-white/70 mt-1">Griffin, GA</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INLINE VIDEO -->
+  <div class="vid-section">
+    <video autoplay muted loop playsinline preload="auto">
+      <source src="assets/Griffin location.mp4" type="video/mp4" />
+    </video>
+    <div class="vid-overlay"></div>
+    <div class="absolute inset-0 z-10 flex items-center max-w-7xl mx-auto px-6">
+      <div class="max-w-lg" data-reveal="left">
+        <p class="text-brand-red font-body text-xs uppercase tracking-widest mb-3">See Our Shop</p>
+        <h2 class="font-heading text-4xl md:text-5xl uppercase text-white tracking-wide mb-4">Come See Us in Griffin</h2>
+        <p class="text-white/75 font-body leading-relaxed mb-7">Easy to find on North Expressway. Plenty of room to pull in, quick turnaround on most services. No appointment needed.</p>
+        <a href="https://maps.google.com/?q=155+N+Expy+Griffin+GA+30223" target="_blank"
+          class="inline-flex items-center gap-2 bg-brand-red hover:bg-brand-crimson text-white font-heading uppercase tracking-wider text-sm px-7 py-4 rounded transition-all hover:-translate-y-0.5">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
+          Open in Maps
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- SERVICES AT GRIFFIN -->
+  <section class="py-24 bg-brand-light">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-14" data-reveal="up">
+        <p class="text-brand-red font-body text-xs uppercase tracking-widest mb-3">What We Do</p>
+        <h2 class="font-heading text-4xl md:text-5xl uppercase text-brand-navy tracking-wide">Services at Griffin</h2>
+        <p class="text-gray-500 font-body mt-3 max-w-lg mx-auto">All the same services you'd expect from McDonough — right here in Griffin.</p>
+      </div>
+      <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <div class="bg-white rounded-2xl p-7 shadow-sm" data-reveal="up" data-delay="1">
+          <div class="w-12 h-12 bg-brand-red/10 rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-brand-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <h3 class="font-heading text-xl uppercase text-brand-navy tracking-wide mb-2">New Tires</h3>
+          <p class="text-gray-500 font-body text-sm leading-relaxed">Quality new tires for every vehicle and budget. We'll mount and balance on the spot.</p>
+        </div>
+        <div class="bg-white rounded-2xl p-7 shadow-sm" data-reveal="up" data-delay="2">
+          <div class="w-12 h-12 bg-brand-red/10 rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-brand-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+          </div>
+          <h3 class="font-heading text-xl uppercase text-brand-navy tracking-wide mb-2">Used Tires</h3>
+          <p class="text-gray-500 font-body text-sm leading-relaxed">Affordable used tires inspected for quality. Great option when you need a tire fast on a budget.</p>
+        </div>
+        <div class="bg-white rounded-2xl p-7 shadow-sm" data-reveal="up" data-delay="3">
+          <div class="w-12 h-12 bg-brand-red/10 rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-brand-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          </div>
+          <h3 class="font-heading text-xl uppercase text-brand-navy tracking-wide mb-2">Rotation &amp; Balance</h3>
+          <p class="text-gray-500 font-body text-sm leading-relaxed">Extend your tire life and improve ride quality with regular rotation and balancing.</p>
+        </div>
+        <div class="bg-white rounded-2xl p-7 shadow-sm" data-reveal="up" data-delay="1">
+          <div class="w-12 h-12 bg-brand-red/10 rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-brand-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          </div>
+          <h3 class="font-heading text-xl uppercase text-brand-navy tracking-wide mb-2">Flat Repair</h3>
+          <p class="text-gray-500 font-body text-sm leading-relaxed">Quick, affordable flat repairs. Pull in and we'll get you back on the road fast.</p>
+        </div>
+        <div class="bg-white rounded-2xl p-7 shadow-sm" data-reveal="up" data-delay="2">
+          <div class="w-12 h-12 bg-brand-red/10 rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-brand-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          </div>
+          <h3 class="font-heading text-xl uppercase text-brand-navy tracking-wide mb-2">Brakes</h3>
+          <p class="text-gray-500 font-body text-sm leading-relaxed">Brake inspection, pad replacement, and rotor service. Don't wait on your brakes.</p>
+        </div>
+        <div class="bg-white rounded-2xl p-7 shadow-sm" data-reveal="up" data-delay="3">
+          <div class="w-12 h-12 bg-brand-red/10 rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-brand-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+          </div>
+          <h3 class="font-heading text-xl uppercase text-brand-navy tracking-wide mb-2">General Auto Repair</h3>
+          <p class="text-gray-500 font-body text-sm leading-relaxed">Beyond tires — we handle a range of general auto repair services to keep your vehicle running right.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-brand-red py-20">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-8" data-reveal="up">
+        <div>
+          <h2 class="font-heading text-4xl uppercase text-white tracking-wide">Ready to Stop By?</h2>
+          <p class="text-white/75 font-body mt-2">155 N Expy, Griffin, GA 30223 — Walk-ins always welcome.</p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4 flex-shrink-0">
+          <a href="tel:6786888195" class="bg-white hover:bg-brand-light text-brand-navy font-heading uppercase tracking-wider text-sm px-7 py-4 rounded transition-all text-center whitespace-nowrap">📞 Griffin: 678-688-8195</a>
+          <a href="tel:6785935893" class="border-2 border-white text-white hover:bg-white hover:text-brand-red font-heading uppercase tracking-wider text-sm px-7 py-4 rounded transition-all text-center whitespace-nowrap">📞 McDonough: 678-593-5893</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-brand-navy pt-16 pb-0">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid md:grid-cols-4 gap-10 pb-12 border-b border-white/10">
+        <div>
+          <img src="assets/Logo.png" alt="McDonough Tires" class="h-auto w-20 mb-4" />
+          <p class="text-white/50 font-body text-sm leading-relaxed">Trusted tire shop serving McDonough and Griffin, Georgia.</p>
+        </div>
+        <div>
+          <h4 class="font-heading text-xs uppercase text-brand-red tracking-widest mb-5">Quick Links</h4>
+          <ul class="space-y-2.5">
+            <li><a href="index.html"    class="text-white/60 hover:text-white font-body text-sm transition-colors">Home</a></li>
+            <li><a href="services.html" class="text-white/60 hover:text-white font-body text-sm transition-colors">Services</a></li>
+            <li><a href="about.html"    class="text-white/60 hover:text-white font-body text-sm transition-colors">About Us</a></li>
+            <li><a href="griffin.html"  class="text-white/60 hover:text-white font-body text-sm transition-colors">Griffin Location</a></li>
+            <li><a href="contact.html"  class="text-white/60 hover:text-white font-body text-sm transition-colors">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-heading text-xs uppercase text-brand-red tracking-widest mb-5">McDonough</h4>
+          <p class="text-white/60 font-body text-sm mb-2">3657 Jodeco Rd, McDonough, GA 30253</p>
+          <a href="tel:6785935893" class="text-white/60 hover:text-white font-body text-sm transition-colors block mb-1">678-593-5893</a>
+          <p class="text-white/60 font-body text-sm">Mon–Fri: 8am–5pm</p>
+        </div>
+        <div>
+          <h4 class="font-heading text-xs uppercase text-brand-red tracking-widest mb-5">Griffin</h4>
+          <p class="text-white/60 font-body text-sm mb-2">155 N Expy, Griffin, GA 30223</p>
+          <a href="tel:6786888195" class="text-white/60 hover:text-white font-body text-sm transition-colors block mb-1">678-688-8195</a>
+          <p class="text-white/60 font-body text-sm">Mon–Fri: 8am–5pm</p>
+        </div>
+      </div>
+      <div class="py-6 flex flex-col md:flex-row items-center justify-between gap-3">
+        <p class="text-white/30 font-body text-xs">&copy; 2026 McDonough New and Used Tires. All rights reserved.</p>
+        <p class="text-white/30 font-body text-xs">Website by <a href="https://mbusinessbrandingai.com" target="_blank" class="hover:text-white/60 transition-colors">Mbusiness Branding AI</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" onclick="closeLB(event)">
+    <button class="lb-close" onclick="closeLB()">&times;</button>
+    <img id="lbImg" src="" alt="" />
+  </div>
+
+  <script>
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 50); }, { passive: true });
+    const ham = document.getElementById('hamburger'), menu = document.getElementById('mobileMenu');
+    let open = false;
+    ham.addEventListener('click', () => { open = !open; menu.classList.toggle('hidden', !open); });
+    const els = document.querySelectorAll('[data-reveal]');
+    if ('IntersectionObserver' in window) {
+      const obs = new IntersectionObserver(e => e.forEach(i => { if (i.isIntersecting) { i.target.classList.add('in-view'); obs.unobserve(i.target); } }), { threshold: 0.12 });
+      els.forEach(el => obs.observe(el));
+    } else { els.forEach(el => el.classList.add('in-view')); }
+    function openLB(el) { document.getElementById('lbImg').src = el.querySelector('img').src; document.getElementById('lightbox').classList.add('open'); }
+    function closeLB(e) { if (!e || e.target !== document.getElementById('lbImg')) document.getElementById('lightbox').classList.remove('open'); }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') document.getElementById('lightbox').classList.remove('open'); });
+  </script>
+
+  <!-- GHL Chat Widget -->
+  <script
+    src="https://widgets.leadconnectorhq.com/loader.js"
+    data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js"
+    data-widget-id="69b89f88bea48a7866799ef3">
+  </script>
+</body>
+</html>

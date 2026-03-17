@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Safety Tips Blog | Tic Tok Towing — Atlanta's 24/7 Roadside Assistance</title>
+  <meta name="description" content="Driving safety tips for Atlanta drivers — what to do when your car breaks down, how to stay safe waiting for a tow truck, and common mistakes to avoid." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              blue:   '#1E40AF',
+              navy:   '#1E3A8A',
+              light:  '#EFF6FF',
+              orange: '#F97316',
+              amber:  '#EA580C',
+            }
+          },
+          fontFamily: {
+            heading: ['Oswald', 'sans-serif'],
+            body:    ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; }
+    h1, h2, h3, h4 { font-family: 'Oswald', sans-serif; }
+
+    /* Nav scroll effect */
+    .nav-scrolled {
+      background: rgba(30,58,138,0.97) !important;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+    }
+
+    /* Smooth transitions */
+    a, button { transition: all 150ms ease; }
+
+    /* Scroll reveal */
+    [data-reveal] {
+      opacity: 0;
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    [data-reveal="up"]    { transform: translateY(40px); }
+    [data-reveal="left"]  { transform: translateX(-50px); }
+    [data-reveal="right"] { transform: translateX(50px); }
+    [data-reveal].in-view { opacity: 1; transform: translate(0, 0); }
+    [data-delay="1"] { transition-delay: 0.1s; }
+    [data-delay="2"] { transition-delay: 0.2s; }
+    [data-delay="3"] { transition-delay: 0.3s; }
+    [data-delay="4"] { transition-delay: 0.4s; }
+    [data-delay="5"] { transition-delay: 0.5s; }
+
+    /* Pulse animation for emergency badge */
+    @keyframes pulse-ring {
+      0%   { transform: scale(1); opacity: 0.6; }
+      100% { transform: scale(1.4); opacity: 0; }
+    }
+    .pulse-dot::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: #22c55e;
+      animation: pulse-ring 1.5s ease-out infinite;
+    }
+  </style>
+</head>
+
+<body class="bg-white text-gray-900 antialiased">
+
+  <!-- ═══════════════════════════════════════════
+       NAVIGATION
+  ═══════════════════════════════════════════ -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-brand-navy">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+
+      <!-- Logo -->
+      <a href="index.html" class="flex items-center gap-3">
+        <div class="w-10 h-10 bg-brand-orange rounded-lg flex items-center justify-center overflow-hidden">
+          <img src="assets/Logo_tranparent.png" alt="Tic Tok Towing" class="w-9 h-9 object-contain" />
+        </div>
+        <div class="text-white">
+          <div class="font-heading font-700 text-xl leading-none tracking-wide">TIC TOK</div>
+          <div class="text-xs text-orange-300 tracking-widest uppercase">Towing</div>
+        </div>
+      </a>
+
+      <!-- Desktop Links -->
+      <div class="hidden md:flex items-center gap-8">
+        <a href="index.html#services" class="text-white/80 hover:text-white text-sm font-medium tracking-wide">Services</a>
+        <a href="index.html#about"    class="text-white/80 hover:text-white text-sm font-medium tracking-wide">About</a>
+        <a href="index.html#reviews"  class="text-white/80 hover:text-white text-sm font-medium tracking-wide">Reviews</a>
+        <a href="index.html#contact"  class="text-white/80 hover:text-white text-sm font-medium tracking-wide">Contact</a>
+        <a href="careers.html"        class="text-white/80 hover:text-white text-sm font-medium tracking-wide">Careers</a>
+        <a href="blog.html"           class="text-white text-sm font-medium tracking-wide border-b-2 border-brand-orange pb-0.5">Blog</a>
+      </div>
+
+      <!-- Right: CTA + Hamburger -->
+      <div class="flex items-center gap-3">
+        <a href="tel:+14045550100" class="bg-brand-orange hover:bg-brand-amber text-white font-heading font-600 px-5 py-2.5 rounded-lg text-sm tracking-wide flex items-center gap-2 cursor-pointer">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+          </svg>
+          Call Now
+        </a>
+        <!-- Hamburger (mobile only) -->
+        <button id="menuBtn" class="md:hidden flex flex-col justify-center items-center w-9 h-9 gap-1.5 cursor-pointer" aria-label="Open menu">
+          <span class="block w-6 h-0.5 bg-white transition-all duration-300" id="bar1"></span>
+          <span class="block w-6 h-0.5 bg-white transition-all duration-300" id="bar2"></span>
+          <span class="block w-6 h-0.5 bg-white transition-all duration-300" id="bar3"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="md:hidden hidden bg-brand-navy px-6 py-5 flex flex-col gap-4 border-t border-white/10">
+      <a href="index.html#services" onclick="closeMenu()" class="text-white/80 hover:text-white text-base font-medium tracking-wide py-1">Services</a>
+      <a href="index.html#about"    onclick="closeMenu()" class="text-white/80 hover:text-white text-base font-medium tracking-wide py-1">About</a>
+      <a href="index.html#reviews"  onclick="closeMenu()" class="text-white/80 hover:text-white text-base font-medium tracking-wide py-1">Reviews</a>
+      <a href="index.html#contact"  onclick="closeMenu()" class="text-white/80 hover:text-white text-base font-medium tracking-wide py-1">Contact</a>
+      <a href="careers.html"        onclick="closeMenu()" class="text-white/80 hover:text-white text-base font-medium tracking-wide py-1">Careers</a>
+      <a href="blog.html"           onclick="closeMenu()" class="text-brand-orange text-base font-medium tracking-wide py-1">Blog</a>
+      <a href="tel:+14045550100" class="bg-brand-orange hover:bg-brand-amber text-white font-heading font-600 px-5 py-3 rounded-lg text-sm tracking-wide flex items-center gap-2 w-fit cursor-pointer mt-2">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+        </svg>
+        Call Now
+      </a>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════
+       PAGE HERO
+  ═══════════════════════════════════════════ -->
+  <section class="pt-32 pb-16" style="background: linear-gradient(135deg, #1E3A8A 0%, #1e293b 60%, #0f172a 100%);">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+      <div class="inline-flex items-center gap-2 bg-brand-orange/20 text-orange-300 text-xs font-medium tracking-widest uppercase px-4 py-2 rounded-full mb-6">
+        <span class="relative flex h-2 w-2">
+          <span class="pulse-dot absolute inline-flex h-full w-full rounded-full bg-green-400"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+        </span>
+        Safety Resources
+      </div>
+      <h1 class="font-heading text-5xl md:text-6xl text-white uppercase tracking-wide mb-4">Safety Tips</h1>
+      <p class="text-white/60 text-lg max-w-2xl mx-auto">What every Atlanta driver needs to know about breakdowns, roadside emergencies, and staying safe while waiting for a tow truck.</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       BLOG POSTS
+  ═══════════════════════════════════════════ -->
+  <section class="py-20 bg-gray-50">
+    <div class="max-w-3xl mx-auto px-6 space-y-12">
+
+      <!-- ── Post 1 ── -->
+      <article data-reveal="up" data-delay="1" class="bg-white rounded-2xl p-8 md:p-10 shadow-sm hover:shadow-md transition-shadow">
+        <div class="flex items-center gap-3 mb-5">
+          <span class="bg-brand-light text-brand-blue text-xs font-medium tracking-widest uppercase px-3 py-1 rounded-full">Safety Tips</span>
+          <span class="text-gray-400 text-xs">March 2025 &nbsp;·&nbsp; 3 min read</span>
+        </div>
+        <h2 class="font-heading text-3xl md:text-4xl text-brand-navy uppercase tracking-wide mb-6 leading-tight">What to Do the Moment Your Car Breaks Down</h2>
+        <div class="space-y-4 text-gray-600 leading-relaxed">
+          <p>Knowing exactly what to do the second your car breaks down can prevent a bad situation from turning deadly. The moment you feel something wrong, activate your <strong class="text-gray-800">hazard lights</strong> immediately — even before you know the problem. Then safely guide your vehicle to the right shoulder or a nearby parking lot, as far off the road as possible. Every second counts, and putting distance between your vehicle and live traffic is your top priority.</p>
+          <p>Once you're stopped, keep your hazard lights flashing and call for <strong class="text-gray-800">emergency roadside assistance</strong> right away. Don't attempt to diagnose the problem while standing near moving traffic. Stay in your vehicle if you're on a busy road or highway — a locked car is far safer than standing on the shoulder. A reliable <strong class="text-gray-800">24/7 towing service</strong> like Tic Tok Towing can dispatch a <strong class="text-gray-800">flatbed tow truck</strong> to your location fast, so your job is to stay safe and stay put.</p>
+          <p>If your car is smoking, there's a risk of fire, or your vehicle is blocking a lane, get everyone out and move well beyond the guardrail before calling for help. In Atlanta's heavy traffic, even a few feet off the road isn't always enough. When you call for <strong class="text-gray-800">roadside assistance</strong>, share your exact location — a cross street, highway exit, or GPS pin — so help can find you quickly.</p>
+        </div>
+        <div class="mt-8 pt-6 border-t border-gray-100 flex items-center justify-between">
+          <a href="tel:+14045550100" class="bg-brand-orange hover:bg-brand-amber text-white font-heading font-600 px-6 py-3 rounded-lg text-sm tracking-wide flex items-center gap-2 cursor-pointer">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+            </svg>
+            Need a Tow? Call Now
+          </a>
+          <span class="text-gray-400 text-xs">Tic Tok Towing — Atlanta, GA</span>
+        </div>
+      </article>
+
+      <!-- ── Post 2 ── -->
+      <article data-reveal="up" data-delay="2" class="bg-white rounded-2xl p-8 md:p-10 shadow-sm hover:shadow-md transition-shadow">
+        <div class="flex items-center gap-3 mb-5">
+          <span class="bg-brand-light text-brand-blue text-xs font-medium tracking-widest uppercase px-3 py-1 rounded-full">Safety Tips</span>
+          <span class="text-gray-400 text-xs">March 2025 &nbsp;·&nbsp; 2 min read</span>
+        </div>
+        <h2 class="font-heading text-3xl md:text-4xl text-brand-navy uppercase tracking-wide mb-6 leading-tight">How to Stay Safe While Waiting for a Tow Truck</h2>
+        <div class="space-y-4 text-gray-600 leading-relaxed">
+          <p>Calling for a tow truck is only half the battle — staying safe while you wait is just as important. Too many drivers make the mistake of standing outside their vehicle near traffic while waiting for <strong class="text-gray-800">emergency roadside assistance</strong> to arrive. If you're on a busy road or highway, stay inside your car with your seatbelt fastened. A stationary vehicle can absorb a collision far better than a person standing on the shoulder.</p>
+          <p>If you must exit the vehicle — due to smoke, fuel leaks, or unsafe positioning — move completely off the road and stand behind a barrier like a guardrail. Never pace along the edge of the road or stand directly behind your vehicle. Keep your <strong class="text-gray-800">hazard lights</strong> on and, if you have them, place road flares or reflective triangles at least 50–100 feet behind your car to alert approaching drivers. Your <strong class="text-gray-800">24/7 towing service</strong> can give you an ETA when you call, so you know exactly how long to hold tight.</p>
+        </div>
+        <div class="mt-8 pt-6 border-t border-gray-100 flex items-center justify-between">
+          <a href="tel:+14045550100" class="bg-brand-orange hover:bg-brand-amber text-white font-heading font-600 px-6 py-3 rounded-lg text-sm tracking-wide flex items-center gap-2 cursor-pointer">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+            </svg>
+            Need a Tow? Call Now
+          </a>
+          <span class="text-gray-400 text-xs">Tic Tok Towing — Atlanta, GA</span>
+        </div>
+      </article>
+
+      <!-- ── Post 3 ── -->
+      <article data-reveal="up" data-delay="3" class="bg-white rounded-2xl p-8 md:p-10 shadow-sm hover:shadow-md transition-shadow">
+        <div class="flex items-center gap-3 mb-5">
+          <span class="bg-brand-light text-brand-blue text-xs font-medium tracking-widest uppercase px-3 py-1 rounded-full">Safety Tips</span>
+          <span class="text-gray-400 text-xs">March 2025 &nbsp;·&nbsp; 3 min read</span>
+        </div>
+        <h2 class="font-heading text-3xl md:text-4xl text-brand-navy uppercase tracking-wide mb-6 leading-tight">Highway Breakdown Safety: What Every Atlanta Driver Needs to Know</h2>
+        <div class="space-y-4 text-gray-600 leading-relaxed">
+          <p>Breaking down on a high-speed highway like I-285 or I-75 in Atlanta is one of the most dangerous situations a driver can face. The combination of high speeds, heavy truck traffic, and limited visibility makes <strong class="text-gray-800">highway breakdowns</strong> significantly more hazardous than local road emergencies. The moment you realize your vehicle is failing, signal right and coast toward the nearest exit ramp — even if you're not sure you'll make it. Getting off the main lanes is always worth the attempt.</p>
+          <p>If you can't reach an exit, pull as far right as possible onto the shoulder, past the white fog line. Leave your <strong class="text-gray-800">hazard lights</strong> on and, if it's safe, place something bright — a jacket, a road flare — visible at the rear of your vehicle. Then call for <strong class="text-gray-800">emergency towing service</strong> immediately. On Atlanta's busiest interstates, response time matters, which is why Tic Tok Towing's <strong class="text-gray-800">24/7 tow truck service</strong> is built to reach you fast, no matter the location.</p>
+          <p>When the tow truck arrives, remain in your vehicle or well off the road until the driver signals it's safe to approach. The driver will secure your vehicle to the <strong class="text-gray-800">flatbed tow truck</strong> from the road side — there's no reason for you to be standing near traffic during hookup. Trusting the professionals is part of staying safe.</p>
+        </div>
+        <div class="mt-8 pt-6 border-t border-gray-100 flex items-center justify-between">
+          <a href="tel:+14045550100" class="bg-brand-orange hover:bg-brand-amber text-white font-heading font-600 px-6 py-3 rounded-lg text-sm tracking-wide flex items-center gap-2 cursor-pointer">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+            </svg>
+            Need a Tow? Call Now
+          </a>
+          <span class="text-gray-400 text-xs">Tic Tok Towing — Atlanta, GA</span>
+        </div>
+      </article>
+
+      <!-- ── Post 4 ── -->
+      <article data-reveal="up" data-delay="4" class="bg-white rounded-2xl p-8 md:p-10 shadow-sm hover:shadow-md transition-shadow">
+        <div class="flex items-center gap-3 mb-5">
+          <span class="bg-brand-light text-brand-blue text-xs font-medium tracking-widest uppercase px-3 py-1 rounded-full">Safety Tips</span>
+          <span class="text-gray-400 text-xs">March 2025 &nbsp;·&nbsp; 2 min read</span>
+        </div>
+        <h2 class="font-heading text-3xl md:text-4xl text-brand-navy uppercase tracking-wide mb-6 leading-tight">Night Breakdown: Staying Visible and Safe After Dark</h2>
+        <div class="space-y-4 text-gray-600 leading-relaxed">
+          <p>A nighttime breakdown is a different level of dangerous. Drivers traveling at speed have far less time to react to a stopped vehicle in the dark, which means your visibility is everything. The moment you stop, activate your <strong class="text-gray-800">hazard lights</strong> without hesitation — they're your first line of defense. If you have a flashlight or road flares in your emergency kit, use them. Position yourself so approaching drivers see a warning before they see your car.</p>
+          <p>Keep your phone charged for exactly this reason. Calling for <strong class="text-gray-800">emergency roadside assistance</strong> quickly is critical at night — the less time you spend <strong class="text-gray-800">stranded on the road</strong>, the safer you are. When you call Tic Tok Towing's <strong class="text-gray-800">24/7 towing service</strong>, give the dispatcher your street address, nearest landmark, or drop a GPS pin. Stay inside your locked vehicle with your seatbelt on until help arrives. Even with hazard lights flashing, dark shoulders carry real risk — don't underestimate it.</p>
+        </div>
+        <div class="mt-8 pt-6 border-t border-gray-100 flex items-center justify-between">
+          <a href="tel:+14045550100" class="bg-brand-orange hover:bg-brand-amber text-white font-heading font-600 px-6 py-3 rounded-lg text-sm tracking-wide flex items-center gap-2 cursor-pointer">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+            </svg>
+            Need a Tow? Call Now
+          </a>
+          <span class="text-gray-400 text-xs">Tic Tok Towing — Atlanta, GA</span>
+        </div>
+      </article>
+
+      <!-- ── Post 5 ── -->
+      <article data-reveal="up" data-delay="5" class="bg-white rounded-2xl p-8 md:p-10 shadow-sm hover:shadow-md transition-shadow">
+        <div class="flex items-center gap-3 mb-5">
+          <span class="bg-brand-light text-brand-blue text-xs font-medium tracking-widest uppercase px-3 py-1 rounded-full">Safety Tips</span>
+          <span class="text-gray-400 text-xs">March 2025 &nbsp;·&nbsp; 3 min read</span>
+        </div>
+        <h2 class="font-heading text-3xl md:text-4xl text-brand-navy uppercase tracking-wide mb-6 leading-tight">5 Common Breakdown Mistakes That Could Get You Hurt</h2>
+        <div class="space-y-4 text-gray-600 leading-relaxed">
+          <p>When your car breaks down, panic and adrenaline can push you into decisions that make a dangerous situation worse. One of the most common mistakes is exiting the vehicle immediately without checking whether it's safe to do so. On a busy road, opening your door into moving traffic or stepping out onto a live lane can turn a mechanical issue into a life-threatening emergency. Stay calm, get your hazards on, and assess before you move.</p>
+          <p>Another costly mistake is waiting too long to call for <strong class="text-gray-800">emergency roadside assistance</strong>. Many drivers try to diagnose the problem themselves, losing valuable time on the shoulder while traffic rushes past. The faster you call a <strong class="text-gray-800">24/7 towing service</strong>, the faster a professional <strong class="text-gray-800">tow truck operator</strong> is on the way — and the less time you spend in a vulnerable position. Tic Tok Towing dispatches quickly across Atlanta, so early calls mean faster <strong class="text-gray-800">vehicle recovery</strong>.</p>
+          <p>Finally, don't forget the basics: leave your car in park with the parking brake set, never stand directly behind your vehicle, and always keep a simple emergency kit — phone charger, reflective triangles, flashlight — in your car. A little preparation goes a long way when you're stranded. When in doubt, call for professional help and let the experts handle the rest.</p>
+        </div>
+        <div class="mt-8 pt-6 border-t border-gray-100 flex items-center justify-between">
+          <a href="tel:+14045550100" class="bg-brand-orange hover:bg-brand-amber text-white font-heading font-600 px-6 py-3 rounded-lg text-sm tracking-wide flex items-center gap-2 cursor-pointer">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+            </svg>
+            Need a Tow? Call Now
+          </a>
+          <span class="text-gray-400 text-xs">Tic Tok Towing — Atlanta, GA</span>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       EMERGENCY CTA BANNER
+  ═══════════════════════════════════════════ -->
+  <section class="bg-brand-orange py-16">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-8">
+      <div data-reveal="left">
+        <h2 class="font-heading text-4xl md:text-5xl text-white uppercase tracking-wide">Stuck on the road?</h2>
+        <p class="text-orange-100 mt-2 text-lg">We dispatch the nearest truck immediately — 24/7, 365 days a year.</p>
+      </div>
+      <a data-reveal="right" href="tel:+14045550100" class="flex-shrink-0 bg-white hover:bg-brand-light text-brand-orange font-heading font-600 text-xl px-10 py-5 rounded-xl tracking-wide flex items-center gap-3 cursor-pointer transition-colors shadow-lg">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+        </svg>
+        (404) 555-0100
+      </a>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════ -->
+  <footer class="bg-brand-navy text-white py-12">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
+
+        <div>
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-9 h-9 bg-brand-orange rounded-lg flex items-center justify-center">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 17l4 4 4-4m-4-5v9M3 11l4-4 4 4M3 7h18M3 11h18"/>
+              </svg>
+            </div>
+            <div>
+              <div class="font-heading font-700 text-lg leading-none tracking-wide">TIC TOK TOWING</div>
+              <div class="text-xs text-orange-300 tracking-widest uppercase">Atlanta, GA</div>
+            </div>
+          </div>
+          <p class="text-white/50 text-sm leading-relaxed">Your trusted 24/7 towing and roadside assistance service in the Atlanta metropolitan area.</p>
+        </div>
+
+        <div>
+          <h4 class="font-heading text-sm uppercase tracking-widest text-white/60 mb-4">Services</h4>
+          <ul class="space-y-2 text-sm text-white/70">
+            <li><a href="index.html#services" class="hover:text-white transition-colors cursor-pointer">24/7 Roadside Assistance</a></li>
+            <li><a href="index.html#services" class="hover:text-white transition-colors cursor-pointer">Vehicle Towing</a></li>
+            <li><a href="index.html#services" class="hover:text-white transition-colors cursor-pointer">Emergency Services</a></li>
+            <li><a href="index.html#services" class="hover:text-white transition-colors cursor-pointer">Lockout Service</a></li>
+            <li><a href="index.html#services" class="hover:text-white transition-colors cursor-pointer">Jump Start</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-heading text-sm uppercase tracking-widest text-white/60 mb-4">Contact</h4>
+          <ul class="space-y-2 text-sm text-white/70">
+            <li>(404) 555-0100</li>
+            <li>Atlanta Metropolitan Area</li>
+            <li>Available 24/7</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="border-t border-white/10 pt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-white/40 text-xs">
+        <span>© 2025 Tic Tok Towing. All rights reserved.</span>
+        <span>Built with Mbusiness Branding AI</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Nav scroll effect
+    window.addEventListener('scroll', () => {
+      const nav = document.getElementById('navbar');
+      nav.classList.toggle('nav-scrolled', window.scrollY > 60);
+    });
+
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const bar1 = document.getElementById('bar1');
+    const bar2 = document.getElementById('bar2');
+    const bar3 = document.getElementById('bar3');
+    let menuOpen = false;
+
+    menuBtn.addEventListener('click', () => {
+      menuOpen = !menuOpen;
+      mobileMenu.classList.toggle('hidden', !menuOpen);
+      bar1.style.transform = menuOpen ? 'translateY(8px) rotate(45deg)' : '';
+      bar2.style.opacity   = menuOpen ? '0' : '1';
+      bar3.style.transform = menuOpen ? 'translateY(-8px) rotate(-45deg)' : '';
+    });
+
+    function closeMenu() {
+      menuOpen = false;
+      mobileMenu.classList.add('hidden');
+      bar1.style.transform = '';
+      bar2.style.opacity   = '1';
+      bar3.style.transform = '';
+    }
+
+    // Scroll reveal
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(el => {
+        if (el.isIntersecting) {
+          el.target.classList.add('in-view');
+          revealObserver.unobserve(el.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('[data-reveal]').forEach(el => revealObserver.observe(el));
+  </script>
+
+  <script
+    src="https://widgets.leadconnectorhq.com/loader.js"
+    data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js"
+    data-widget-id="69b87d4926d17f020735ca06">
+  </script>
+</body>
+</html>

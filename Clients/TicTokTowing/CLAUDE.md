@@ -81,7 +81,7 @@ flowchart TD
 | Phase | Deliverable | Status |
 |-------|------------|--------|
 | 1 | Discovery & Asset Collection | `[~]` |
-| 2 | Website Build | `[ ]` |
+| 2 | Website Build | `[~]` |
 | 3 | Social Media Setup | `[ ]` |
 | 4 | Google Business Profile | `[ ]` |
 | 5 | AI Receptionist (Customer Calls) | `[ ]` |
@@ -280,9 +280,9 @@ flowchart TD
 
 ## Notes & Decisions
 
-*Use this section to log important decisions, client preferences, or blockers as the project progresses.*
-
--
+- **2026-03-15** — Site is live as **static HTML on Hostinger** at https://tiktoktowing.mbusinessbrandingai.com/ (not WordPress). Files: `index.html`, `careers.html`, `blog.html`, `assets/`. Deploy updates via Hostinger MCP (`hosting_deployStaticWebsite`, domain: `tiktoktowing.mbusinessbrandingai.com`).
+- **2026-03-15** — Blog page created with 5 safety tip posts (emergency roadside assistance keywords). Blog link added to nav on all pages.
+- **Platform decision** — Keeping static HTML until discovery call is complete and client confirms need for self-managed CMS. WordPress migration can happen in a later phase if needed.
 
 ---
 
