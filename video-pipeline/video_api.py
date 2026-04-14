@@ -15,6 +15,7 @@ import json
 import subprocess
 import threading
 import time
+import urllib.request
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from pathlib import Path
 from urllib.parse import urlparse
@@ -22,7 +23,8 @@ from urllib.parse import urlparse
 VENV_ACTIVATE = "/home/mauriel-strawbridge/video_pipeline_venv/bin/activate"
 PIPELINE_SCRIPT = "/home/mauriel-strawbridge/video_pipeline.py"
 OUTPUT_DIR = Path("/home/mauriel-strawbridge/video_clips/output")
-OPENCLAW_SESSION = "agent:main:telegram:direct:5775812070"
+TELEGRAM_BOT_TOKEN = "8695877287:AAHkNW2P3QfwP04-1z3jNOc9LdgAcrSnm5o"
+TELEGRAM_CHAT_ID = "5775812070"
 PORT = 5555
 
 # Shared pipeline state
@@ -34,6 +36,19 @@ state = {
     "error": None,
 }
 state_lock = threading.Lock()
+
+
+def _send_telegram(message: str) -> None:
+    """Send a message to Mauriel via Telegram Bot API."""
+    payload = json.dumps({"chat_id": TELEGRAM_CHAT_ID, "text": message}).encode()
+    req = urllib.request.Request(
+        f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage",
+        data=payload,
+        headers={"Content-Type": "application/json"},
+        method="POST",
+    )
+    with urllib.request.urlopen(req, timeout=15) as resp:
+        print(f"[API] Telegram notified: {resp.status}")
 
 
 def run_pipeline(url: str) -> None:
@@ -70,26 +85,20 @@ def run_pipeline(url: str) -> None:
             state["status"] = "completed"
             state["clips"] = clips
 
-        # Notify via OpenClaw
+        # Notify via Telegram Bot API
         lines = [
             f"{i+1}. [{c['score']}/10] {c['title']} ({round(c['end_time'] - c['start_time'])}s)"
             for i, c in enumerate(clips)
         ]
-        message = f"Video Clips Ready! {len(clips)} clips from: {url} | " + " | ".join(lines)
-        subprocess.run(
-            ["openclaw", "msg", "send", OPENCLAW_SESSION, message],
-            timeout=30,
-        )
+        message = f"✅ Video Clips Ready!\n{len(clips)} clips from:\n{url}\n\n" + "\n".join(lines)
+        _send_telegram(message)
 
     except Exception as e:
         with state_lock:
             state["status"] = "failed"
             state["error"] = str(e)
         try:
-            subprocess.run(
-                ["openclaw", "msg", "send", OPENCLAW_SESSION, f"Video pipeline FAILED: {str(e)[:200]}"],
-                timeout=30,
-            )
+            _send_telegram(f"❌ Video pipeline FAILED:\n{str(e)[:300]}")
         except Exception:
             pass
 
