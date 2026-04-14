@@ -38,22 +38,20 @@ except ImportError:
     sys.exit(1)
 
 try:
-    import anthropic
-except ImportError:
-    print("[ERROR] anthropic not installed. Run: pip install anthropic")
-    sys.exit(1)
-
-try:
     import ffmpeg
 except ImportError:
     print("[ERROR] ffmpeg-python not installed. Run: pip install ffmpeg-python")
     sys.exit(1)
 
+import urllib.request
+import urllib.error
+
 
 # ── Config ───────────────────────────────────────────────────────────────────
 OUTPUT_DIR = Path.home() / "video_clips" / "output"
 WHISPER_MODEL = "base"
-CLAUDE_MODEL = "claude-haiku-4-5-20251001"
+OLLAMA_MODEL = "llama3.1:8b"       # change to any model you have pulled
+OLLAMA_BASE_URL = "http://localhost:11434"
 MIN_CLIP_SECONDS = 60
 MAX_CLIP_SECONDS = 120
 NUM_CLIPS = 5
@@ -185,24 +183,18 @@ def segments_to_text(segments: list[dict]) -> str:
 
 # ── Step 3 — Claude clip selection ───────────────────────────────────────────
 
-def select_clips_with_claude(transcript: str) -> list[dict]:
+def select_clips_with_ollama(transcript: str) -> list[dict]:
     """
-    Send the transcript to Claude and ask it to identify the 5 best clips.
+    Send the transcript to a local Ollama model and ask it to identify the 5 best clips.
     Returns a list of clip dicts with start_time, end_time, title, reason, score.
     """
-    log("CLAUDE", f"Sending transcript to {CLAUDE_MODEL} for clip selection...")
-
-    api_key = os.environ.get("ANTHROPIC_API_KEY")
-    if not api_key:
-        print("[ERROR] ANTHROPIC_API_KEY environment variable is not set.")
-        sys.exit(1)
-
-    client = anthropic.Anthropic(api_key=api_key)
+    log("OLLAMA", f"Sending transcript to {OLLAMA_MODEL} for clip selection...")
 
     system_prompt = (
         "You are a social media video editor with expertise in identifying viral, "
         "high-engagement video clips for platforms like TikTok, Instagram Reels, and YouTube Shorts. "
-        "You analyze transcripts and select the most compelling segments."
+        "You analyze transcripts and select the most compelling segments. "
+        "Always respond with valid JSON only — no explanation, no markdown fences."
     )
 
     user_prompt = f"""Analyze the following video transcript and identify the 5 BEST clips for social media.
@@ -231,43 +223,58 @@ Return ONLY valid JSON with this exact structure (no markdown, no explanation ou
 Rules:
 - start_time and end_time must be in seconds (float)
 - end_time - start_time must be between {MIN_CLIP_SECONDS} and {MAX_CLIP_SECONDS}
-- score is 1.0–10.0 (engagement potential)
+- score is 1.0-10.0 (engagement potential)
 - Return exactly {NUM_CLIPS} clips, sorted by score descending
 """
 
-    message = client.messages.create(
-        model=CLAUDE_MODEL,
-        max_tokens=2048,
-        messages=[
-            {"role": "user", "content": user_prompt}
+    payload = json.dumps({
+        "model": OLLAMA_MODEL,
+        "messages": [
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": user_prompt},
         ],
-        system=system_prompt,
+        "stream": False,
+    }).encode("utf-8")
+
+    req = urllib.request.Request(
+        f"{OLLAMA_BASE_URL}/api/chat",
+        data=payload,
+        headers={"Content-Type": "application/json"},
+        method="POST",
     )
 
-    response_text = message.content[0].text.strip()
+    try:
+        with urllib.request.urlopen(req, timeout=180) as resp:
+            result = json.loads(resp.read().decode("utf-8"))
+    except urllib.error.URLError as e:
+        print(f"[ERROR] Could not connect to Ollama at {OLLAMA_BASE_URL}: {e}")
+        print("Make sure Ollama is running: ollama serve")
+        sys.exit(1)
 
-    # Strip markdown code fences if Claude wrapped the JSON
+    response_text = result["message"]["content"].strip()
+
+    # Strip markdown code fences if the model wrapped the JSON
     response_text = re.sub(r'^```(?:json)?\s*', '', response_text)
     response_text = re.sub(r'\s*```$', '', response_text)
 
     try:
         data = json.loads(response_text)
     except json.JSONDecodeError as e:
-        print(f"[ERROR] Claude returned invalid JSON: {e}")
+        print(f"[ERROR] Ollama returned invalid JSON: {e}")
         print(f"Raw response:\n{response_text}")
         sys.exit(1)
 
     clips = data.get("clips", [])
     if not clips:
-        print("[ERROR] Claude returned no clips.")
+        print("[ERROR] Ollama returned no clips.")
         sys.exit(1)
 
-    log("CLAUDE", f"Claude identified {len(clips)} clips.")
+    log("OLLAMA", f"Model identified {len(clips)} clips.")
     for i, clip in enumerate(clips, 1):
         duration = clip["end_time"] - clip["start_time"]
         print(
             f"  {i}. [{clip['score']}/10] \"{clip['title']}\" "
-            f"({clip['start_time']:.1f}s – {clip['end_time']:.1f}s, {duration:.0f}s)"
+            f"({clip['start_time']:.1f}s - {clip['end_time']:.1f}s, {duration:.0f}s)"
         )
         print(f"     Reason: {clip['reason']}")
 
@@ -361,7 +368,7 @@ def main() -> None:
     print("=" * 60)
     print(f"  Source : {source}")
     print(f"  Output : {OUTPUT_DIR}")
-    print(f"  Model  : {CLAUDE_MODEL}")
+    print(f"  Model  : {OLLAMA_MODEL} (local)")
     print(f"  Whisper: {WHISPER_MODEL}")
     print("=" * 60)
 
@@ -383,7 +390,7 @@ def main() -> None:
         log("TRANSCRIBE", f"Transcript saved: {transcript_out}")
 
         # ── 3. Claude clip selection ─────────────────────────────────────────
-        clips = select_clips_with_claude(transcript_text)
+        clips = select_clips_with_ollama(transcript_text)
 
         # Validate clip boundaries against video duration
         try:
