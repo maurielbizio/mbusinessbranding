@@ -37,108 +37,25 @@
     },
     {
       "parameters": {
-        "command": "=bash -lc 'source /home/mauriel-strawbridge/video_pipeline_venv/bin/activate && python3 /home/mauriel-strawbridge/video_pipeline.py {{ JSON.stringify($json.url) }} 2>&1'"
-      },
-      "id": "wf10-n003",
-      "name": "Execute: Run Pipeline",
-      "type": "n8n-nodes-base.executeCommand",
-      "typeVersion": 1,
-      "position": [680, 300],
-      "notes": "Runs yt-dlp download → Whisper transcribe → Claude clip selection → FFmpeg cut. Takes 5–20 min depending on video length."
-    },
-    {
-      "parameters": {
-        "command": "ls -t /home/mauriel-strawbridge/video_clips/output/manifest_*.json 2>/dev/null | head -1"
-      },
-      "id": "wf10-n004",
-      "name": "Execute: Find Manifest",
-      "type": "n8n-nodes-base.executeCommand",
-      "typeVersion": 1,
-      "position": [920, 300],
-      "notes": "Finds the most recently created manifest JSON from the pipeline run"
-    },
-    {
-      "parameters": {
-        "command": "=cat {{ $json.stdout.trim() }}"
-      },
-      "id": "wf10-n005",
-      "name": "Execute: Read Manifest",
-      "type": "n8n-nodes-base.executeCommand",
-      "typeVersion": 1,
-      "position": [1160, 300]
-    },
-    {
-      "parameters": {
-        "jsCode": "// Parse the manifest JSON and return one item per clip\nconst raw = $input.first().json.stdout || '';\nlet manifest;\ntry {\n  manifest = JSON.parse(raw);\n} catch (e) {\n  throw new Error('Failed to parse manifest JSON: ' + raw.substring(0, 200));\n}\n\nconst clips = manifest.clips || [];\nif (clips.length === 0) {\n  throw new Error('No clips found in manifest');\n}\n\nreturn clips.map(clip => ({\n  json: {\n    title: clip.title,\n    score: clip.score,\n    reason: clip.reason,\n    start_time: clip.start_time,\n    end_time: clip.end_time,\n    output_file: clip.output_file,\n    source: manifest.source,\n    run_at: manifest.run_at\n  }\n}));"
-      },
-      "id": "wf10-n006",
-      "name": "Code: Parse Clips",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [1400, 300]
-    },
-    {
-      "parameters": {
-        "filePath": "={{ $json.output_file }}"
-      },
-      "id": "wf10-n007",
-      "name": "Read: Clip Binary",
-      "type": "n8n-nodes-base.readBinaryFile",
-      "typeVersion": 1,
-      "position": [1640, 300],
-      "notes": "Reads each .mp4 clip from disk. Runs once per clip (n8n loops automatically over all items)."
-    },
-    {
-      "parameters": {
-        "operation": "upload",
-        "name": "={{ $('Code: Parse Clips').item.json.title }}.mp4",
-        "driveId": {
-          "__rl": true,
-          "value": "MyDrive",
-          "mode": "list",
-          "cachedResultName": "My Drive"
-        },
-        "folderId": {
-          "__rl": true,
-          "value": "1T0MS31QUcaJgkcUNMw5URFYl9WhQU7P1",
-          "mode": "id"
+        "method": "POST",
+        "url": "http://127.0.0.1:5555/run",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "url",
+              "value": "={{ $json.url }}"
+            }
+          ]
         },
         "options": {}
       },
-      "id": "wf10-n008",
-      "name": "Drive: Upload Clip",
-      "type": "n8n-nodes-base.googleDrive",
-      "typeVersion": 3,
-      "position": [1880, 300],
-      "credentials": {
-        "googleDriveOAuth2Api": {
-          "id": "REPLACE_WITH_GOOGLE_DRIVE_CREDENTIAL_ID",
-          "name": "Google Drive OAuth2"
-        }
-      },
-      "notes": "Uploads each clip to the 'Video Clips' folder in Google Drive. Set REPLACE_WITH_DRIVE_FOLDER_ID in setup."
-    },
-    {
-      "parameters": {
-        "jsCode": "// Runs ONCE for all items — builds a single summary message for OpenClaw\nconst uploadedItems = $input.all();\nconst clipMeta = $('Code: Parse Clips').all();\n\nconst lines = uploadedItems.map((item, i) => {\n  const meta = clipMeta[i]?.json || {};\n  const fileId = item.json?.id || '';\n  const link = fileId\n    ? `https://drive.google.com/file/d/${fileId}/view`\n    : '(link unavailable)';\n  const duration = meta.end_time && meta.start_time\n    ? Math.round(meta.end_time - meta.start_time) + 's'\n    : '?';\n  return `${i + 1}. [${meta.score || '?'}/10] ${meta.title || 'Clip ' + (i + 1)} (${duration}) - ${link}`;\n});\n\nconst source = clipMeta[0]?.json?.source || 'unknown source';\nconst message = `Video Clips Ready! Source: ${source} | ${lines.join(' | ')}`;\n\nreturn [{ json: { message } }];",
-        "mode": "runOnceForAllItems"
-      },
-      "id": "wf10-n009",
-      "name": "Code: Build Message",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [2120, 300]
-    },
-    {
-      "parameters": {
-        "command": "=openclaw msg send agent:main:telegram:direct:5775812070 {{ JSON.stringify($json.message) }}"
-      },
-      "id": "wf10-n010",
-      "name": "OpenClaw: Notify Mauriel",
-      "type": "n8n-nodes-base.executeCommand",
-      "typeVersion": 1,
-      "position": [2360, 300],
-      "notes": "Sends clip summary to Mauriel via OpenClaw CLI. Session key: agent:main:telegram:direct:5775812070"
+      "id": "wf10-n003",
+      "name": "HTTP: Start Pipeline",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [680, 300],
+      "notes": "Calls local video_api.py server. Pipeline runs in background — OpenClaw notifies Mauriel when done."
     }
   ],
   "connections": {
@@ -149,42 +66,7 @@
     },
     "Set: Store URL": {
       "main": [
-        [{ "node": "Execute: Run Pipeline", "type": "main", "index": 0 }]
-      ]
-    },
-    "Execute: Run Pipeline": {
-      "main": [
-        [{ "node": "Execute: Find Manifest", "type": "main", "index": 0 }]
-      ]
-    },
-    "Execute: Find Manifest": {
-      "main": [
-        [{ "node": "Execute: Read Manifest", "type": "main", "index": 0 }]
-      ]
-    },
-    "Execute: Read Manifest": {
-      "main": [
-        [{ "node": "Code: Parse Clips", "type": "main", "index": 0 }]
-      ]
-    },
-    "Code: Parse Clips": {
-      "main": [
-        [{ "node": "Read: Clip Binary", "type": "main", "index": 0 }]
-      ]
-    },
-    "Read: Clip Binary": {
-      "main": [
-        [{ "node": "Drive: Upload Clip", "type": "main", "index": 0 }]
-      ]
-    },
-    "Drive: Upload Clip": {
-      "main": [
-        [{ "node": "Code: Build Message", "type": "main", "index": 0 }]
-      ]
-    },
-    "Code: Build Message": {
-      "main": [
-        [{ "node": "OpenClaw: Notify Mauriel", "type": "main", "index": 0 }]
+        [{ "node": "HTTP: Start Pipeline", "type": "main", "index": 0 }]
       ]
     }
   },
